@@ -1,21 +1,22 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import {BrowserRouter as Router, Route, Link} from 'react-router-dom'
+import {v4Query} from './v4/v4Query'
+import {reloading} from './tools/reloading'
+import {styled} from './tools/styled'
+import {formatCents} from './tools/formatCents'
 
-class App extends Component {
+class Progress extends React.Component {
   render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
-    );
+    return <div>
+      {formatCents(this.props.data.donated_amount_in_cents)} von {formatCents(this.props.data.requested_amount_in_cents)} gesammelt.
+      <div className='progressbar' style={{marginTop: '0.6rem'}}><span style={{width: '80%'}}></span></div>
+    </div>
   }
 }
 
-export default App;
+const App = () => (
+  <Router>
+    <Route path="/fundraising-events/:id/progress" component={reloading(styled(Progress))} />
+  </Router>
+)
+export default App
