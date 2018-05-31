@@ -5,13 +5,11 @@ import {reloading} from './tools/reloading'
 import {styled} from './tools/styled'
 import {formatCents} from './tools/formatCents'
 
-class Progress extends React.Component {
-  render() {
-    return <div>
-      {formatCents(this.props.data.donated_amount_in_cents)} von {formatCents(this.props.data.requested_amount_in_cents)} gesammelt.
-      <div className='progressbar' style={{marginTop: '0.6rem'}}><span style={{width: '80%'}}></span></div>
-    </div>
-  }
+const Progress = (props) => {
+  return <div>
+    {formatCents(props.data.donated_amount_in_cents)} von {formatCents(props.data.requested_amount_in_cents)} gesammelt.
+    <div className='progressbar' style={{marginTop: '0.6rem'}}><span style={{width: `${Math.round(props.data.progress_percentage)}%`}}></span></div>
+  </div>
 }
 
 const App = () => (
