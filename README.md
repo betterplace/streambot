@@ -1,13 +1,11 @@
-http://localhost:3000/fundraising-events/31005/progress?backgroundColor=000&textColor=fff&progressBackgroundColor=002B17&progressColor=00D471&fontFamily=Indie+Flower
-
 # betterplace.org Streambot
 
-## Varianten
+## Endpunkte
 
-https://streambot.betterplace.org/fundraising-events/ID/progress
-https://streambot.betterplace.org/fundraising-events/ID/last-donation
-https://streambot.betterplace.org/fundraising-events/ID/top-donation
-https://streambot.betterplace.org/fundraising-events/ID/last-comment
+- https://streambot.betterplace.org/fundraising-events/ID/progress
+- https://streambot.betterplace.org/fundraising-events/ID/last-donation
+- https://streambot.betterplace.org/fundraising-events/ID/top-donation
+- https://streambot.betterplace.org/fundraising-events/ID/last-comment
 
 ## Customization
 

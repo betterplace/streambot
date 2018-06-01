@@ -39,6 +39,7 @@ const Author = ({name}) => { return (name ? name : 'Anonym') }
 const App = () => (
   <Router>
     <div>
+      <Route exact path="/" render={() => window.location = "https://github.com/betterplace/streambot" }/>
       <Route path="/fundraising-events/:id/progress" component={reloading(styled(Progress))} />
       <Route path="/fundraising-events/:id/last-donation" component={reloading(styled(LastDonation))} />
       <Route path="/fundraising-events/:id/top-donation" component={reloading(styled(TopDonation))} />
