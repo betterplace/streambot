@@ -68,6 +68,7 @@ Folgende Parameter können verwendet werden um die Anzeige anzupassen:
 - `progressBackgroundColor` - als hex-Wert (ohne #), z.B. `&progressBackgroundColor=ff0000`
 - `fontFamily` - als [google fonts](https://fonts.google.com/) identifier, z.B. `&fontFamily=Indie+Flower`
 - `fontSize` - als numerischer Pixel Wert, z.B. `&fontSize=42`
+- `interval` - Wie häufig (in Sekunden) werden neue Daten geholt? - z.b. `&interval=5`
 
 ## Build & Deploy
 

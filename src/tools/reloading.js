@@ -25,8 +25,10 @@ export function reloading(WrappedComponent) {
     }
 
     componentDidMount() {
+      const params = new URLSearchParams(this.props.location.search)
+      const intervalSeconds = parseInt(params.get('interval') || 3, 0)
       this.reloadData()
-      this.interval = setInterval(() => this.reloadData(), 5000)
+      this.interval = setInterval(() => this.reloadData(), intervalSeconds * 1000)
     }
 
     componentWillUnmount() {
