@@ -1,12 +1,20 @@
 import React from 'react'
-import {fetchJSON} from './fetchJSON'
+
+const apiUrl = 'https://api.betterplace.org'
 
 const resolveToApiUrl = (match) => {
-  return `https://api.betterplace.org/api_v4/fundraising_events/${match.params.id}`
-  // '/fundraising-events/:id/progress': () => {
-  //   console.log(this)
-  //   return 'sdf'
-  // }
+  switch (match.path) {
+    case '/fundraising-events/:id/progress':
+      return `${apiUrl}/api_v4/fundraising_events/${match.params.id}`
+    case '/fundraising-events/:id/last-donation':
+      return `${apiUrl}/api_v4/fundraising_events/${match.params.id}/opinions?order=id:desc&per_page=1`
+    case '/fundraising-events/:id/top-donation':
+      return `${apiUrl}/api_v4/fundraising_events/${match.params.id}/opinions?order=amount_in_cents:desc&per_page=1`
+    case '/fundraising-events/:id/last-comment':
+      return `${apiUrl}/api_v4/fundraising_events/${match.params.id}/opinions?order=id:desc&per_page=1&facets=has_message:true`
+    default:
+      return null
+  }
 }
 
 export function reloading(WrappedComponent) {
@@ -18,7 +26,7 @@ export function reloading(WrappedComponent) {
 
     componentDidMount() {
       this.reloadData()
-      this.interval = setInterval(() => this.reloadData(), 10000)
+      this.interval = setInterval(() => this.reloadData(), 5000)
     }
 
     componentWillUnmount() {
@@ -27,14 +35,23 @@ export function reloading(WrappedComponent) {
 
     reloadData = () => {
       const url = resolveToApiUrl(this.props.match)
-      fetchJSON(url, (data) => { this.setState({data}) })
+      fetch(url)
+        .then(response => response.json())
+        .then(json     => this.storeData(json))
+        .then(undefined, err => console.log(err))
+    }
+
+    // From a list response, take the first entry, otherwise store the whole response.
+    // This way it's always exactly one object from the API that is stored into
+    // `props.data` - could be a fundraising event or a opinion or whatever.
+    storeData = (response) => {
+      this.setState({ data: Array.isArray(response.data) ? response.data[0] : response })
     }
 
     render() {
       if (!this.state.data) { return null }
 
       return <React.Fragment>
-        {/* <StylesFromParams params={new URLSearchParams(this.props.location.search)} /> */}
         <WrappedComponent data={this.state.data} {...this.props} />
       </React.Fragment>
     }

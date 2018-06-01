@@ -44,11 +44,18 @@ const StylesFromParams = (props) => {
       background-color: ${extractColorFromParams('progressBackgroundColor', props.params, 'whiteSmoke')};
       height: 20px;
       width: 100%;
+      margin-top: 0.6rem;
     }
     .progressbar > span {
       background-color: ${extractColorFromParams('progressColor', props.params, 'green')};
       display: block;
       height: 100%;
-    };
+    }
+    .message {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      width: 100%;
+    }
   `}</style>
 }
