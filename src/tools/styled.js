@@ -15,6 +15,10 @@ function extractColorFromParams(name, params, defaultValue) {
   return params.has(name) ? `#${params.get(name)}` : defaultValue
 }
 
+function extractPixelFromParams(name, params, defaultValue) {
+  return params.has(name) ? parseInt(params.get(name)) : defaultValue
+}
+
 function googleFontsImport(params) {
   if (params.has('fontFamily')) {
     const fontFamily = params.get('fontFamily')
@@ -36,9 +40,9 @@ const StylesFromParams = (props) => {
 
     body {
       background-color: ${extractColorFromParams('backgroundColor', props.params, 'transparent')};
-      color:            ${extractColorFromParams('textColor'      , props.params, 'black')};
-      text-align: center;
-      font-size: 24px;
+      color:            ${extractColorFromParams('textColor',       props.params, 'black')};
+      font-size:        ${extractPixelFromParams('fontSize',        props.params, 24)}px;
+      text-align:       center;
     }
     .progressbar {
       background-color: ${extractColorFromParams('progressBackgroundColor', props.params, 'whiteSmoke')};
