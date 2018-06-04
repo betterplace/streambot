@@ -11,7 +11,7 @@
 
 [Example](https://streambot.betterplace.org/fundraising-events/30943/progress?textColor=fff&backgroundColor=3F3F3F&progressColor=4597A2&progressBackgroundColor=AECFD1&fontFamily=Seaweed+Script&fontSize=30)
 
->10.059,00 € von 14.500,00 € gesammelt.
+>10.059,00 € von 14.500,00 € gesammelt.  
 >[|||||||||||------]
 
 ```
