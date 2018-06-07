@@ -40,10 +40,10 @@ const App = () => (
   <Router>
     <div>
       <Route exact path="/" render={() => window.location = "https://github.com/betterplace/streambot" }/>
-      <Route path="/fundraising-events/:id/progress" component={reloading(styled(Progress))} />
-      <Route path="/fundraising-events/:id/last-donation" component={reloading(styled(LastDonation))} />
-      <Route path="/fundraising-events/:id/top-donation" component={reloading(styled(TopDonation))} />
-      <Route path="/fundraising-events/:id/last-comment" component={reloading(styled(LastComment))} />
+      <Route path="/fundraising-events/:id/progress"      component={styled(reloading(Progress))} />
+      <Route path="/fundraising-events/:id/last-donation" component={styled(reloading(LastDonation))} />
+      <Route path="/fundraising-events/:id/top-donation"  component={styled(reloading(TopDonation))} />
+      <Route path="/fundraising-events/:id/last-comment"  component={styled(reloading(LastComment))} />
     </div>
   </Router>
 )
