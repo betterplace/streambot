@@ -24,7 +24,7 @@ Will show the all time top donation for this fundraising event.
 
 [Example](https://streambot.betterplace.org/fundraising-events/30943/top-donation?textColor=fff&backgroundColor=3F3F3F&progressColor=4597A2&progressBackgroundColor=AECFD1&fontFamily=Seaweed+Script&fontSize=30)
 
->Top-Spende
+>Top-Spende  
 >25,00 € von tordans
 
 ```
@@ -37,7 +37,7 @@ Will show the last donation, based on the reload-time of 3 seconds. Should the l
 
 [Example](https://streambot.betterplace.org/fundraising-events/30943/last-donation?textColor=fff&backgroundColor=3F3F3F&progressColor=4597A2&progressBackgroundColor=AECFD1&fontFamily=Seaweed+Script&fontSize=30)
 
->Letzte Spende
+>Letzte Spende  
 >25,00 € von tordans
 
 ```
@@ -50,7 +50,7 @@ Will show the last donation with a comment, based on the reload-time of 3 second
 
 [Example](https://streambot.betterplace.org/fundraising-events/30943/last-comment?textColor=fff&backgroundColor=3F3F3F&progressColor=4597A2&progressBackgroundColor=AECFD1&fontFamily=Seaweed+Script&fontSize=30)
 
->Tolle Aktion. Auch ein kleiner Beitrag hilft.
+>Tolle Aktion. Auch ein kleiner Beitrag hilft.  
 >10,00 € von Anonym
 
 ```
