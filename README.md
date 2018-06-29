@@ -2,10 +2,21 @@
 
 ## Modules
 
-### Generel
+### General
 
 - All modules will update every 3 seconds.
 - To create your own fundraising event go to https://www.betterplace.org/de/fundraising-events/registration/preselection?tracking_via=github-streambot-readme
+
+### Customization
+
+Folgende Parameter können verwendet werden um die Anzeige anzupassen:
+
+- `textColor` - hex color value (without #), e.g. `&textColor=ff0000`
+- `backgroundColor` - hex color value (without #), e.g. `&backgroundColor=ff0000`
+- `fontFamily` - as [google fonts](https://fonts.google.com/) identifier, e.g. `&fontFamily=Indie+Flower`
+- `fontSize` - numeric pixel value, e.g. `&fontSize=42`
+- `interval` - how often (in seconds) is new data being fetched? - e.g. `&interval=5`
+- `demo` - show demo data instead of actual data (useful for testing) - e.g. `&demo=true`
 
 ### Progress bar
 
@@ -17,6 +28,12 @@
 ```
 https://streambot.betterplace.org/fundraising-events/<ID>/progress
 ```
+
+Additional customization params:
+
+- `progressColor` - hex color value (without #), e.g. `&progressColor=ff0000`
+- `progressBackgroundColor` - hex color value (without #), e.g. `&progressBackgroundColor=ff0000`
+
 
 ### Top donation
 
@@ -57,21 +74,50 @@ Will show the last donation with a comment, based on the reload-time of 3 second
 https://streambot.betterplace.org/fundraising-events/<ID>/last-comment
 ```
 
+### Donation alert
 
-## Customization
+Show for a certain duration (default 3 seconds) the amount and the name of the donor. Additionally it may show a different wording, a gif and a mp3.
 
-Folgende Parameter können verwendet werden um die Anzeige anzupassen:
+[Example](https://streambot.betterplace.org/fundraising-events/30934/donation-alert?gif=https://media.giphy.com/media/vQqeT3AYg8S5O/giphy.gif&gifHeight=120&wording=Danke!&demo=true&duration=2.3&mp3=https://www.w3schools.com/tags/horse.mp3)
 
-- `textColor` - als hex-Wert (ohne #), z.B. `&textColor=ff0000`
-- `backgroundColor` - als hex-Wert (ohne #), z.B. `&backgroundColor=ff0000`
-- `progressColor` - als hex-Wert (ohne #), z.B. `&progressColor=ff0000`
-- `progressBackgroundColor` - als hex-Wert (ohne #), z.B. `&progressBackgroundColor=ff0000`
-- `fontFamily` - als [google fonts](https://fonts.google.com/) identifier, z.B. `&fontFamily=Indie+Flower`
-- `fontSize` - als numerischer Pixel Wert, z.B. `&fontSize=42`
-- `interval` - Wie häufig (in Sekunden) werden neue Daten geholt? - z.b. `&interval=5`
+
+>   (`;_.---._;`)
+>    )_\     /_(
+>   / _'\ _ /'_ \
+>   |(o)|/ \|(o)|
+>   \___/| |\___/
+>   /`,  \_/   ,'\
+>  |:/ ^ -   ^ \:|
+>  |: - ^  ^ -  :|
+>  \\ ^_ -^ - ^_//
+>   `,---.-.---,`
+>    (//.' '.\\)
+>
+>Danke!
+>10,00 € von Anonym
+
+```
+https://streambot.betterplace.org/fundraising-events/<ID>/donation-alert
+```
+
+Additional customization params:
+
+- `wording` - custom thank you text message, e.g. `&wording=Thanks!`
+- `gif` - gif url to be shown, e.g. `&gif=https://media.giphy.com/media/vQqeT3AYg8S5O/giphy.gif`
+- `gifHeight` - height of the gif in pixel, e.g. `&gifHeight=100`
+- `mp3` - soundfile to be played when new donation arrives, e.g. `&mp3=https://www.w3schools.com/tags/horse.mp3`
+- `duration` - how long (in seconds)
+
+
 
 ## Build & Deploy
 
 ```
 $ yarn build ; firebase deploy
+```
+
+## Development
+
+```
+$ npm start
 ```
