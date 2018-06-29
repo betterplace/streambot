@@ -81,18 +81,18 @@ Show for a certain duration (default 3 seconds) the amount and the name of the d
 [Example](https://streambot.betterplace.org/fundraising-events/30934/donation-alert?gif=https://media.giphy.com/media/vQqeT3AYg8S5O/giphy.gif&gifHeight=120&wording=Danke!&demo=true&duration=2.3&mp3=https://www.w3schools.com/tags/horse.mp3)
 
 
->   (`;_.---._;`)
->    )_\     /_(
->   / _'\ _ /'_ \
->   |(o)|/ \|(o)|
->   \___/| |\___/
->   /`,  \_/   ,'\
->  |:/ ^ -   ^ \:|
->  |: - ^  ^ -  :|
->  \\ ^_ -^ - ^_//
->   `,---.-.---,`
->    (//.' '.\\)
->
+>   (`;_.---._;`)  
+>    )_\     /_(  
+>   / _'\ _ /'_ \  
+>   |(o)|/ \|(o)|  
+>   \___/| |\___/  
+>   /`,  \_/   ,'\  
+>  |:/ ^ -   ^ \:|  
+>  |: - ^  ^ -  :|  
+>  \\ ^_ -^ - ^_//  
+>   `,---.-.---,`  
+>    (//.' '.\\)  
+>  
 >Danke!
 >10,00 € von Anonym
 
