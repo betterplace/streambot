@@ -22,8 +22,10 @@ Folgende Parameter können verwendet werden um die Anzeige anzupassen:
 
 [Example](https://streambot.betterplace.org/fundraising-events/30943/progress?textColor=fff&backgroundColor=3F3F3F&progressColor=4597A2&progressBackgroundColor=AECFD1&fontFamily=Seaweed+Script&fontSize=30)
 
->10.059,00 € von 14.500,00 € gesammelt.  
->[|||||||||||------]
+<pre>
+10.059,00 € von 14.500,00 € gesammelt.  
+[|||||||||||------]
+</pre>
 
 ```
 https://streambot.betterplace.org/fundraising-events/<ID>/progress
@@ -41,8 +43,10 @@ Will show the all time top donation for this fundraising event.
 
 [Example](https://streambot.betterplace.org/fundraising-events/30943/top-donation?textColor=fff&backgroundColor=3F3F3F&progressColor=4597A2&progressBackgroundColor=AECFD1&fontFamily=Seaweed+Script&fontSize=30)
 
->Top-Spende  
->25,00 € von tordans
+<pre>
+Top-Spende  
+25,00 € von tordans
+</pre>
 
 ```
 https://streambot.betterplace.org/fundraising-events/<ID>/top-donation
@@ -54,8 +58,10 @@ Will show the last donation, based on the reload-time of 3 seconds. Should the l
 
 [Example](https://streambot.betterplace.org/fundraising-events/30943/last-donation?textColor=fff&backgroundColor=3F3F3F&progressColor=4597A2&progressBackgroundColor=AECFD1&fontFamily=Seaweed+Script&fontSize=30)
 
->Letzte Spende  
->25,00 € von tordans
+<pre>
+Letzte Spende  
+25,00 € von tordans
+</pre>
 
 ```
 https://streambot.betterplace.org/fundraising-events/<ID>/last-donation
@@ -67,8 +73,10 @@ Will show the last donation with a comment, based on the reload-time of 3 second
 
 [Example](https://streambot.betterplace.org/fundraising-events/30943/last-comment?textColor=fff&backgroundColor=3F3F3F&progressColor=4597A2&progressBackgroundColor=AECFD1&fontFamily=Seaweed+Script&fontSize=30)
 
->Tolle Aktion. Auch ein kleiner Beitrag hilft.  
->10,00 € von Anonym
+<pre>
+Tolle Aktion. Auch ein kleiner Beitrag hilft.  
+10,00 € von Anonym
+</pre>
 
 ```
 https://streambot.betterplace.org/fundraising-events/<ID>/last-comment
@@ -80,21 +88,22 @@ Show for a certain duration (default 3 seconds) the amount and the name of the d
 
 [Example](https://streambot.betterplace.org/fundraising-events/30934/donation-alert?gif=https://media.giphy.com/media/vQqeT3AYg8S5O/giphy.gif&gifHeight=120&wording=Danke!&demo=true&duration=2.3&mp3=https://www.w3schools.com/tags/horse.mp3)
 
-
->   (`;_.---._;`)  
->    )_\     /_(  
->   / _'\ _ /'_ \  
->   |(o)|/ \|(o)|  
->   \___/| |\___/  
->   /`,  \_/   ,'\  
->  |:/ ^ -   ^ \:|  
->  |: - ^  ^ -  :|  
->  \\ ^_ -^ - ^_//  
->   `,---.-.---,`  
->    (//.' '.\\)  
->  
->Danke!
->10,00 € von Anonym
+<pre>
+   (`;_.---._;`)  
+    )_\     /_(  
+   / _'\ _ /'_ \  
+   |(o)|/ \|(o)|  
+   \___/| |\___/  
+   /`,  \_/   ,'\  
+  |:/ ^ -   ^ \:|  
+  |: - ^  ^ -  :|  
+  \\ ^_ -^ - ^_//  
+   `,---.-.---,`  
+    (//.' '.\\)  
+  
+Danke!
+10,00 € von Anonym
+</pre>
 
 ```
 https://streambot.betterplace.org/fundraising-events/<ID>/donation-alert
