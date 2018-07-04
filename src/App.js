@@ -34,6 +34,54 @@ const LastComment = (props) => {
   </div>
 }
 
+class ProjectCarrierLogos extends React.Component {
+
+  constructor(props) {
+    super(props)
+    this.state = {
+      apiUrl: `https://api.betterplace.org/api_v4/fundraising_events/${props.match.params.id}/featured_projects`,
+      logoUrl: null
+    }
+  }
+
+  componentDidMount() {
+    fetch(this.state.apiUrl)
+      .then(response => response.json())
+      .then(json     => this.collectProjectLogos(json.data))
+      .then(projectLogos => this.setLogoInterval(projectLogos))
+      .then(undefined, err => console.log(err))
+  }
+
+  componentWillUnmount() {
+     clearInterval(this.logoInterval);
+  }
+
+  collectProjectLogos = (projects) => {
+    let projectImages = projects.filter((e) => {
+      return !(e.carrier.picture.links[0].href.includes('/assets/default'))
+    }).map((e) => e.carrier.picture.links[0].href)
+
+    projectImages.unshift('https://betterplace-assets.betterplace.org/uploads/organisation/profile_picture/000/013/865/fill_100x100_bp1529503770_Logo-betterplace.png')
+    projectImages = projectImages.filter((v, i, a) => a.indexOf(v) === i)
+    return projectImages
+  }
+
+  setLogoInterval = (projectLogos) => {
+    let i = 0
+    this.logoInterval = setInterval(() => {
+      if (++i === projectLogos.length) i = 0
+      this.setState({logoUrl: projectLogos[i]})
+    }, 5000)
+    this.setState({logoUrl: projectLogos[0]})
+  }
+
+  render() {
+    return <React.Fragment>
+      <img src={this.state.logoUrl} />
+    </React.Fragment>
+  }
+}
+
 class DonationAlert extends React.Component {
   constructor(props) {
     super(props)
@@ -90,6 +138,7 @@ const App = () => (
       <Route path="/fundraising-events/:id/top-donation"   component={styled(reloading(TopDonation))} />
       <Route path="/fundraising-events/:id/last-comment"   component={styled(reloading(LastComment))} />
       <Route path="/fundraising-events/:id/donation-alert" component={styled(reloading(DonationAlert))} />
+      <Route path="/fundraising-events/:id/project-logos"  component={styled(ProjectCarrierLogos)} />
     </div>
   </Router>
 )
