@@ -38,9 +38,12 @@ class ProjectCarrierLogos extends React.Component {
 
   constructor(props) {
     super(props)
+    const params = new URLSearchParams(this.props.location.search)
     this.state = {
-      apiUrl: `https://api.betterplace.org/api_v4/fundraising_events/${props.match.params.id}/featured_projects`,
-      logoUrl: null
+      logos:         [],
+      apiUrl:        `https://api.betterplace.org/api_v4/fundraising_events/${props.match.params.id}/featured_projects`,
+      currentIndex:  0,
+      duration:      params.get('duration') || 5,
     }
   }
 
@@ -48,7 +51,7 @@ class ProjectCarrierLogos extends React.Component {
     fetch(this.state.apiUrl)
       .then(response => response.json())
       .then(json     => this.collectProjectLogos(json.data))
-      .then(projectLogos => this.setLogoInterval(projectLogos))
+      .then(this.startInterval)
       .then(undefined, err => console.log(err))
   }
 
@@ -60,25 +63,28 @@ class ProjectCarrierLogos extends React.Component {
     let projectImages = projects.filter((e) => {
       return !(e.carrier.picture.links[0].href.includes('/assets/default'))
     }).map((e) => e.carrier.picture.links[0].href)
-
     projectImages.unshift('https://betterplace-assets.betterplace.org/uploads/organisation/profile_picture/000/013/865/fill_100x100_bp1529503770_Logo-betterplace.png')
     projectImages = projectImages.filter((v, i, a) => a.indexOf(v) === i)
-    return projectImages
+    this.setState({logos: projectImages})
   }
 
-  setLogoInterval = (projectLogos) => {
-    let i = 0
-    this.logoInterval = setInterval(() => {
-      if (++i === projectLogos.length) i = 0
-      this.setState({logoUrl: projectLogos[i]})
-    }, 5000)
-    this.setState({logoUrl: projectLogos[0]})
+  startInterval = () => {
+    this.interval = window.setInterval(this.incrementIndex, this.state.duration * 1000)
+  }
+
+  incrementIndex = () => {
+    let nextIndex = this.state.currentIndex + 1
+    if (nextIndex >= this.state.logos.length) nextIndex = 0
+    this.setState({ currentIndex: nextIndex })
+  }
+
+  get currentLogoUrl() {
+    return this.state.logos[this.state.currentIndex]
   }
 
   render() {
-    return <React.Fragment>
-      <img src={this.state.logoUrl} />
-    </React.Fragment>
+    if (!this.currentLogoUrl) return null
+    return <img src={this.currentLogoUrl} />
   }
 }
 
