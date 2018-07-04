@@ -128,10 +128,6 @@ Show the organisation logos of the projects that are associated to the event in 
 
 
 
-
-
-
-
    _          _   _                  _             
   | |__   ___| |_| |_ ___ _ __ _ __ | | __ _ _   _
   | '_ \ / _ \ __| __/ _ \ '__| '_ \| |/ _` | | | |
@@ -141,18 +137,13 @@ Show the organisation logos of the projects that are associated to the event in 
 
 
 
-
-
-
-
 </pre>
 
 ```
-https://streambot.betterplace.org/fundraising-events/<ID>/donation-alert
+https://streambot.betterplace.org/fundraising-events/<ID>/project-logos
 ```
 
 Additional customization params:
-
 
 - `duration` - how long is the interval between logos (in seconds)
 
