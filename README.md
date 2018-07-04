@@ -100,7 +100,7 @@ Show for a certain duration (default 3 seconds) the amount and the name of the d
   \\ ^_ -^ - ^_//  
    `,---.-.---,`  
     (//.' '.\\)  
-  
+
 Danke!
 10,00 € von Anonym
 </pre>
@@ -116,6 +116,45 @@ Additional customization params:
 - `gifHeight` - height of the gif in pixel, e.g. `&gifHeight=100`
 - `mp3` - soundfile to be played when new donation arrives, e.g. `&mp3=https://www.w3schools.com/tags/horse.mp3`
 - `duration` - how long (in seconds)
+
+
+### Project Logo Stream
+
+Show the organisation logos of the projects that are associated to the event in a loop. The interval can be adjusted accordingly. The default is 5 seconds per image.
+
+[Example](https://streambot.betterplace.org/fundraising-events/30233/project-logos)
+
+<pre>
+
+
+
+
+
+
+
+   _          _   _                  _             
+  | |__   ___| |_| |_ ___ _ __ _ __ | | __ _ _   _
+  | '_ \ / _ \ __| __/ _ \ '__| '_ \| |/ _` | | | |
+  | |_) |  __/ |_| ||  __/ |  | |_) | | (_| | |_| |
+  |_.__/ \___|\__|\__\___|_|  | .__/|_|\__,_|\__, |
+                              |_|            |___/
+
+
+
+
+
+
+
+</pre>
+
+```
+https://streambot.betterplace.org/fundraising-events/<ID>/donation-alert
+```
+
+Additional customization params:
+
+
+- `duration` - how long is the interval between logos (in seconds)
 
 
 
