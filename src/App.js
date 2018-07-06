@@ -2,6 +2,8 @@ import React from 'react'
 import {BrowserRouter as Router, Route} from 'react-router-dom'
 import sanitizeHtml from 'sanitize-html'
 import {decodeHtmlEntities, formatCents, styled, reloading} from './tools'
+import betterplaceLogo from './images/betterplace-logo.png'
+import betterplayLogo from './images/betterplay-logo.png'
 
 const Progress = (props) => {
   return <div>
@@ -60,10 +62,12 @@ class ProjectCarrierLogos extends React.Component {
   }
 
   collectProjectLogos = (projects) => {
-    let projectImages = projects.filter((e) => {
-      return !(e.carrier.picture.links[0].href.includes('/assets/default'))
-    }).map((e) => e.carrier.picture.links[0].href)
-    projectImages.unshift('https://betterplace-assets.betterplace.org/uploads/organisation/profile_picture/000/013/865/fill_100x100_bp1529503770_Logo-betterplace.png')
+    let projectImages = [betterplaceLogo, betterplayLogo]
+    projects.filter((e) => {
+      if (!e.carrier.picture.links[0].href.includes('/assets/default')) {
+        return projectImages.push(e.carrier.picture.links[0].href)
+      }
+    })
     projectImages = projectImages.filter((v, i, a) => a.indexOf(v) === i)
     this.setState({logos: projectImages})
   }
@@ -84,7 +88,7 @@ class ProjectCarrierLogos extends React.Component {
 
   render() {
     if (!this.currentLogoUrl) return null
-    return <img src={this.currentLogoUrl} />
+    return <img src={this.currentLogoUrl} width='100' height='100'/>
   }
 }
 
