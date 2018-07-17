@@ -43,6 +43,8 @@ const StylesFromParams = (props) => {
       color:            ${extractColorFromParams('textColor',       props.params, 'black')};
       font-size:        ${extractPixelFromParams('fontSize',        props.params, 24)}px;
       text-align:       center;
+      margin:           0;
+      overflow:         hidden;
     }
     .progressbar {
       background-color: ${extractColorFromParams('progressBackgroundColor', props.params, 'whiteSmoke')};

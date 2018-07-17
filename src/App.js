@@ -69,6 +69,7 @@ class ProjectCarrierLogos extends React.Component {
       }
     })
     projectImages = projectImages.filter((v, i, a) => a.indexOf(v) === i)
+    projectImages = projectImages.map((url) => url.replace('100x100', '400x400'))
     this.setState({logos: projectImages})
   }
 
@@ -88,7 +89,7 @@ class ProjectCarrierLogos extends React.Component {
 
   render() {
     if (!this.currentLogoUrl) return null
-    return <img src={this.currentLogoUrl} width='100' height='100'/>
+    return <img src={this.currentLogoUrl} style={{width: '100vmin'}} />
   }
 }
 
