@@ -3,7 +3,8 @@ import React from 'react'
 const apiUrl = 'https://api.betterplace.org'
 // const apiUrl = 'https://api.bp42.com'
 
-const resolveToApiUrl = (match) => {
+const resolveToApiUrl = (match, searchParams) => {
+  console.log(match, searchParams)
   switch (match.path) {
     case '/fundraising-events/:id/progress':
       return `${apiUrl}/api_v4/fundraising_events/${match.params.id}`
@@ -14,6 +15,8 @@ const resolveToApiUrl = (match) => {
       return `${apiUrl}/api_v4/fundraising_events/${match.params.id}/opinions?order=amount_in_cents:desc&per_page=1`
     case '/fundraising-events/:id/last-comment':
       return `${apiUrl}/api_v4/fundraising_events/${match.params.id}/opinions?order=id:desc&per_page=1&facets=has_message:true`
+    case '/fundraising-events/:id/hashtags':
+      return `${apiUrl}/api_v4/fundraising_events/${match.params.id}/hashtag_counts/${searchParams.get('hashtags')}`
     default:
       return null
   }
@@ -28,6 +31,8 @@ const demoData = (match) => {
     case '/fundraising-events/:id/top-donation':
     case '/fundraising-events/:id/last-comment':
       return { id: Math.round(Date.now() / 10000), donated_amount_in_cents: 1337, author: null, message: 'Voll l33t dein Stream!' }
+    case '/fundraising-events/:id/hashtags':
+      return { Wahrheit: 16, Pflicht: 21, Egal: 3 }
     default:
       return null
   }
@@ -36,14 +41,16 @@ const demoData = (match) => {
 export function reloading(WrappedComponent) {
   return class extends React.Component {
     constructor(props) {
-      super(props);
-      const params = new URLSearchParams(this.props.location.search)
-      this.state = { data: null, demo: params.get('demo') }
+      super(props)
+      this.state = { data: null, demo: this.searchParams.get('demo') }
+    }
+
+    get searchParams() {
+      return new URLSearchParams(this.props.location.search)
     }
 
     componentDidMount() {
-      const params = new URLSearchParams(this.props.location.search)
-      const intervalSeconds = parseInt(params.get('interval') || 3, 0)
+      const intervalSeconds = parseInt(this.searchParams.get('interval') || 3, 0)
       this.reloadData()
       this.interval = setInterval(() => this.reloadData(), intervalSeconds * 1000)
     }
@@ -56,7 +63,7 @@ export function reloading(WrappedComponent) {
       // If demo data is requested do not query the API
       if (this.state.demo) return this.storeData(demoData(this.props.match))
 
-      const url = resolveToApiUrl(this.props.match)
+      const url = resolveToApiUrl(this.props.match, this.searchParams)
       fetch(url)
         .then(response => response.json())
         .then(json     => this.storeData(json))

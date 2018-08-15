@@ -148,6 +148,27 @@ Additional customization params:
 - `duration` - how long is the interval between logos (in seconds)
 
 
+### Hashtags
+
+Show bars to compare the occurence counts of the given hashtags in donation comments.
+
+[Example](https://streambot.betterplace.org/fundraising-events/30943/hashtags?hashtags=Wahrheit,Pflicht,Egal?demo=1&textColor=fff&backgroundColor=3F3F3F&progressColor=4597A2&progressBackgroundColor=AECFD1&fontFamily=Seaweed+Script&fontSize=20)
+
+<pre>
+Wahrheit: 16 [|||||||||||||----]
+ Pflicht: 21 [|||||||||||||||||]
+     Egal: 3 [||---------------]
+</pre>
+
+```
+https://streambot.betterplace.org/fundraising-events/<ID>/hashtags?hashtags=<TAG1,TAG2,...>
+```
+
+Additional customization params:
+
+- `progressColor` - hex color value (without #), e.g. `&progressColor=ff0000`
+- `progressBackgroundColor` - hex color value (without #), e.g. `&progressBackgroundColor=ff0000`
+
 
 ## Build & Deploy
 
@@ -160,3 +181,5 @@ $ yarn build ; firebase deploy
 ```
 $ npm start
 ```
+
+Then open e.g. http://localhost:3000/fundraising-events/30943/progress?demo=true

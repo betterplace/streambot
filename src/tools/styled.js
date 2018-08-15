@@ -63,5 +63,15 @@ const StylesFromParams = (props) => {
       text-overflow: ellipsis;
       width: 100%;
     }
+    .hashtags-table {
+      width: 100%;
+    }
+    .label-td {
+      text-align: right;
+    }
+    .bar-td {
+      text-align: left;
+      width: 100%;
+    }
   `}</style>
 }
