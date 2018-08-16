@@ -7,19 +7,27 @@ import betterplayLogo from './images/betterplay-logo.png'
 
 const Progress = ({data: {progress_percentage, donated_amount_in_cents, requested_amount_in_cents}}) => {
   return <div>
-    {formatCents(donated_amount_in_cents)} {requested_amount_in_cents && `von ${formatCents(requested_amount_in_cents)} `} gesammelt.
+    <div className='progress-label'>
+      {formatCents(donated_amount_in_cents)} {requested_amount_in_cents && `von ${formatCents(requested_amount_in_cents)} `} gesammelt.
+    </div>
     {progress_percentage && <ProgressBar percentage={progress_percentage}/>}
   </div>
 }
 
 const Hashtags = ({data}) => {
-  const highestCount = Math.max(...Object.values(data))
+  const counts = Object.values(data)
+  const totalCount = counts.reduce((acc, count) => acc + count)
+  const highestCount = Math.max(...counts)
+
   const rows = Object.entries(data).map(entry => <tr key={entry[0]}>
     <td className='label-td'>
-      <span>{entry[0]}:&nbsp;{entry[1]}</span>
+      <span>#{entry[0]}</span>
     </td>
     <td className='bar-td'>
       <ProgressBar percentage={entry[1] * 100 / highestCount}/>
+    </td>
+    <td className='percentage-td'>
+      <span>{Math.round(entry[1] * 100 / totalCount)}%</span>
     </td>
   </tr>)
 

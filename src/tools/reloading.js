@@ -32,7 +32,7 @@ const demoData = (match) => {
     case '/fundraising-events/:id/last-comment':
       return { id: Math.round(Date.now() / 10000), donated_amount_in_cents: 1337, author: null, message: 'Voll l33t dein Stream!' }
     case '/fundraising-events/:id/hashtags':
-      return { Wahrheit: 16, Pflicht: 21, Egal: 3 }
+      return { Wahrheit: 21, Pflicht: 26, Egal: 3 }
     default:
       return null
   }

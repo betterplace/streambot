@@ -150,14 +150,14 @@ Additional customization params:
 
 ### Hashtags
 
-Show bars to compare the occurence counts of the given hashtags in donation comments.
+Show bars to compare the occurrence counts of the given hashtags in donation comments.
 
-[Example](https://streambot.betterplace.org/fundraising-events/30943/hashtags?hashtags=Wahrheit,Pflicht,Egal?demo=1&textColor=fff&backgroundColor=3F3F3F&progressColor=4597A2&progressBackgroundColor=AECFD1&fontFamily=Seaweed+Script&fontSize=20)
+[Example](https://streambot.betterplace.org/fundraising-events/30943/hashtags?hashtags=Wahrheit,Pflicht,Egal&demo=1&textColor=fff&backgroundColor=3F3F3F&progressColor=4597A2&progressBackgroundColor=AECFD1&fontFamily=Seaweed+Script&fontSize=20)
 
 <pre>
-Wahrheit: 16 [|||||||||||||----]
- Pflicht: 21 [|||||||||||||||||]
-     Egal: 3 [||---------------]
+#Wahrheit [|||||||||||||--] 42%
+ #Pflicht [|||||||||||||||] 52%
+    #Egal [||-------------] 6%
 </pre>
 
 ```
