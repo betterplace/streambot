@@ -24,10 +24,10 @@ const Hashtags = ({data}) => {
       <span>#{entry[0]}</span>
     </td>
     <td className='bar-td'>
-      <ProgressBar percentage={entry[1] * 100 / highestCount}/>
+      <ProgressBar percentage={highestCount ? (entry[1] * 100 / highestCount) : 0}/>
     </td>
     <td className='percentage-td'>
-      <span>{Math.round(entry[1] * 100 / totalCount)}%</span>
+      <span>{totalCount ? Math.round(entry[1] * 100 / totalCount) : 0}%</span>
     </td>
   </tr>)
 
