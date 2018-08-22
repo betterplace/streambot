@@ -4,7 +4,6 @@ const apiUrl = 'https://api.betterplace.org'
 // const apiUrl = 'https://api.bp42.com'
 
 const resolveToApiUrl = (match, searchParams) => {
-  console.log(match, searchParams)
   switch (match.path) {
     case '/fundraising-events/:id/progress':
       return `${apiUrl}/api_v4/fundraising_events/${match.params.id}`
