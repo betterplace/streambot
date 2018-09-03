@@ -37,6 +37,26 @@ Additional customization params:
 - `progressBackgroundColor` - hex color value (without #), e.g. `&progressBackgroundColor=ff0000`
 
 
+### Donation total
+
+Will show the total of all donations for this fundraising event.
+
+[Example](https://streambot.betterplace.org/fundraising-events/30943/total)
+
+<pre>
+Spendenstand
+12.270 €
+</pre>
+
+```
+https://streambot.betterplace.org/fundraising-events/<ID>/total
+```
+
+Additional customization params:
+
+- `headline` - customize the default headline, set to `false` for no headline, e.g. `&headline=Legen%20dary` or `&headline=false`
+
+
 ### Top donation
 
 Will show the all time top donation for this fundraising event.
@@ -52,6 +72,10 @@ Top-Spende
 https://streambot.betterplace.org/fundraising-events/<ID>/top-donation
 ```
 
+Additional customization params:
+
+- `headline` - customize the default headline, set to `false` for no headline, e.g. `&headline=Legen%20dary` or `&headline=false`
+
 ### Last donation
 
 Will show the last donation, based on the reload-time of 3 seconds. Should the last donation also have a comment it will also show up within the 'Last comment' module.
@@ -66,6 +90,10 @@ Letzte Spende
 ```
 https://streambot.betterplace.org/fundraising-events/<ID>/last-donation
 ```
+
+Additional customization params:
+
+- `headline` - customize the default headline, set to `false` for no headline, e.g. `&headline=Legen%20dary` or `&headline=false`
 
 ### Last comment
 

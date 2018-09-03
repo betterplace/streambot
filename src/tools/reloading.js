@@ -6,6 +6,7 @@ const apiUrl = 'https://api.betterplace.org'
 const resolveToApiUrl = (match) => {
   switch (match.path) {
     case '/fundraising-events/:id/progress':
+    case '/fundraising-events/:id/total':
       return `${apiUrl}/api_v4/fundraising_events/${match.params.id}`
     case '/fundraising-events/:id/last-donation':
     case '/fundraising-events/:id/donation-alert':
@@ -22,6 +23,7 @@ const resolveToApiUrl = (match) => {
 const demoData = (match) => {
   switch (match.path) {
     case '/fundraising-events/:id/progress':
+    case '/fundraising-events/:id/total':
       return { donated_amount_in_cents: 1337, requested_amount_in_cents: 4200, progress_percentage: 31, }
     case '/fundraising-events/:id/last-donation':
     case '/fundraising-events/:id/donation-alert':
@@ -38,12 +40,11 @@ export function reloading(WrappedComponent) {
     constructor(props) {
       super(props);
       const params = new URLSearchParams(this.props.location.search)
-      this.state = { data: null, demo: params.get('demo') }
+      this.state = { data: null, demo: params.get('demo'), params: params }
     }
 
     componentDidMount() {
-      const params = new URLSearchParams(this.props.location.search)
-      const intervalSeconds = parseInt(params.get('interval') || 3, 0)
+      const intervalSeconds = parseInt(this.state.params.get('interval') || 3, 0)
       this.reloadData()
       this.interval = setInterval(() => this.reloadData(), intervalSeconds * 1000)
     }
@@ -74,7 +75,7 @@ export function reloading(WrappedComponent) {
       if (!this.state.data) { return null }
 
       return <React.Fragment>
-        <WrappedComponent data={this.state.data} {...this.props} />
+        <WrappedComponent data={this.state.data} {...this.props} params={this.state.params} />
       </React.Fragment>
     }
   }
