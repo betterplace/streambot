@@ -46,11 +46,13 @@ const StylesFromParams = (props) => {
       margin:           0;
       overflow:         hidden;
     }
+    .progress-label {
+      margin-bottom: 0.6rem;
+    }
     .progressbar {
       background-color: ${extractColorFromParams('progressBackgroundColor', props.params, 'whiteSmoke')};
       height: 20px;
       width: 100%;
-      margin-top: 0.6rem;
     }
     .progressbar > span {
       background-color: ${extractColorFromParams('progressColor', props.params, 'green')};
@@ -62,6 +64,23 @@ const StylesFromParams = (props) => {
       overflow: hidden;
       text-overflow: ellipsis;
       width: 100%;
+    }
+    .hashtags-table {
+      width: 100%;
+    }
+    .label-td {
+      padding-right: 8px;
+      text-align: right;
+    }
+    .bar-td {
+      width: 100%;
+    }
+    .bar-td .progressbar {
+      height: 30px;
+    }
+    .percentage-td {
+      padding-left: 8px;
+      text-align: left;
     }
   `}</style>
 }

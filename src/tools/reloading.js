@@ -3,7 +3,7 @@ import React from 'react'
 const apiUrl = 'https://api.betterplace.org'
 // const apiUrl = 'https://api.bp42.com'
 
-const resolveToApiUrl = (match) => {
+const resolveToApiUrl = (match, searchParams) => {
   switch (match.path) {
     case '/fundraising-events/:id/progress':
     case '/fundraising-events/:id/total':
@@ -15,6 +15,8 @@ const resolveToApiUrl = (match) => {
       return `${apiUrl}/api_v4/fundraising_events/${match.params.id}/opinions?order=amount_in_cents:desc&per_page=1`
     case '/fundraising-events/:id/last-comment':
       return `${apiUrl}/api_v4/fundraising_events/${match.params.id}/opinions?order=id:desc&per_page=1&facets=has_message:true`
+    case '/fundraising-events/:id/hashtags':
+      return `${apiUrl}/api_v4/fundraising_events/${match.params.id}/hashtag_counts/${searchParams.get('hashtags')}`
     default:
       return null
   }
@@ -30,6 +32,8 @@ const demoData = (match) => {
     case '/fundraising-events/:id/top-donation':
     case '/fundraising-events/:id/last-comment':
       return { id: Math.round(Date.now() / 10000), donated_amount_in_cents: 1337, author: null, message: 'Voll l33t dein Stream!' }
+    case '/fundraising-events/:id/hashtags':
+      return { Wahrheit: 21, Pflicht: 26, Egal: 3 }
     default:
       return null
   }
@@ -57,7 +61,7 @@ export function reloading(WrappedComponent) {
       // If demo data is requested do not query the API
       if (this.state.demo) return this.storeData(demoData(this.props.match))
 
-      const url = resolveToApiUrl(this.props.match)
+      const url = resolveToApiUrl(this.props.match, this.state.params)
       fetch(url)
         .then(response => response.json())
         .then(json     => this.storeData(json))

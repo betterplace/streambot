@@ -4,10 +4,12 @@ import sanitizeHtml from 'sanitize-html'
 import {decodeHtmlEntities, formatCents, styled, reloading} from './tools'
 import {ProjectCarrierLogos, DonationAlert, Author} from './components'
 
-const Progress = (props) => {
+const Progress = ({data: {progress_percentage, donated_amount_in_cents, requested_amount_in_cents}}) => {
   return <div>
-    {formatCents(props.data.donated_amount_in_cents)} von {formatCents(props.data.requested_amount_in_cents)} gesammelt.
-    <div className='progressbar'><span style={{width: `${Math.round(props.data.progress_percentage)}%`}}></span></div>
+    <div className='progress-label'>
+      {formatCents(donated_amount_in_cents)} {requested_amount_in_cents && `von ${formatCents(requested_amount_in_cents)} `} gesammelt.
+    </div>
+    {progress_percentage && <ProgressBar percentage={progress_percentage}/>}
   </div>
 }
 
@@ -17,6 +19,30 @@ const Total = (props) => {
     <HeadlineWithBr content={headline} />
     {formatCents(props.data.donated_amount_in_cents)}
   </div>
+}
+
+const Hashtags = ({data}) => {
+  const counts = Object.values(data)
+  const totalCount = counts.reduce((acc, count) => acc + count)
+  const highestCount = Math.max(...counts)
+
+  const rows = Object.entries(data).map(entry => <tr key={entry[0]}>
+    <td className='label-td'>
+      <span>#{entry[0]}</span>
+    </td>
+    <td className='bar-td'>
+      <ProgressBar percentage={highestCount ? (entry[1] * 100 / highestCount) : 0}/>
+    </td>
+    <td className='percentage-td'>
+      <span>{totalCount ? Math.round(entry[1] * 100 / totalCount) : 0}%</span>
+    </td>
+  </tr>)
+
+  return <table className='hashtags-table'><tbody>{rows}</tbody></table>
+}
+
+const ProgressBar = ({percentage}) => {
+  return <div className='progressbar'><span style={{width: `${Math.round(percentage)}%`}}></span></div>
 }
 
 const LastDonation = (props) => {
@@ -53,6 +79,7 @@ const App = () => (
     <div>
       <Route exact path="/" render={() => window.location = "https://github.com/betterplace/streambot" }/>
       <Route path="/fundraising-events/:id/progress"       component={styled(reloading(Progress))} />
+      <Route path="/fundraising-events/:id/hashtags"       component={styled(reloading(Hashtags))} />
       <Route path="/fundraising-events/:id/last-donation"  component={styled(reloading(LastDonation))} />
       <Route path="/fundraising-events/:id/top-donation"   component={styled(reloading(TopDonation))} />
       <Route path="/fundraising-events/:id/total"          component={styled(reloading(Total))} />
