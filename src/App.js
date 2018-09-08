@@ -1,15 +1,12 @@
 import React from 'react'
 import {BrowserRouter as Router, Route} from 'react-router-dom'
-import {formatCents, styled, reloading} from './tools'
+import {styled, reloading} from './tools'
 import {
-  Author,
   DonationAlert,
   Hashtags,
-  HeadlineWithBr,
   LastComment,
   LastDonation,
   Progress,
-  ProgressBar,
   ProjectCarrierLogos,
   TopDonation,
   Total,

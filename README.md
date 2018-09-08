@@ -15,6 +15,7 @@ Folgende Parameter können verwendet werden um die Anzeige anzupassen:
 - `backgroundColor` - hex color value (without #), e.g. `&backgroundColor=ff0000`
 - `fontFamily` - as [google fonts](https://fonts.google.com/) identifier, e.g. `&fontFamily=Indie+Flower`
 - `fontSize` - numeric pixel value, e.g. `&fontSize=42`
+- `textAlign` - `left`, `right` or `center`, default is `center`
 - `interval` - how often (in seconds) is new data being fetched? - e.g. `&interval=5`
 - `demo` - show demo data instead of actual data (useful for testing) - e.g. `&demo=true`
 
@@ -109,6 +110,11 @@ Tolle Aktion. Auch ein kleiner Beitrag hilft.
 ```
 https://streambot.betterplace.org/fundraising-events/<ID>/last-comment
 ```
+
+Additional customization params:
+
+- `maxLength` - numeric: maximum displayable characters, the message will be truncated after that and `…` will be appended
+
 
 ### Donation alert
 

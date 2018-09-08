@@ -11,6 +11,10 @@ export function styled(WrappedComponent) {
   }
 }
 
+function extractFromParams(name, params, defaultValue) {
+  return params.has(name) ? params.get(name) : defaultValue
+}
+
 function extractColorFromParams(name, params, defaultValue) {
   return params.has(name) ? `#${params.get(name)}` : defaultValue
 }
@@ -40,9 +44,9 @@ const StylesFromParams = (props) => {
 
     body {
       background-color: ${extractColorFromParams('backgroundColor', props.params, 'transparent')};
-      color:            ${extractColorFromParams('textColor',       props.params, 'black')};
-      font-size:        ${extractPixelFromParams('fontSize',        props.params, 24)}px;
-      text-align:       center;
+      color:            ${extractColorFromParams('textColor',props.params, 'black')};
+      font-size:        ${extractPixelFromParams('fontSize', props.params, 24)}px;
+      text-align:       ${extractFromParams('textAlign', props.params, 'center')};
       margin:           0;
       overflow:         hidden;
     }
