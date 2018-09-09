@@ -63,11 +63,10 @@ const StylesFromParams = (props) => {
       display: block;
       height: 100%;
     }
-    .message {
+    .truncate-with-ellipsis {
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
-      width: 100%;
     }
     .hashtags-table {
       width: 100%;
