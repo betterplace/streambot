@@ -13,6 +13,8 @@ const resolveToApiUrl = (match, searchParams) => {
       return `${apiUrl}/api_v4/fundraising_events/${match.params.id}/opinions?order=id:desc&per_page=1`
     case '/fundraising-events/:id/top-donation':
       return `${apiUrl}/api_v4/fundraising_events/${match.params.id}/opinions?order=amount_in_cents:desc&per_page=1`
+    case '/fundraising-events/:id/top-donor':
+      return `${apiUrl}/api_v4/fundraising_events/${match.params.id}/sum_donations?per_page=1`
     case '/fundraising-events/:id/last-comment':
       return `${apiUrl}/api_v4/fundraising_events/${match.params.id}/opinions?order=id:desc&per_page=1&facets=has_message:true`
     case '/fundraising-events/:id/hashtags':
@@ -30,6 +32,7 @@ const demoData = (match) => {
     case '/fundraising-events/:id/last-donation':
     case '/fundraising-events/:id/donation-alert':
     case '/fundraising-events/:id/top-donation':
+    case '/fundraising-events/:id/top-donor':
     case '/fundraising-events/:id/last-comment':
       return { id: Math.round(Date.now() / 10000), donated_amount_in_cents: 1337, author: null, message: 'Voll l33t dein Stream!' }
     case '/fundraising-events/:id/hashtags':

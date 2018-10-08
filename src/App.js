@@ -9,6 +9,7 @@ import {
   Progress,
   ProjectCarrierLogos,
   TopDonation,
+  TopDonor,
   Total,
 } from './components'
 
@@ -20,6 +21,7 @@ const App = () => (
       <Route path="/fundraising-events/:id/hashtags"       component={styled(reloading(Hashtags))} />
       <Route path="/fundraising-events/:id/last-donation"  component={styled(reloading(LastDonation))} />
       <Route path="/fundraising-events/:id/top-donation"   component={styled(reloading(TopDonation))} />
+      <Route path="/fundraising-events/:id/top-donor"      component={styled(reloading(TopDonor))} />
       <Route path="/fundraising-events/:id/total"          component={styled(reloading(Total))} />
       <Route path="/fundraising-events/:id/last-comment"   component={styled(reloading(LastComment))} />
       <Route path="/fundraising-events/:id/donation-alert" component={styled(reloading(DonationAlert))} />

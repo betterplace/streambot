@@ -6,6 +6,7 @@ export * from './LastDonation'
 export * from './Progress'
 export * from './ProjectCarrierLogos'
 export * from './TopDonation'
+export * from './TopDonor'
 export * from './Total'
 
 // Snippets
