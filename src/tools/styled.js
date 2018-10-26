@@ -20,7 +20,7 @@ function extractColorFromParams(name, params, defaultValue) {
 }
 
 function extractPixelFromParams(name, params, defaultValue) {
-  return params.has(name) ? parseInt(params.get(name), 0) : defaultValue
+  return params.has(name) ? parseInt(params.get(name), 10) : defaultValue
 }
 
 function googleFontsImport(params) {
