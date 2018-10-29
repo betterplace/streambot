@@ -36,7 +36,7 @@ Additional customization params:
 
 - `progressColor` - hex color value (without #), e.g. `&progressColor=ff0000`
 - `progressBackgroundColor` - hex color value (without #), e.g. `&progressBackgroundColor=ff0000`
-- `collected` - change text from `gesammelt.` to something else, `false`, hides the text.
+- `collected` - customize the default text, set to `false` to hide the text.
 
 
 ### Donation total
@@ -56,7 +56,7 @@ https://streambot.betterplace.org/fundraising-events/<ID>/total
 
 Additional customization params:
 
-- `headline` - customize the default headline, set to `false` for no headline, e.g. `&headline=Legen%20dary` or `&headline=false`
+- `headline` - customize the default text, set to `false` to hide the text.
 
 
 ### Top donation
@@ -67,7 +67,8 @@ Will show the all time top donation for this fundraising event.
 
 <pre>
 Top-Spende
-25,00 € von tordans
+tordans
+25,00 €
 </pre>
 
 ```
@@ -76,7 +77,7 @@ https://streambot.betterplace.org/fundraising-events/<ID>/top-donation
 
 Additional customization params:
 
-- `headline` - customize the default headline, set to `false` for no headline, e.g. `&headline=Legen%20dary` or `&headline=false`
+- `headline` - customize the default text, set to `false` to hide the text.
 - `since` - only displays the top donation since a given point in time, e. g. `2011-11-11T11:11:00CET`
 - `max-count` - displays the first `n` top-donations, e. g. `10` (default is `1`), cycling through them per interval.
 
@@ -88,7 +89,8 @@ Will show the last donation, based on the reload-time of 3 seconds. Should the l
 
 <pre>
 Letzte Spende
-25,00 € von tordans
+tordans
+25,00 €
 </pre>
 
 ```
