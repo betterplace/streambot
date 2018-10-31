@@ -52,7 +52,7 @@ export function reloading(WrappedComponent) {
       super(props);
       const params = new URLSearchParams(this.props.location.search)
       const demo = params.get('demo')
-      const maxCount = parseInt(params.get('max-count') || 1, 10)
+      const maxCount = parseInt(params.get('maxCount') || 1, 10)
       this.state = { data: null, demo, params, counter: 1, maxCount }
     }
 
