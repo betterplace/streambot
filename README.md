@@ -16,7 +16,7 @@ Folgende Parameter können verwendet werden um die Anzeige anzupassen:
 - `fontFamily` - as [google fonts](https://fonts.google.com/) identifier, e.g. `&fontFamily=Indie+Flower`
 - `fontSize` - numeric pixel value, e.g. `&fontSize=42`
 - `textAlign` - `left`, `right` or `center`, default is `center`
-- `interval` - how often (in seconds) is new data being fetched? - e.g. `&interval=5`
+- `interval` - how often (in seconds) is new data being fetched, default 3 - e.g. `&interval=5`
 - `demo` - show demo data instead of actual data (useful for testing) - e.g. `&demo=true`
 
 ### Progress bar
