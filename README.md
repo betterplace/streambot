@@ -16,7 +16,7 @@ Folgende Parameter können verwendet werden um die Anzeige anzupassen:
 - `fontFamily` - as [google fonts](https://fonts.google.com/) identifier, e.g. `&fontFamily=Indie+Flower`
 - `fontSize` - numeric pixel value, e.g. `&fontSize=42`
 - `textAlign` - `left`, `right` or `center`, default is `center`
-- `interval` - how often (in seconds) is new data being fetched? - e.g. `&interval=5`
+- `interval` - how often (in seconds) is new data being fetched, default 3 - e.g. `&interval=5`
 - `demo` - show demo data instead of actual data (useful for testing) - e.g. `&demo=true`
 
 ### Progress bar
@@ -24,7 +24,7 @@ Folgende Parameter können verwendet werden um die Anzeige anzupassen:
 [Example](https://streambot.betterplace.org/fundraising-events/30943/progress?textColor=fff&backgroundColor=3F3F3F&progressColor=4597A2&progressBackgroundColor=AECFD1&fontFamily=Seaweed+Script&fontSize=30)
 
 <pre>
-10.059,00 € von 14.500,00 € gesammelt.  
+10.059,00 € von 14.500,00 € gesammelt.
 [|||||||||||------]
 </pre>
 
@@ -36,6 +36,7 @@ Additional customization params:
 
 - `progressColor` - hex color value (without #), e.g. `&progressColor=ff0000`
 - `progressBackgroundColor` - hex color value (without #), e.g. `&progressBackgroundColor=ff0000`
+- `collected` - customize the default text, set to `false` to hide the text.
 
 
 ### Donation total
@@ -55,7 +56,7 @@ https://streambot.betterplace.org/fundraising-events/<ID>/total
 
 Additional customization params:
 
-- `headline` - customize the default headline, set to `false` for no headline, e.g. `&headline=Legen%20dary` or `&headline=false`
+- `headline` - customize the default text, set to `false` to hide the text.
 
 
 ### Top donation
@@ -65,8 +66,9 @@ Will show the all time top donation for this fundraising event.
 [Example](https://streambot.betterplace.org/fundraising-events/30943/top-donation?textColor=fff&backgroundColor=3F3F3F&progressColor=4597A2&progressBackgroundColor=AECFD1&fontFamily=Seaweed+Script&fontSize=30)
 
 <pre>
-Top-Spende  
-25,00 € von tordans
+Top-Spende
+tordans
+25,00 €
 </pre>
 
 ```
@@ -75,7 +77,9 @@ https://streambot.betterplace.org/fundraising-events/<ID>/top-donation
 
 Additional customization params:
 
-- `headline` - customize the default headline, set to `false` for no headline, e.g. `&headline=Legen%20dary` or `&headline=false`
+- `headline` - customize the default text, set to `false` to hide the text.
+- `since` - only displays the top donation since a given point in time, e. g. `2011-11-11T11:11:00CET`
+- `max-count` - displays the first `n` top-donations, e. g. `10` (default is `1`), cycling through them per interval.
 
 ### Last donation
 
@@ -84,8 +88,9 @@ Will show the last donation, based on the reload-time of 3 seconds. Should the l
 [Example](https://streambot.betterplace.org/fundraising-events/30943/last-donation?textColor=fff&backgroundColor=3F3F3F&progressColor=4597A2&progressBackgroundColor=AECFD1&fontFamily=Seaweed+Script&fontSize=30)
 
 <pre>
-Letzte Spende  
-25,00 € von tordans
+Letzte Spende
+tordans
+25,00 €
 </pre>
 
 ```
@@ -103,7 +108,7 @@ Will show the last donation with a comment, based on the reload-time of 3 second
 [Example](https://streambot.betterplace.org/fundraising-events/30943/last-comment?textColor=fff&backgroundColor=3F3F3F&progressColor=4597A2&progressBackgroundColor=AECFD1&fontFamily=Seaweed+Script&fontSize=30)
 
 <pre>
-Tolle Aktion. Auch ein kleiner Beitrag hilft.  
+Tolle Aktion. Auch ein kleiner Beitrag hilft.
 10,00 € von Anonym
 </pre>
 
@@ -123,17 +128,17 @@ Show for a certain duration (default 3 seconds) the amount and the name of the d
 [Example](https://streambot.betterplace.org/fundraising-events/30934/donation-alert?gif=https://media.giphy.com/media/vQqeT3AYg8S5O/giphy.gif&gifHeight=120&wording=Danke!&demo=true&duration=2.3&mp3=https://www.w3schools.com/tags/horse.mp3)
 
 <pre>
-   (`;_.---._;`)  
-    )_\     /_(  
-   / _'\ _ /'_ \  
-   |(o)|/ \|(o)|  
-   \___/| |\___/  
-   /`,  \_/   ,'\  
-  |:/ ^ -   ^ \:|  
-  |: - ^  ^ -  :|  
-  \\ ^_ -^ - ^_//  
-   `,---.-.---,`  
-    (//.' '.\\)  
+   (`;_.---._;`)
+    )_\     /_(
+   / _'\ _ /'_ \
+   |(o)|/ \|(o)|
+   \___/| |\___/
+   /`,  \_/   ,'\
+  |:/ ^ -   ^ \:|
+  |: - ^  ^ -  :|
+  \\ ^_ -^ - ^_//
+   `,---.-.---,`
+    (//.' '.\\)
 
 Danke!
 10,00 € von Anonym
@@ -162,7 +167,7 @@ Show the organisation logos of the projects that are associated to the event in 
 
 
 
-   _          _   _                  _             
+   _          _   _                  _
   | |__   ___| |_| |_ ___ _ __ _ __ | | __ _ _   _
   | '_ \ / _ \ __| __/ _ \ '__| '_ \| |/ _` | | | |
   | |_) |  __/ |_| ||  __/ |  | |_) | | (_| | |_| |

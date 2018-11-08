@@ -3,20 +3,24 @@ import React from 'react'
 const apiUrl = 'https://api.betterplace.org'
 // const apiUrl = 'https://api.bp42.com'
 
-const resolveToApiUrl = (match, searchParams) => {
+const resolveToApiUrl = (match, searchParams, counter) => {
+  let since = searchParams.get('since') || ''
+  if (since && since.length) {
+    since = `&facets=since:${since}`
+  }
   switch (match.path) {
     case '/fundraising-events/:id/progress':
     case '/fundraising-events/:id/total':
       return `${apiUrl}/api_v4/fundraising_events/${match.params.id}`
     case '/fundraising-events/:id/last-donation':
     case '/fundraising-events/:id/donation-alert':
-      return `${apiUrl}/api_v4/fundraising_events/${match.params.id}/opinions?order=id:desc&per_page=1`
+      return `${apiUrl}/api_v4/fundraising_events/${match.params.id}/opinions?order=id:desc&per_page=1&page=${counter}`
     case '/fundraising-events/:id/top-donation':
-      return `${apiUrl}/api_v4/fundraising_events/${match.params.id}/opinions?order=amount_in_cents:desc&per_page=1`
+      return `${apiUrl}/api_v4/fundraising_events/${match.params.id}/opinions?order=amount_in_cents:desc&per_page=1&page=${counter}${since}`
     case '/fundraising-events/:id/top-donor':
-      return `${apiUrl}/api_v4/fundraising_events/${match.params.id}/sum_donations?per_page=1`
+      return `${apiUrl}/api_v4/fundraising_events/${match.params.id}/sum_donations?per_page=1&page=${counter}`
     case '/fundraising-events/:id/last-comment':
-      return `${apiUrl}/api_v4/fundraising_events/${match.params.id}/opinions?order=id:desc&per_page=1&facets=has_message:true`
+      return `${apiUrl}/api_v4/fundraising_events/${match.params.id}/opinions?order=id:desc&per_page=1&page=${counter}&facets=has_message:true`
     case '/fundraising-events/:id/hashtags':
       return `${apiUrl}/api_v4/fundraising_events/${match.params.id}/hashtag_counts/${searchParams.get('hashtags')}`
     default:
@@ -47,11 +51,13 @@ export function reloading(WrappedComponent) {
     constructor(props) {
       super(props);
       const params = new URLSearchParams(this.props.location.search)
-      this.state = { data: null, demo: params.get('demo'), params: params }
+      const demo = params.get('demo')
+      const maxCount = parseInt(params.get('max-count') || 1, 10)
+      this.state = { data: null, demo, params, counter: 1, maxCount }
     }
 
     componentDidMount() {
-      const intervalSeconds = parseInt(this.state.params.get('interval')) || 3
+      const intervalSeconds = parseInt(this.state.params.get('interval'), 10) || 3
       this.reloadData()
       this.interval = setInterval(() => this.reloadData(), intervalSeconds * 1000)
     }
@@ -61,10 +67,15 @@ export function reloading(WrappedComponent) {
     }
 
     reloadData = () => {
+      const url = resolveToApiUrl(this.props.match, this.state.params, this.state.counter)
+      this.setState((state, props) => {
+        return { counter: state.counter >= this.state.maxCount ? 1 : state.counter + 1 }
+      })
       // If demo data is requested do not query the API
-      if (this.state.demo) return this.storeData(demoData(this.props.match))
-
-      const url = resolveToApiUrl(this.props.match, this.state.params)
+      if (this.state.demo) {
+        console.log(`Demo Mode: API Request would have been: "${url}".`)
+        return this.storeData(demoData(this.props.match))
+      }
       fetch(url)
         .then(response => response.json())
         .then(json     => this.storeData(json))
