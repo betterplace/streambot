@@ -12,15 +12,15 @@ export function styled(WrappedComponent) {
 }
 
 function extractFromParams(name, params, defaultValue) {
-  return params.has(name) ? params.get(name) : defaultValue
+  return params.has(name) && params.get(name) || defaultValue
 }
 
 function extractColorFromParams(name, params, defaultValue) {
-  return params.has(name) ? `#${params.get(name)}` : defaultValue
+  return params.has(name) && `#${params.get(name)}` || defaultValue
 }
 
 function extractPixelFromParams(name, params, defaultValue) {
-  return params.has(name) ? parseInt(params.get(name), 0) : defaultValue
+  return params.has(name) && parseInt(params.get(name)) || defaultValue
 }
 
 function googleFontsImport(params) {
