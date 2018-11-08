@@ -51,7 +51,7 @@ export function reloading(WrappedComponent) {
     }
 
     componentDidMount() {
-      const intervalSeconds = parseInt(this.state.params.get('interval') || 3, 0)
+      const intervalSeconds = parseInt(this.state.params.get('interval')) || 3
       this.reloadData()
       this.interval = setInterval(() => this.reloadData(), intervalSeconds * 1000)
     }
