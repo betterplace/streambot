@@ -68,18 +68,18 @@ export function reloading(WrappedComponent) {
 
     reloadData = () => {
       const url = resolveToApiUrl(this.props.match, this.state.params, this.state.counter)
-      this.setState((state, props) => {
-        return { counter: state.counter >= this.state.maxCount ? 1 : state.counter + 1 }
+
+      this.setState({counter: this.state.counter >= this.state.maxCount ? 1 : this.state.counter + 1}, () => {
+        // If demo data is requested do not query the API
+        if (this.state.demo) {
+          console.log(`Demo Mode: API Request would have been: "${url}".`)
+          return this.storeData(demoData(this.props.match))
+        }
+        fetch(url)
+          .then(response => response.json())
+          .then(json     => this.storeData(json))
+          .then(undefined, err => console.log(err))
       })
-      // If demo data is requested do not query the API
-      if (this.state.demo) {
-        console.log(`Demo Mode: API Request would have been: "${url}".`)
-        return this.storeData(demoData(this.props.match))
-      }
-      fetch(url)
-        .then(response => response.json())
-        .then(json     => this.storeData(json))
-        .then(undefined, err => console.log(err))
     }
 
     // From a list response, take the first entry, otherwise store the whole response.
