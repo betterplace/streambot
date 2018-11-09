@@ -79,7 +79,7 @@ Additional customization params:
 
 - `headline` - customize the default text, set to `false` to hide the text.
 - `since` - only displays the top donation since a given point in time, e. g. `2011-11-11T11:11:00CET`
-- `max-count` - displays the first `n` top-donations, e. g. `10` (default is `1`), cycling through them per interval.
+- `maxCount` - displays the first `n` top-donations, e. g. `10` (default is `1`), cycling through them per interval.
 
 ### Last donation
 
