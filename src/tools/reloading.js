@@ -68,8 +68,9 @@ export function reloading(WrappedComponent) {
 
     reloadData = () => {
       const url = resolveToApiUrl(this.props.match, this.state.params, this.state.counter)
+      const nextCounter = (this.state.counter >= this.state.maxCount) ? 1 : this.state.counter + 1
 
-      this.setState({counter: this.state.counter >= this.state.maxCount ? 1 : this.state.counter + 1}, () => {
+      this.setState({counter: nextCounter}, () => {
         // If demo data is requested do not query the API
         if (this.state.demo) {
           console.log(`Demo Mode: API Request would have been: "${url}".`)

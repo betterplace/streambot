@@ -10,6 +10,6 @@ export * from './TopDonor'
 export * from './Total'
 
 // Snippets
-export * from './Author'
+export * from './Nickname'
 export * from './HeadlineWithBr'
 export * from './ProgressBar'

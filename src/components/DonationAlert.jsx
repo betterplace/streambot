@@ -1,6 +1,6 @@
 import React from 'react'
 import {formatCents} from '../tools'
-import {Author} from '.'
+import {Nickname} from '.'
 
 export class DonationAlert extends React.Component {
   constructor(props) {
@@ -32,7 +32,7 @@ export class DonationAlert extends React.Component {
       <br />
       {this.state.wording}
       <br />
-      {formatCents(this.props.data.donated_amount_in_cents)} von <Author {...this.props.data.author} />
+      {formatCents(this.props.data.donated_amount_in_cents)} von <Nickname {...this.props.data.author} color={this.props.params.get('nicknameColor')} />
     </div>
   }
 }
