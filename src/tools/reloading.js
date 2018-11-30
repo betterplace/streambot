@@ -38,7 +38,7 @@ const demoData = (match) => {
     case '/fundraising-events/:id/top-donation':
     case '/fundraising-events/:id/top-donor':
     case '/fundraising-events/:id/last-comment':
-      return { id: Math.round(Date.now() / 10000), donated_amount_in_cents: 1337, author: null, message: 'Voll l33t dein Stream!' }
+      return { id: Math.round(Date.now() / 10000), donated_amount_in_cents: 1337, author: { name: 'Unicorn&lt;3' }, message: 'Voll l33t dein Stream &amp; deine Show!' }
     case '/fundraising-events/:id/hashtags':
       return { Wahrheit: 21, Pflicht: 26, Egal: 3 }
     default:
