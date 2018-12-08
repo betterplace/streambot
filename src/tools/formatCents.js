@@ -5,7 +5,7 @@ export function formatCents(cents) {
       style: 'currency',
       currency: 'EUR',
       minimumFractionDigits: fraction,
-      maximumFractionDigits: fraction,
+      maximumFractionDigits: 2,
     }).format(cents / 100)
   } else {
     return 'Spende'
