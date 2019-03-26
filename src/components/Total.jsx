@@ -4,8 +4,9 @@ import {HeadlineWithBr} from '.'
 
 export const Total = (props) => {
   const headline = props.params.get('headline') || 'Spendenstand'
+  const subtrahend = props.params.get('subtractCents') || 0
   return <div className='truncate-with-ellipsis'>
     <HeadlineWithBr content={headline} />
-    {formatCents(props.data.donated_amount_in_cents)}
+    {formatCents(props.data.donated_amount_in_cents - subtrahend)}
   </div>
 }
