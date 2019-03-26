@@ -2,6 +2,7 @@
   "name": "streambot",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://streambot.betterplace.org",
   "dependencies": {
     "firebase-tools": "^6.5.0",
     "react": "^16.8.5",
