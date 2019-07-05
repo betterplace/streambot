@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>betterplace.org - Demo - Slideshow von Widgets</title>
+    <style>
+      body {
+        background-color: #3F3F3F;
+      }
+      iframe {
+        border: 0;
+      }
+    </style>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        iframes_to_iterate = document.querySelectorAll('iframe');
+        iframe_iteration_id = 0;
+
+        window.setInterval(function(){
+          // reset counter if needed
+          if(iframe_iteration_id >= iframes_to_iterate.length) {
+            iframe_iteration_id = 0
+          }
+
+          // hide all
+          Array.prototype.forEach.call(iframes_to_iterate, function(el, i){
+            el.style.display = 'none';
+          });
+
+          // show next one
+          new_iframe = iframes_to_iterate[iframe_iteration_id];
+          new_iframe.style.display = 'block';
+
+          // increase counter-id, so we show the next iframe in the next run
+          iframe_iteration_id = iframe_iteration_id + 1;
+        }, 3000); // 3 second
+      });
+    </script>
+  </head>
+  <body style="text-align: center;">
+
+    <iframe style="display:none;" src="https://streambot.betterplace.org/fundraising-events/30943/progress?textColor=fff&backgroundColor=3F3F3F&progressColor=4597A2&progressBackgroundColor=AECFD1&fontFamily=Roboto+Slab&fontSize=18"
+      height="70"
+      width="310"></iframe>
+
+    <iframe style="display:none;" src="https://streambot.betterplace.org/fundraising-events/30943/top-donation?textColor=fff&backgroundColor=3F3F3F&progressColor=4597A2&progressBackgroundColor=AECFD1&fontFamily=Roboto+Slab&fontSize=18"
+      height="70"
+      width="100%"></iframe>
+
+    <iframe style="display:none;" src="https://streambot.betterplace.org/fundraising-events/30943/last-comment?textColor=fff&backgroundColor=3F3F3F&progressColor=4597A2&progressBackgroundColor=AECFD1&fontFamily=Roboto+Slab&fontSize=18"
+      height="70"
+      width="100%"></iframe>
+
+  </body>
+</html>
