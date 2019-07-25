@@ -13,7 +13,8 @@ Folgende Parameter können verwendet werden um die Anzeige anzupassen:
 
 - `textColor` - hex color value (without #), e.g. `&textColor=ff0000`
 - `backgroundColor` - hex color value (without #), e.g. `&backgroundColor=ff0000`
-- `fontFamily` - as [google fonts](https://fonts.google.com/) identifier, e.g. `&fontFamily=Indie+Flower`
+- `fontFamily` - as [google fonts](https://fonts.google.com/) name, e.g. `&fontFamily=Indie+Flower` (but _not_ `&fontFamily=Roboto:700`, use `fontWeight=700` instead)
+- `fontWeight` - as specified by google fonts `&fontWeight=700`
 - `fontSize` - numeric pixel value, e.g. `&fontSize=42`
 - `textAlign` - `left`, `right` or `center`, default is `center`
 - `interval` - how often (in seconds) is new data being fetched, default 3 - e.g. `&interval=5`

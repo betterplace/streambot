@@ -26,11 +26,13 @@ function extractPixelFromParams(name, params, defaultValue) {
 function googleFontsImport(params) {
   if (params.has('fontFamily')) {
     const fontFamily = params.get('fontFamily')
+    const fontWeight = params.get('fontWeight') || ''
     return `
-      @import url('https://fonts.googleapis.com/css?family=${fontFamily.replace(/ /g, '+')}');
+      @import url('https://fonts.googleapis.com/css?family=${fontFamily.replace(/ /g, '+')}${fontWeight && ":"+fontWeight }');
 
       body {
         font-family: ${fontFamily.replace(/\+/g, ' ')};
+        ${fontWeight && "font-weight:"+fontWeight+";"}
       }
     `
   } else {
