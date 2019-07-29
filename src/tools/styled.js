@@ -24,17 +24,25 @@ function extractPixelFromParams(name, params, defaultValue) {
 }
 
 function googleFontsImport(params) {
-  if (params.has('fontFamily')) {
-    const fontFamily = params.get('fontFamily')
+  const fontFamily = extractFromParams('fontFamily', params, null)
+  const fontWeight = extractFromParams('fontWeight', params, 'normal')
+
+  if (fontFamily) {
     return `
-      @import url('https://fonts.googleapis.com/css?family=${fontFamily.replace(/ /g, '+')}');
+      @import url('https://fonts.googleapis.com/css?family=${fontFamily.replace(/ /g, '+')}:${fontWeight}');
 
       body {
         font-family: ${fontFamily.replace(/\+/g, ' ')};
+        font-weight: ${fontWeight};
       }
     `
   } else {
-    return 'body { font-family: Verdana; }'
+    return `
+      body {
+        font-family: Verdana;
+        font-weight: ${fontWeight};
+      }
+    `
   }
 }
 
