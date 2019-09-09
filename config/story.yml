@@ -1,0 +1,3 @@
+---
+pivotal_token:   <%= ENV['PIVOTAL_TOKEN'] %>
+pivotal_project: 1254912
