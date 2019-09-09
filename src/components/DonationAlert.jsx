@@ -32,7 +32,7 @@ export class DonationAlert extends React.Component {
       <br />
       {this.state.wording}
       <br />
-      {formatCents(this.props.data.donated_amount_in_cents)} von <Nickname {...this.props.data.author} color={this.props.params.get('nicknameColor')} />
+      {formatCents(this.props.data.donated_amount_in_cents, 'Spende')} von <Nickname {...this.props.data.author} color={this.props.params.get('nicknameColor')} />
     </div>
   }
 }
