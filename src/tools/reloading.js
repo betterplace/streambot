@@ -1,6 +1,6 @@
 import React from 'react'
 
-const apiUrl = 'https://api.betterplace.org'
+const apiUrl = 'http://api.betterplace.test'
 // const apiUrl = 'https://api.bp42.com'
 
 const resolveToApiUrl = (match, searchParams, counter) => {
@@ -41,6 +41,17 @@ const demoData = (match) => {
       return { id: Math.round(Date.now() / 10000), donated_amount_in_cents: 1337, author: { name: 'Unicorn&lt;3' }, message: 'Voll l33t dein Stream &amp; deine Show!' }
     case '/fundraising-events/:id/hashtags':
       return { Wahrheit: 21, Pflicht: 26, Egal: 3 }
+    default:
+      return null
+  }
+}
+const fallbackData = (match) => {
+  switch (match.path) {
+    case '/fundraising-events/:id/last-donation':
+    case '/fundraising-events/:id/top-donation':
+    case '/fundraising-events/:id/top-donor':
+    case '/fundraising-events/:id/last-comment':
+      return { author: { name: "-" } }
     default:
       return null
   }
@@ -91,10 +102,11 @@ export function reloading(WrappedComponent) {
     }
 
     render() {
-      if (!this.state.data) { return null }
+      const data = this.state.data || fallbackData(this.props.match)
+      if (!data) { return null }
 
       return <React.Fragment>
-        <WrappedComponent data={this.state.data} {...this.props} params={this.state.params} />
+        <WrappedComponent data={data} {...this.props} params={this.state.params} />
       </React.Fragment>
     }
   }

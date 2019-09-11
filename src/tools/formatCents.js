@@ -1,4 +1,4 @@
-export function formatCents(cents, fallback = 'hidden amount') {
+export function formatCents(cents, fallback = '') {
   if (cents === undefined) return fallback
   const fraction = (cents % 100 === 0) ? 0 : 2
   return new Intl.NumberFormat('de-DE', {
