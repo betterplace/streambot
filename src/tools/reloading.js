@@ -45,6 +45,17 @@ const demoData = (match) => {
       return null
   }
 }
+const fallbackData = (match) => {
+  switch (match.path) {
+    case '/fundraising-events/:id/last-donation':
+    case '/fundraising-events/:id/top-donation':
+    case '/fundraising-events/:id/top-donor':
+    case '/fundraising-events/:id/last-comment':
+      return { author: { name: "-" } }
+    default:
+      return null
+  }
+}
 
 export function reloading(WrappedComponent) {
   return class extends React.Component {
@@ -91,10 +102,11 @@ export function reloading(WrappedComponent) {
     }
 
     render() {
-      if (!this.state.data) { return null }
+      const data = this.state.data || fallbackData(this.props.match)
+      if (!data) { return null }
 
       return <React.Fragment>
-        <WrappedComponent data={this.state.data} {...this.props} params={this.state.params} />
+        <WrappedComponent data={data} {...this.props} params={this.state.params} />
       </React.Fragment>
     }
   }

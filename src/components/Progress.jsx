@@ -15,6 +15,6 @@ export const Progress = (props) => {
     <div className='progress-label'>
       {formatCents(donated_amount_in_cents)} {requested_amount_in_cents && `von ${formatCents(requested_amount_in_cents)} `}{Collected(props)}
     </div>
-    {progress_percentage && <ProgressBar percentage={progress_percentage}/>}
+    {requested_amount_in_cents && <ProgressBar percentage={progress_percentage}/>}
   </div>
 }
