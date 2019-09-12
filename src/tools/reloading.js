@@ -1,6 +1,6 @@
 import React from 'react'
 
-const apiUrl = 'http://api.betterplace.test'
+const apiUrl = 'https://api.betterplace.org'
 // const apiUrl = 'https://api.bp42.com'
 
 const resolveToApiUrl = (match, searchParams, counter) => {
