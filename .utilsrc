@@ -1,0 +1,32 @@
+# vim: set ft=ruby:
+
+search do
+  prune_dirs /\A(\.svn|\.git|CVS|tmp|tags|node_modules|build)\z/
+  skip_files /(\A\.|\.sw[pon]\z|\.(log|fnm|jpg|jpeg|png|pdf|svg|map)\z|tags|cscope\.out|errors\.lst|~\z)/i
+end
+
+discover do
+  prune_dirs /\A(\.svn|\.git|CVS|tmp|tags|node_modules|build)\z/
+  skip_files /(\A\.|\.sw[pon]\z|\.log\z|~\z)/
+  binary false
+end
+
+scope do
+  prune_dirs /\A(\.svn|\.git|CVS|tmp|tags|node_modules|build)\z/
+  skip_files /(\A\.|\.sw[pon]\z|\.log\z|~\z)/
+end
+
+strip_spaces do
+  prune_dirs /\A(\..*|CVS|pkg)\z/
+  skip_files /(\A\.|\.sw[pon]\z|\.log\z|~\z)/
+end
+
+probe do
+  test_framework :rspec
+end
+
+classify do
+  shift_path_by_default 1
+
+  shift_path_for_prefix %w[ app/models app/interactors app/controllers app/helpers app/jobs app/validators app/lib ]
+end
