@@ -7,6 +7,6 @@ export const Total = (props) => {
   const subtrahend = props.params.get('subtractCents') || 0
   return <div className='truncate-with-ellipsis'>
     <HeadlineWithBr content={headline} />
-    {formatCents(props.data.donated_amount_in_cents - subtrahend)}
+    {formatCents(props.data.donated_amount_in_cents - subtrahend, props.params)}
   </div>
 }

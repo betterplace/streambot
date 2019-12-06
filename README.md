@@ -20,6 +20,8 @@ Folgende Parameter können verwendet werden um die Anzeige anzupassen:
 - `interval` - how often (in seconds) is new data being fetched, default 3 - e.g. `&interval=5`
 - `demo` - show demo data instead of actual data (useful for testing) - e.g. `&demo=true`
 - `nicknameColor` - if the name of a user is shown, assign a dedicated color - e.g. `&nicknameColor=ff0000`
+- `currencyPrecision` - how many decimal fractions to be shown for amounts - e.g. `&currencyPrecision=0`
+- `currencyDisplay` - how currencies may be formatted, valid options are symbol, name or code - e.g. `&currencyDisplay=code`
 
 ### Progress bar
 

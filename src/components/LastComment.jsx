@@ -9,6 +9,6 @@ export const LastComment = (props) => {
 
   return <div className='truncate-with-ellipsis'>
     <div className='truncate-with-ellipsis'>{truncate(message, maxLength)}</div>
-    {formatCents(props.data.donated_amount_in_cents, 'Spende')} von <Nickname {...props.data.author} color={props.params.get('nicknameColor')} />
+    {formatCents(props.data.donated_amount_in_cents, props.params) || 'Spende'} von <Nickname {...props.data.author} color={props.params.get('nicknameColor')} />
   </div>
 }
