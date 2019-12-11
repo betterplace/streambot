@@ -1,5 +1,6 @@
 // Components
 export * from './DonationAlert'
+export * from './DonationList'
 export * from './Hashtags'
 export * from './LastComment'
 export * from './LastDonation'

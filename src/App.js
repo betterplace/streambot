@@ -11,6 +11,7 @@ import {
   TopDonation,
   TopDonor,
   Total,
+  DonationList,
 } from './components'
 
 const App = () => (
@@ -26,6 +27,7 @@ const App = () => (
       <Route path="/fundraising-events/:id/last-comment"   component={styled(reloading(LastComment))} />
       <Route path="/fundraising-events/:id/donation-alert" component={styled(reloading(DonationAlert))} />
       <Route path="/fundraising-events/:id/project-logos"  component={styled(ProjectCarrierLogos)} />
+      <Route path="/fundraising-events/:id/donation-list"  component={DonationList} />
     </div>
   </Router>
 )
