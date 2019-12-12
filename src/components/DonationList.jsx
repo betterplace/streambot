@@ -55,7 +55,7 @@ const Donation = (props) => {
   return <div className='col-md-24'>
     <div className="generic-opinion media">
       <div className="opinion-avatar-and-amount media-left">
-        <img className="user-avatar round-image" src={image} width="50" />
+        <img className="user-avatar round-image" src={image} alt={`Avatar ${donor}`} width="50" />
         {cents && <div className={`amount ${amountIsSmall ? 'is-small' : ''}`}>{formatCents(cents, new URLSearchParams())}</div>}
       </div>
       <div className="opinion-body media-body">
