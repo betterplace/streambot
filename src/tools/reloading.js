@@ -4,6 +4,12 @@ const apiUrl = 'https://api.betterplace.org'
 // const apiUrl = 'https://api.bp42.com'
 
 const resolveToApiUrl = (match, searchParams, counter) => {
+  let list = searchParams.get('list')
+  if (list) {
+    counter = 1
+  } else {
+    list = 1
+  }
   let since = searchParams.get('since') || ''
   if (since && since.length) {
     since = `&facets=since:${since}`
@@ -14,13 +20,13 @@ const resolveToApiUrl = (match, searchParams, counter) => {
       return `${apiUrl}/api_v4/fundraising_events/${match.params.id}`
     case '/fundraising-events/:id/last-donation':
     case '/fundraising-events/:id/donation-alert':
-      return `${apiUrl}/api_v4/fundraising_events/${match.params.id}/opinions?order=id:desc&per_page=1&page=${counter}`
+      return `${apiUrl}/api_v4/fundraising_events/${match.params.id}/opinions?order=id:desc&per_page=${list}&page=${counter}`
     case '/fundraising-events/:id/top-donation':
-      return `${apiUrl}/api_v4/fundraising_events/${match.params.id}/opinions?order=amount_in_cents:desc&per_page=1&page=${counter}${since}`
+      return `${apiUrl}/api_v4/fundraising_events/${match.params.id}/opinions?order=amount_in_cents:desc&per_page=${list}&page=${counter}${since}`
     case '/fundraising-events/:id/top-donor':
-      return `${apiUrl}/api_v4/fundraising_events/${match.params.id}/sum_donations?per_page=1&page=${counter}`
+      return `${apiUrl}/api_v4/fundraising_events/${match.params.id}/sum_donations?per_page=${list}&page=${counter}`
     case '/fundraising-events/:id/last-comment':
-      return `${apiUrl}/api_v4/fundraising_events/${match.params.id}/opinions?order=id:desc&per_page=1&page=${counter}&facets=has_message:true`
+      return `${apiUrl}/api_v4/fundraising_events/${match.params.id}/opinions?order=id:desc&per_page=${list}&page=${counter}&facets=has_message:true`
     case '/fundraising-events/:id/hashtags':
       return `${apiUrl}/api_v4/fundraising_events/${match.params.id}/hashtag_counts/${searchParams.get('hashtags')}`
     default:
@@ -64,7 +70,7 @@ export function reloading(WrappedComponent) {
       const params = new URLSearchParams(this.props.location.search)
       const demo = params.get('demo')
       const maxCount = parseInt(params.get('maxCount') || 1, 10)
-      this.state = { data: null, demo, params, counter: 1, maxCount }
+      this.state = { data: null, listData: [], demo, params, counter: 1, maxCount }
     }
 
     componentDidMount() {
@@ -97,16 +103,31 @@ export function reloading(WrappedComponent) {
     // From a list response, take the first entry, otherwise store the whole response.
     // This way it's always exactly one object from the API that is stored into
     // `props.data` - could be a fundraising event or a opinion or whatever.
+    // store a list of data into listData as well.
     storeData = (response) => {
-      this.setState({ data: Array.isArray(response.data) ? response.data[0] : response })
+      let data, listData
+      if (Array.isArray(response.data)) {
+        data     = response.data[0]
+        listData = response.data
+      } else {
+        data     = response
+        listData = [ response ]
+      }
+      this.setState({ data, listData })
     }
 
     render() {
-      const data = this.state.data || fallbackData(this.props.match)
+      let { data, listData, params } = this.state
+
+      if (!data) {
+        data     = fallbackData(this.props.match)
+        listData = [ data ]
+      }
+
       if (!data) { return null }
 
       return <React.Fragment>
-        <WrappedComponent data={data} {...this.props} params={this.state.params} />
+        <WrappedComponent params={params} data={data} listData={listData} {...this.props} />
       </React.Fragment>
     }
   }
