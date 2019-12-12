@@ -6,8 +6,8 @@ import {uniqBy} from 'lodash/array'
 // Quick and dirty test to see if this little widget works ok enough for
 // streamers that want to track the current donations in a separate window.
 
-// const apiUrl = 'https://api.betterplace.org'
-const apiUrl = 'https://api.bp42.com'
+const apiUrl = 'https://api.betterplace.org'
+// const apiUrl = 'https://api.bp42.com'
 
 export const DonationList = (props) => {
   const [donations, setDonations] = useState([])
