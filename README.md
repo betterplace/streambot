@@ -41,9 +41,9 @@ Additional customization params:
 - `progressColor` - hex color value (without #), e.g. `&progressColor=ff0000`
 - `progressBackgroundColor` - hex color value (without #), e.g. `&progressBackgroundColor=ff0000`
 - `collected` - customize the default text, set to `false` to hide the text.
-- `only` - optional parameter for fundraising events with a target amount,
-  `&only=bar` only displays the progress bar, `&only=text` only displays the
-  progress text, by default both are displayed.
+- `display` - optional parameter for fundraising events with a target amount,
+  `&display=bar` only displays the progress bar, `&display=text` only displays
+  the progress text, by default both are displayed.
 
 ### Donation total
 

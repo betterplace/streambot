@@ -26,7 +26,7 @@ const TargetText = (props) => {
 }
 
 const TargetProgress = (props) => {
-  switch(props.params.get('only')) {
+  switch(props.params.get('display')) {
     case 'text':
       return <div>
         <TargetText {...props} />
