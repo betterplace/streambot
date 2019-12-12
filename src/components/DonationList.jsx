@@ -6,8 +6,8 @@ import {uniqBy} from 'lodash/array'
 // Quick and dirty test to see if this little widget works ok enough for
 // streamers that want to track the current donations in a separate window.
 
-const apiUrl = 'https://api.betterplace.org'
-// const apiUrl = 'https://api.bp42.com'
+// const apiUrl = 'https://api.betterplace.org'
+const apiUrl = 'https://api.bp42.com'
 
 export const DonationList = (props) => {
   const [donations, setDonations] = useState([])
@@ -16,7 +16,8 @@ export const DonationList = (props) => {
   useInterval(
     () => {
       const reloadData = async () => {
-        const sinceParam = since.toISOString().replace(/\..*/, 'GMT')
+        const fiveMinutesAgo = new Date((new Date() - 5 * 60000))
+        const sinceParam = fiveMinutesAgo.toISOString().replace(/\..*/, 'GMT')
         const url = `${apiUrl}/api_v4/fundraising_events/${props.match.params.id}/opinions?order=id:desc&facets=since:${sinceParam}`
         const response = await fetch(url)
         const json = await response.json()
