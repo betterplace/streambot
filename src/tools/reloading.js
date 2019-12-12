@@ -127,7 +127,7 @@ export function reloading(WrappedComponent) {
       if (!data) { return null }
 
       return <React.Fragment>
-        <WrappedComponent params={params}data={data} listData={listData} {...this.props} />
+        <WrappedComponent params={params} data={data} listData={listData} {...this.props} />
       </React.Fragment>
     }
   }
