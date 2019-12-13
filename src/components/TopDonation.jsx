@@ -3,7 +3,7 @@ import {formatCents} from '../tools'
 import {Nickname, HeadlineWithBr} from '.'
 
 const List = (props) =>
-  <ul style={{listStyleType: 'none'}}>
+  <ul style={{listStyleType: 'none', padding: 0}}>
     {props.listData.map((data) => (
       <li key={data.id}>
         <Nickname {...data.author} color={props.params.get('nicknameColor')} /> {formatCents(data.donated_amount_in_cents, props.params)}
