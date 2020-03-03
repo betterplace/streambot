@@ -31,6 +31,25 @@
       position: absolute;
       bottom: -5px;
     }
+
+    .mashup .display-container {
+      background-image: url('./spendenanzeige_mashup.png');
+    }
+    .mashup .data-container {
+      bottom: 38px;
+    }
+
+    .waterstreams p {
+      margin-bottom: 23px;
+    }
+    .waterstreams .display-container {
+      background-image: url('./spendenanzeige_waterstreams.png');
+    }
+    .waterstreams .data-container {
+      margin-left: 512px;
+      top: 65px;
+    }
+
   </style>
 </head>
 
@@ -58,6 +77,8 @@
     </div>
   </div>
   <script>
+    document.getElementsByTagName('body')[0].className = window.location.pathname.match(/\/(\w+)\.html/)[1]
+
     var params = new URLSearchParams(window.location.search)
     var id = params.has('fe_id') ? params.get('fe_id') : '1'
 
