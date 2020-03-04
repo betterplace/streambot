@@ -17,39 +17,59 @@
       font-weight: bold;
       font-style: italic;
       font-size: 20px;
-      margin-bottom: 12px;
+      line-height: 43px;
+      margin: 0 0 3px;
     }
 
     .display-container {
       position: relative;
       height: 250px;
+      width: 1392px;
       background-repeat: no-repeat;
       background-image: url('./spendenanzeige.png');
     }
+
     .data-container {
-      display: flex;
-      margin-left: 400px;
-      width: 900px;
       position: absolute;
-      bottom: -5px;
+      display: flex;
+      top: 123px;
+      right: 170px;
+      bottom: 17px;
+      left: 400px;
     }
 
+    .data-block {
+      flex-grow: 1;
+    }
+
+    /* Mashup Variant Styles */
+
+    .mashup h4 {
+      line-height: 50px;
+    }
     .mashup .display-container {
       background-image: url('./spendenanzeige_mashup.png');
     }
     .mashup .data-container {
-      bottom: 38px;
+      top: 73px;
+      right: 120px;
+      bottom: 46px;
+      left: 300px;
     }
 
-    .waterstreams p {
-      margin-bottom: 23px;
+    /* Waterstreams Variant Styles */
+
+    .waterstreams h4 {
+      margin: 0 0 13px;
     }
     .waterstreams .display-container {
       background-image: url('./spendenanzeige_waterstreams.png');
     }
     .waterstreams .data-container {
-      margin-left: 512px;
-      top: 65px;
+      top: 75px;
+      right: 150px;
+      bottom: 57px;
+      left: 480px;
     }
 
   </style>
@@ -62,19 +82,19 @@
         <h4>Spendenstand</h4>
         <iframe
         name='total'
-        height="80" width="230"></iframe>
+        height="60" width="230"></iframe>
       </div>
       <div class="data-block">
         <h4>Letzte Spende</h4>
         <iframe
         name='last-donation'
-        height="80" width="230"></iframe>
+        height="60" width="230"></iframe>
       </div>
       <div class="data-block">
         <h4>Top-Spende</h4>
         <iframe
         name='top-donation'
-        height="80" width="230"></iframe>
+        height="60" width="230"></iframe>
       </div>
     </div>
   </div>
