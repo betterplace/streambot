@@ -99,9 +99,11 @@
     </div>
   </div>
   <script>
-    document.getElementsByTagName('body')[0].className = window.location.pathname.match(/\/(\w+)\.html/)[1]
-
     var params = new URLSearchParams(window.location.search)
+
+    document.getElementsByTagName('body')[0].className = params.has('variant') && params.get('variant')
+     || window.location.pathname.match(/\/(\w+)\.html/)[1]
+
     var id = params.has('fe_id') ? params.get('fe_id') : '1'
 
     var demo = (params.has('demo') || params.has('fe_id') === false) ? '&demo=true' : ''
