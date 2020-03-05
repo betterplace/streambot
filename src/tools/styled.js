@@ -54,6 +54,7 @@ const StylesFromParams = (props) => {
       background-color: ${extractColorFromParams('backgroundColor', props.params, 'transparent')};
       color:            ${extractColorFromParams('textColor',props.params, 'black')};
       font-size:        ${extractPixelFromParams('fontSize', props.params, 24)}px;
+      line-height:      1.25;
       text-align:       ${extractFromParams('textAlign', props.params, 'center')};
       margin:           0;
       overflow:         hidden;
