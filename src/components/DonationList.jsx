@@ -2,6 +2,7 @@ import React, {useState} from 'react'
 import {useInterval} from 'react-use'
 import {formatCents, TimeAgo} from '../tools'
 import {uniqBy} from 'lodash/array'
+import {noop} from 'lodash/util'
 
 // Quick and dirty test to see if this little widget works ok enough for
 // streamers that want to track the current donations in a separate window.
@@ -12,6 +13,8 @@ const apiUrl = 'https://api.betterplace.org'
 export const DonationList = (props) => {
   const [donations, setDonations] = useState([])
   const [since, setSince] = useState(new Date())
+
+  noop(since) // silence warning
 
   useInterval(
     () => {
