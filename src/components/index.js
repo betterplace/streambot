@@ -13,3 +13,4 @@ export * from './Total'
 // Snippets
 export * from './Nickname'
 export * from './HeadlineWithBr'
+export * from './List'

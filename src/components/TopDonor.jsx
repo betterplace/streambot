@@ -1,15 +1,7 @@
 import React from 'react'
-import {formatCents} from '../tools'
-import {Nickname, HeadlineWithBr} from '.'
-
-const List = (props) =>
-  <ul style={{listStyleType: 'none', margin: 0, padding: 0}}>
-    {props.listData.map((data) => (
-      <li key={data.id}>
-        <Nickname {...data.author} color={props.params.get('nicknameColor')} /> {formatCents(data.donated_amount_in_cents, props.params)}
-      </li>
-    ))}
-  </ul>
+import { formatCents } from '../tools'
+import { Nickname, HeadlineWithBr } from '.'
+import { List } from './List'
 
 export const TopDonor = (props) => {
   const headline = props.params.get('headline') || 'Top-Spender:'
