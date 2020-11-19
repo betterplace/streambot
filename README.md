@@ -218,13 +218,13 @@ Additional customization params:
 ## Build & Deploy
 
 ```
-$ yarn build ; firebase deploy
+$ make deploy
 ```
 
 ## Development
 
 ```
-$ npm start
+$ make start
 ```
 
 Then open e.g. http://localhost:3000/fundraising-events/30943/progress?demo=true
