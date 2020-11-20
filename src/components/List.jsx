@@ -20,13 +20,15 @@ const ListNickname = ({ name, color }) => {
 
 const Amount = ({ amount, params }) => {
   const style = {
-    fontFamily: 'monospace',
+    fontFamily: 'Roboto Mono',
   }
   return <div style={style}>{formatCents(amount, params)}</div>
 }
 
 export const List = (props) => {
-  return <div style={{ listStyle: 'none', width: props.params.get('width') || '400px'}}>
+  return <>
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono&display=swap" rel="stylesheet" />
+    <div style={{ listStyle: 'none', width: props.params.get('width') || '400px'}}>
     {props.listData.map((data) => {
       if (!data.id) return null
       return <div key={data.id} style={{display: 'flex'}}>
@@ -35,5 +37,6 @@ export const List = (props) => {
         <Amount amount={data.donated_amount_in_cents} params={props.params} />
       </div>
     })}
-  </div>
+    </div>
+  </>
 }
