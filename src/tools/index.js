@@ -1,3 +1,4 @@
+export * from './decodeColor'
 export * from './decodeHtmlEntities'
 export * from './formatCents'
 export * from './reloading'

@@ -1,4 +1,5 @@
 import React from 'react'
+import {decodeColor} from '../tools'
 
 export function styled(WrappedComponent) {
   return class extends React.Component {
@@ -16,7 +17,7 @@ function extractFromParams(name, params, defaultValue) {
 }
 
 function extractColorFromParams(name, params, defaultValue) {
-  return (params.has(name) && `#${params.get(name)}`) || defaultValue
+  return (params.has(name) && decodeColor(params.get(name))) || defaultValue
 }
 
 function extractPixelFromParams(name, params, defaultValue) {

@@ -1,5 +1,5 @@
 import React from 'react'
-import {formatCents} from '../tools'
+import {formatCents,decodeColor} from '../tools'
 
 const ListNickname = ({ name, color }) => {
   const style = {
@@ -10,7 +10,7 @@ const ListNickname = ({ name, color }) => {
     flexGrow: 2 
   }
   if (color) {
-    style.color = color
+    style.color = decodeColor(color)
   }
   return <div
     style={style}
