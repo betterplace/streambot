@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <title>rbb</title>
+    <style>
+      @font-face { font-family: "Interstate 700"; src: url("interstate700.woff") format("woff"); }
+      @font-face { font-family: "Interstate 700 Condensed"; src: url("interstate700Condensed.woff") format("woff"); }
+
+      :root {
+        --green: #75fa96;
+        --grey: #ececec;
+      }
+      body {
+        background: transparent;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: calc(100vh - 2rem);
+        margin: 1rem;
+        font-family: "Interstate 700";
+      }
+      section {
+        position: relative;
+        background: var(--grey);
+        border-radius: 0.5rem;
+        display: flex;
+        flex-direction: column;
+        max-width: 30rem;
+        flex: 1;
+        padding: 2rem 1rem;
+        align-items: center;
+      }
+      .button {
+        text-transform: uppercase;
+        color: black;
+        background: white;
+        border-radius: 5rem;
+        border: 3px solid var(--green);
+        text-decoration: none;
+        display: inline-block;
+        padding: 1rem 3rem;
+        margin-bottom: 0.5rem;
+      }
+      amount {
+        font-size: 3rem;
+        line-height: 3rem;
+        font-family: "Interstate 700 Condensed";
+        margin: 0.5rem 0;
+      }
+      refreshButton {
+        position: absolute;
+        top: -1rem;
+        right: -1rem;
+        height: 2rem;
+        width: 2rem;
+        border-radius: 100%;
+        background: white;
+        padding: 1rem;
+        border: 3px solid var(--green);
+      }
+      headline {
+        font-family: "Interstate 700 Condensed";
+      }
+    </style>
+  </head>
+
+  <body>
+    <section>
+      <headline>Aktueller Spendenstand</headline>
+      <amount>658,12 €</amount>
+      <a class="button" href="">Jetzt spenden</a>
+      <refreshButton>
+        <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="redo" class="svg-inline--fa fa-redo fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M500.33 0h-47.41a12 12 0 0 0-12 12.57l4 82.76A247.42 247.42 0 0 0 256 8C119.34 8 7.9 119.53 8 256.19 8.1 393.07 119.1 504 256 504a247.1 247.1 0 0 0 166.18-63.91 12 12 0 0 0 .48-17.43l-34-34a12 12 0 0 0-16.38-.55A176 176 0 1 1 402.1 157.8l-101.53-4.87a12 12 0 0 0-12.57 12v47.41a12 12 0 0 0 12 12h200.33a12 12 0 0 0 12-12V12a12 12 0 0 0-12-12z"></path></svg>
+      </refreshButton>
+      <a class="read-more">mehr über Aktionen &amp; Projekte</a>
+    </section>
+    <script>
+      // betterplace.org/de/api_v4/fundraising_events/401
+    </script>
+  </body>
+</html>
