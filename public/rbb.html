@@ -9,18 +9,23 @@
       @font-face { font-family: "Interstate 700 Condensed"; src: url("interstate700Condensed.woff") format("woff"); }
 
       :root {
-        --green: #75fa96;
-        --grey-300: #ececec;
+        --green: #00FF8A;
+        --grey-300: #ebebeb;
         --grey-600: #cccccc;
         --grey-800: #8b8e95;
+        --grey-900: #4A505A;
+      }
+      html {
+        background: #ebebeb;
       }
       body {
-        background: transparent;
+        background: url('rbb-background.png');
         display: flex;
         align-items: center;
         justify-content: center;
         margin: 0;
         font-family: "Interstate 700";
+        max-width: 470px;
       }
       section {
         position: relative;
@@ -30,43 +35,83 @@
         flex-direction: column;
         justify-content: center;
         flex: 1;
+        margin: 1rem 0;
         padding: 0 1rem;
         align-items: center;
         padding: 2rem 0;
+        max-width: 310px;
+        min-height: 10rem;
       }
+      body.variation-2 section,
       body.variation-3 section {
         background: linear-gradient(180deg, var(--grey-300) 70%, var(--grey-600) 70%, var(--grey-600) 100%);
       }
+      img {
+        border-top-left-radius: 0.5rem;
+        border-top-right-radius: 0.5rem;
+        width: calc(100% - 4px);
+        height: auto;
+      }
+      body.variation-1 img,
+      body.variation-2 img {
+        display: none;
+      }
       .button {
         text-transform: uppercase;
-        color: black;
+        color: var(--grey-900);
         background: white;
         border-radius: 5rem;
-        border: 3px solid var(--green);
+        font-size: 0.8rem;
+        border: 2px solid var(--green);
         text-decoration: none;
         display: inline-block;
         padding: 1rem 3rem;
-        margin-bottom: 1rem;
         box-shadow: 0.25rem 0.25rem 0.5rem 0 rgba(0,0,0,0.15);
+      }
+      .button:hover {
+        box-shadow: 0.25rem 0.25rem 0.5rem 0 rgba(0,0,0,0.15), 0 0 0.5rem 0 var(--green);
+        color: var(--green);
+      }
+      .button:active {
+        background: var(--green);
+        color: white;
+        border-color: white;
       }
       amount {
         font-size: 3rem;
         line-height: 3rem;
         font-family: "Interstate 700 Condensed";
-        margin: 0.5rem 0;
+        margin: 0.8rem 0;
         text-shadow: 0 0 1rem var(--green);
+      }
+      amount.is-loading {
+        opacity: 0.1;
       }
       refreshButton {
         position: absolute;
-        top: 1rem;
-        right: 1rem;
-        height: 2rem;
-        width: 2rem;
+        top: 0.7rem;
+        right: 0.7rem;
+        height: 1.6rem;
+        width: 1.6rem;
         border-radius: 100%;
         background: white;
-        padding: 1rem;
-        border: 3px solid var(--green);
+        padding: 0.7rem;
+        border: 2px solid var(--green);
+        cursor: pointer;
+        box-shadow: 0.25rem 0.25rem 0.5rem 0 rgba(0,0,0,0.15);
       }
+      refreshButton {
+        box-shadow: 0.25rem 0.25rem 0.5rem 0 rgba(0,0,0,0.15), 0 0 0.5rem 0 var(--green);
+      }
+      refreshButton:active {
+        box-shadow: 0.25rem 0.25rem 0.5rem 0 rgba(0,0,0,0.15);
+        border-color: white;
+        background: var(--green);
+      }
+      refreshButton svg path {fill: var(--grey-900); }
+      refreshButton:hover svg path {fill: var(--green); }
+      refreshButton:active svg path {fill: white; }
+
       headline {
         font-family: "Interstate 700 Condensed";
       }
@@ -74,24 +119,52 @@
         background: var(--grey-800);
         color: white;
         border-radius: 2rem;
-        padding: 0.25rem 0.5rem;
+        padding: 0.1rem 1rem;
         text-decoration: none;
+        border: 2px solid transparent;
+        position: absolute;
+        bottom: 0.5rem;
+        font-size: 0.7rem;
+        display: flex;
+        align-items: center;
       }
-      body:not(.variation-3) .read-more {
-        display: none;
+      .read-more svg {
+        height: 1rem;
+        margin-left: 0.5rem;
       }
+      .read-more:hover {
+        box-shadow: 0.25rem 0.25rem 0.5rem 0 rgba(0,0,0,0.15);
+        color: var(--grey-300);
+        background: var(--grey-900);
+      }
+      .read-more:active {
+        box-shadow: 0.25rem 0.25rem 0.5rem 0 rgba(0,0,0,0.15);
+        color: var(--grey-900);
+        border-color: var(--green);
+        background: white;
+        outline: none;
+      }
+      body:not(.variation-2):not(.variation-3) .read-more { display: none; }
+      body.variation-3 section { padding-top: 2px; }
+      body.variation-3 headline { font-size: 0.8rem; }
+      body.variation-3 amount { margin: 0.1rem 0 0.5rem 0; font-size: 2rem; line-height: 2rem; }
+      body.variation-3 .button { margin-bottom: 0.5rem; }
     </style>
   </head>
 
   <body>
     <section>
+      <img src="rbb-keyvisual.jpg" />
       <headline>Aktueller Spendenstand</headline>
       <amount>… €</amount>
       <a target="_blank" class="button" href="https://www.betterplace.org/donate/platform/fundraising-events/36304">Jetzt spenden</a>
       <refreshButton>
-        <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="redo" class="svg-inline--fa fa-redo fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M500.33 0h-47.41a12 12 0 0 0-12 12.57l4 82.76A247.42 247.42 0 0 0 256 8C119.34 8 7.9 119.53 8 256.19 8.1 393.07 119.1 504 256 504a247.1 247.1 0 0 0 166.18-63.91 12 12 0 0 0 .48-17.43l-34-34a12 12 0 0 0-16.38-.55A176 176 0 1 1 402.1 157.8l-101.53-4.87a12 12 0 0 0-12.57 12v47.41a12 12 0 0 0 12 12h200.33a12 12 0 0 0 12-12V12a12 12 0 0 0-12-12z"></path></svg>
+        <svg enable-background="new 0 0 34.7 34.8" viewBox="0 0 34.7 34.8" xmlns="http://www.w3.org/2000/svg"><path d="m17.4.8c4.5 0 8.5 1.8 11.5 4.7l3.2-3.2c.7-.7 1.9-.2 1.9.8v9.9c0 .6-.5 1.1-1.1 1.1h-9.9c-1 0-1.5-1.2-.8-1.9l3.3-3.3c-2.1-2-5-3.3-8.1-3.3-6.5 0-11.8 5.3-11.8 11.8s5.3 11.8 11.8 11.8 11.8-5.3 11.8-11.8c0-.4 0-.7-.1-1.1h4.8v1.1c0 9.1-7.4 16.6-16.6 16.6-9.1 0-16.6-7.4-16.6-16.6.1-9.1 7.5-16.6 16.7-16.6" fill="#4a505e"/></svg>
       </refreshButton>
-      <a target="_blank" href="https://www.rbb24.de" class="read-more">mehr über Aktionen &amp; Projekte</a>
+      <a target="_blank" href="https://www.rbb24.de" class="read-more">
+        mehr über Aktionen &amp; Projekte
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 512"><path fill="currentColor" d="M224.3 273l-136 136c-9.4 9.4-24.6 9.4-33.9 0l-22.6-22.6c-9.4-9.4-9.4-24.6 0-33.9l96.4-96.4-96.4-96.4c-9.4-9.4-9.4-24.6 0-33.9L54.3 103c9.4-9.4 24.6-9.4 33.9 0l136 136c9.5 9.4 9.5 24.6.1 34z"></path></svg>
+    </a>
     </section>
     <script>
 
@@ -101,17 +174,19 @@
         .then(function(data) {
           let amount = (data.donated_amount_in_cents/100).toLocaleString("de-DE", {style:"currency", currency:"EUR"});
           document.getElementsByTagName("amount")[0].innerHTML = amount
+          document.getElementsByTagName("amount")[0].classList.remove("is-loading")
         })
       }
 
       getCurrentAmount()
 
       document.querySelector("refreshButton").addEventListener('click', () => {
-        document.getElementsByTagName("amount")[0].innerHTML = "…"
+        document.getElementsByTagName("amount")[0].classList.add("is-loading")
+        getCurrentAmount()
       })
 
       const params = new URLSearchParams(window.location.search)
-      params.has('variation') && document.body.classList.add(`variation-${params.get('variation')}`)
+      params.has('variation') ? document.body.classList.add(`variation-${params.get('variation')}`) : document.body.classList.add('variation-1')
 
     </script>
   </body>
