@@ -34,7 +34,9 @@ const resolveToApiUrl = (match, searchParams, counter) => {
   }
 }
 
-const demoData = (match) => {
+let demoDataIntervals = 0
+
+const demoData = (match, params) => {
   switch (match.path) {
     case '/fundraising-events/:id/progress':
     case '/fundraising-events/:id/total':
@@ -44,7 +46,18 @@ const demoData = (match) => {
     case '/fundraising-events/:id/top-donation':
     case '/fundraising-events/:id/top-donor':
     case '/fundraising-events/:id/last-comment':
-      return { id: Math.round(Date.now() / 10000), donated_amount_in_cents: 1337, author: { name: 'Unicorn&lt;3' }, message: 'Voll l33t dein Stream &amp; deine Show!' }
+      const last_comments = [
+        { id: Math.round(Date.now() / 10000), donated_amount_in_cents: 1337, author: { name: 'Unicorn&lt;3' }, message: 'Voll l33t dein Stream &amp; deine Show!' },
+        { id: Math.round(Date.now() / 10000), donated_amount_in_cents: 1200, author: { name: 'Peter' }, message: 'Super Stream!' },
+        { id: Math.round(Date.now() / 10000), donated_amount_in_cents: 900, author: { name: 'Anna' }, message: 'Mega!' },
+        { id: Math.round(Date.now() / 10000), donated_amount_in_cents: 500, author: { name: 'Patrick' }, message: 'Richtig gut!' },
+        { id: Math.round(Date.now() / 10000), donated_amount_in_cents: 400, author: { name: 'Larissa' }, message: 'Finde die Aktion super!' }
+      ]
+      const maxCount = parseInt(params.get('maxCount') || 1, 10)
+      const index = demoDataIntervals % Math.min(last_comments.length, maxCount)
+      const returnValue = last_comments[index]
+      demoDataIntervals++
+      return returnValue
     case '/fundraising-events/:id/hashtags':
       return { Wahrheit: 21, Pflicht: 26, Egal: 3 }
     default:
@@ -87,15 +100,15 @@ export function reloading(WrappedComponent) {
       const url = resolveToApiUrl(this.props.match, this.state.params, this.state.counter)
       const nextCounter = (this.state.counter >= this.state.maxCount) ? 1 : this.state.counter + 1
 
-      this.setState({counter: nextCounter}, () => {
+      this.setState({ counter: nextCounter }, () => {
         // If demo data is requested do not query the API
         if (this.state.demo) {
           console.log(`Demo Mode: API Request would have been: "${url}".`)
-          return this.storeData(demoData(this.props.match))
+          return this.storeData(demoData(this.props.match, this.state.params))
         }
         fetch(url)
           .then(response => response.json())
-          .then(json     => this.storeData(json))
+          .then(json => this.storeData(json))
           .then(undefined, err => console.log(err))
       })
     }
@@ -107,11 +120,11 @@ export function reloading(WrappedComponent) {
     storeData = (response) => {
       let data, listData
       if (Array.isArray(response.data)) {
-        data     = response.data[0]
+        data = response.data[0]
         listData = response.data
       } else {
-        data     = response
-        listData = [ response ]
+        data = response
+        listData = [response]
       }
       this.setState({ data, listData })
     }
@@ -120,8 +133,8 @@ export function reloading(WrappedComponent) {
       let { data, listData, params } = this.state
 
       if (!data) {
-        data     = fallbackData(this.props.match)
-        listData = [ data ]
+        data = fallbackData(this.props.match)
+        listData = [data]
       }
 
       if (!data) { return null }
