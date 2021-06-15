@@ -11,7 +11,7 @@ export class DonationAlert extends React.Component {
       gif: params.get('gif'),
       gifHeight: params.get('gifHeight') || 'inherit',
       duration: params.get('duration') || 3,
-      wording: params.get('wording') || 'Neue Spende',
+      wording: params.get('wording') === null ? 'Neue Spende' : params.get('wording'),
       volume: params.get('volume') || 0.5
     }
 
