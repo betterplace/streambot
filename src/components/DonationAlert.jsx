@@ -1,31 +1,33 @@
 import React from 'react'
-import {formatCents} from '../tools'
-import {Nickname} from '.'
+import { formatCents } from '../tools'
+import { Nickname } from '.'
 
 export class DonationAlert extends React.Component {
   constructor(props) {
     super(props)
     const params = new URLSearchParams(this.props.location.search)
     this.state = {
-      hidden:    true,
-      gif:       params.get('gif'),
+      hidden: true,
+      gif: params.get('gif'),
       gifHeight: params.get('gifHeight') || 'inherit',
-      duration:  params.get('duration') || 3,
-      wording:   params.get('wording') || 'Neue Spende'
+      duration: params.get('duration') || 3,
+      wording: params.get('wording') || 'Neue Spende',
+      volume: params.get('volume') || 0.9
     }
 
     if (params.get('mp3')) {
       this.audioElement = new Audio(params.get('mp3'))
       this.audioElement.loop = false
+      this.audioElement.volume = this.state.volume
       this.audioElement.load()
     }
   }
 
   componentDidUpdate(prevProps) {
     if (this.props.data.id !== prevProps.data.id) {
-      this.setState({hidden: false})
+      this.setState({ hidden: false })
       if (this.timeout) clearInterval(this.timeout)
-      this.timeout = window.setTimeout(() => this.setState({hidden: true}), this.state.duration * 1000)
+      this.timeout = window.setTimeout(() => this.setState({ hidden: true }), this.state.duration * 1000)
 
       if (this.audioElement) this.audioElement.play()
     }
@@ -43,7 +45,7 @@ export class DonationAlert extends React.Component {
   }
 }
 
-const Gif = ({src, height}) => {
+const Gif = ({ src, height }) => {
   if (!src) return null
   return <img src={src} alt='' height={height} />
 }
