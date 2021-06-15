@@ -12,7 +12,7 @@ export class DonationAlert extends React.Component {
       gifHeight: params.get('gifHeight') || 'inherit',
       duration: params.get('duration') || 3,
       wording: params.get('wording') || 'Neue Spende',
-      volume: params.get('volume') || 0.5
+      volume: params.get('volume') || 0.9
     }
 
     if (params.get('mp3')) {
