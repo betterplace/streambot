@@ -221,6 +221,12 @@ Additional customization params:
 $ make deploy
 ```
 
+In case of error 401:
+
+```
+$firebase login --reauth
+```
+
 ## Development
 
 ```
