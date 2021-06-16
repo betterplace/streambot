@@ -4,7 +4,7 @@ import { Nickname, HeadlineWithBr } from '.'
 import { List } from './List'
 
 export const TopDonation = (props) => {
-  const headline = props.params.get('headline') || 'Top-Spende:'
+  const headline = props.params.get('headline') === null ? 'Top-Spende:' : props.params.get('headline')
 
   if (props.params.get('list')) {
     return <div className='truncate-with-ellipsis'>
