@@ -9,6 +9,11 @@ export * from './ProjectCarrierLogos'
 export * from './TopDonation'
 export * from './TopDonor'
 export * from './Total'
+export * from './preconfigured/Standard'
+export * from './preconfigured/Betterplay'
+export * from './preconfigured/Waterstreams'
+export * from './preconfigured/Mashup'
+export * from './preconfigured/Xmas'
 
 // Snippets
 export * from './Nickname'

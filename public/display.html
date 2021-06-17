@@ -3,131 +3,16 @@
 
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <link href="https://fonts.googleapis.com/css?family=Fira+Sans:700i" rel="stylesheet">
-  <title>betterplace.org</title>
-  <style >
-    iframe {
-      border: 0;
-    }
 
-    h4 {
-      color: #fff;
-      font-family: Fira Sans, sans-serif;
-      font-weight: bold;
-      font-style: italic;
-      font-size: 20px;
-      line-height: 43px;
-      margin: -7px 0 3px;
-    }
-
-    .display-container {
-      position: relative;
-      height: 250px;
-      width: 1392px;
-      background-repeat: no-repeat;
-      background-image: url('./spendenanzeige_standard.png');
-    }
-
-    .data-container {
-      position: absolute;
-      display: flex;
-      top: 123px;
-      right: 170px;
-      bottom: 17px;
-      left: 400px;
-    }
-
-    .data-block {
-      flex-grow: 1;
-    }
-
-    /* betterplay Variant Styles */
-
-    .betterplay h4 {
-      margin: 0 0 3px;
-    }
-
-    .betterplay .display-container {
-      position: relative;
-      height: 250px;
-      width: 1392px;
-      background-repeat: no-repeat;
-      background-image: url('./spendenanzeige_betterplay.png');
-    }
-
-    /* Mashup Variant Styles */
-
-    .mashup h4 {
-      line-height: 50px;
-    }
-    .mashup .display-container {
-      background-image: url('./spendenanzeige_mashup.png');
-    }
-    .mashup .data-container {
-      top: 73px;
-      right: 120px;
-      bottom: 46px;
-      left: 300px;
-    }
-
-    /* Waterstreams Variant Styles */
-
-    .waterstreams h4 {
-      margin: 0 0 13px;
-    }
-    .waterstreams .display-container {
-      background-image: url('./spendenanzeige_waterstreams.png');
-    }
-    .waterstreams .data-container {
-      top: 75px;
-      right: 150px;
-      bottom: 57px;
-      left: 480px;
-    }
-
-  </style>
-</head>
-
-<body>
-  <div class="display-container">
-    <div class="data-container">
-      <div class="data-block">
-        <h4>Spendenstand</h4>
-        <iframe
-        name='total'
-        height="60" width="230"></iframe>
-      </div>
-      <div class="data-block">
-        <h4>Letzte Spende</h4>
-        <iframe
-        name='last-donation'
-        height="60" width="230"></iframe>
-      </div>
-      <div class="data-block">
-        <h4>Top-Spende</h4>
-        <iframe
-        name='top-donation'
-        height="60" width="230"></iframe>
-      </div>
-    </div>
-  </div>
   <script>
     var params = new URLSearchParams(window.location.search)
-
-    document.getElementsByTagName('body')[0].className = params.has('variant') && params.get('variant')
-     || window.location.pathname.match(/\/(\w+)\.html/)[1]
-
     var id = params.has('fe_id') ? params.get('fe_id') : '1'
+    var demo = (params.has('demo') || params.has('fe_id') === false) ? '?demo=true' : ''
 
-    var demo = (params.has('demo') || params.has('fe_id') === false) ? '&demo=true' : ''
-    var iframes = document.querySelectorAll('iframe')
-
-    iframes.forEach(function(iframe) {
-      iframe.src = 'https://streambot.betterplace.org/fundraising-events/' + id + '/' + iframe.name + '?textAlign=left&textColor=fff&fontFamily=Fira+Sans&headline=false' + demo
-    });
+    // This is a legacy page, let's redirect to component
+    window.location.href = `/fundraising-events/${id}/${params.get('variant') || 'standard'}${demo}`;
 
   </script>
-</body>
+</head>
 
 </html>
