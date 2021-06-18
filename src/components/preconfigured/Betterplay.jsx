@@ -28,7 +28,7 @@ export const Betterplay = (props) => {
           height="60"
           width="230"
           frameBorder="0"
-          src={`https://streambot.betterplace.org/fundraising-events/${id}/last-donation?textAlign=left&textColor=fff&fontFamily=Fira+Sans&headline=false`}
+          src={`https://streambot.betterplace.org/fundraising-events/${id}/last-donation?textAlign=left&textColor=fff&fontFamily=Fira+Sans&headline=false${demo}`}
         >
         </iframe>
       </DataBlock>
@@ -39,7 +39,7 @@ export const Betterplay = (props) => {
           height="60"
           width="230"
           frameBorder="0"
-          src={`https://streambot.betterplace.org/fundraising-events/${id}/top-donation?textAlign=left&textColor=fff&fontFamily=Fira+Sans&headline=false`}
+          src={`https://streambot.betterplace.org/fundraising-events/${id}/top-donation?textAlign=left&textColor=fff&fontFamily=Fira+Sans&headline=false${demo}`}
         >
         </iframe>
       </DataBlock>
