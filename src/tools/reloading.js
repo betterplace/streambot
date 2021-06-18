@@ -5,11 +5,12 @@ const apiUrl = 'https://api.betterplace.org'
 
 const resolveToApiUrl = (match, searchParams, counter) => {
   let list = searchParams.get('list')
-  if (list) {
+  if (list === 'true') {
     counter = 1
   } else {
     list = 1
   }
+
   let since = searchParams.get('since') || ''
   if (since && since.length) {
     since = `&facets=since:${since}`

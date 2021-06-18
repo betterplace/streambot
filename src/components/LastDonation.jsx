@@ -5,7 +5,7 @@ import { Nickname, HeadlineWithBr } from '.'
 export const LastDonation = (props) => {
   const headline = props.params.get('headline') === null ? 'Letzte Spende:' : props.params.get('headline')
 
-  if (props.params.get('list')) {
+  if (['true'].includes(props.params.get('list'))) {
     return <div className='truncate-with-ellipsis'>
       <HeadlineWithBr content={headline} />
       <List {...props} />
