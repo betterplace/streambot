@@ -5,6 +5,9 @@ const apiUrl = 'https://api.betterplace.org'
 
 const resolveToApiUrl = (match, searchParams, counter) => {
   let list = searchParams.get('list')
+  // TODO: This is weird logic!
+  // `list` is always 1 or 'true' (which evals as 1 in api_v4)
+  // https://github.com/betterplace/streambot/commit/04d5b23263adad3762ed5e4a0343ca2fa34aa935#r53168860
   if (list === 'true') {
     counter = 1
   } else {
@@ -118,14 +121,14 @@ export function reloading(WrappedComponent) {
     // This way it's always exactly one object from the API that is stored into
     // `props.data` - could be a fundraising event or a opinion or whatever.
     // store a list of data into listData as well.
-    storeData = (response) => {
+    storeData = (responseJson) => {
       let data, listData
-      if (Array.isArray(response.data)) {
-        data = response.data[0]
-        listData = response.data
+      if (Array.isArray(responseJson.data)) {
+        data = responseJson.data[0]
+        listData = responseJson.data
       } else {
-        data = response
-        listData = [response]
+        data = responseJson
+        listData = [responseJson]
       }
       this.setState({ data, listData })
     }

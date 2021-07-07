@@ -24,7 +24,7 @@ export class DonationAlert extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (this.props.data.id !== prevProps.data.id) {
+    if (prevProps.data.id && this.props.data.id !== prevProps.data.id) {
       this.setState({ hidden: false })
       if (this.timeout) clearInterval(this.timeout)
       this.timeout = window.setTimeout(() => this.setState({ hidden: true }), this.state.duration * 1000)
