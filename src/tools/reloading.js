@@ -40,7 +40,7 @@ const resolveToApiUrl = (match, searchParams, counter) => {
 
 let demoDataIntervals = 0
 
-const demoData = (match, params) => {
+const demoData = (match, maxCount) => {
   switch (match.path) {
     case '/fundraising-events/:id/progress':
     case '/fundraising-events/:id/total':
@@ -57,7 +57,6 @@ const demoData = (match, params) => {
         { id: Math.round(Date.now() / 10000), donated_amount_in_cents: 500, author: { name: 'Patrick' }, message: 'Richtig gut!' },
         { id: Math.round(Date.now() / 10000), donated_amount_in_cents: 400, author: { name: 'Larissa' }, message: 'Finde die Aktion super!' }
       ]
-      const maxCount = parseInt(params.get('maxCount') || 1, 10)
       const index = demoDataIntervals % Math.min(last_comments.length, maxCount)
       const returnValue = last_comments[index]
       demoDataIntervals++
@@ -108,7 +107,7 @@ export function reloading(WrappedComponent) {
         // If demo data is requested do not query the API
         if (this.state.demo) {
           console.log(`Demo Mode: API Request would have been: "${url}".`)
-          return this.storeData(demoData(this.props.match, this.state.params))
+          return this.storeData(demoData(this.props.match, this.state.maxCount))
         }
         fetch(url)
           .then(response => response.json())
