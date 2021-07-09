@@ -8,43 +8,46 @@ export const Mashup = (props) => {
   const params = new URLSearchParams(props.location.search)
   const demo = params.has('demo') ? '&demo=true' : ''
 
-  return <DisplayContainer backgroundImage={MashupBackgroundImage}>
-    <DataContainer>
-      <DataBlock>
-        <Headline>Spendenstand</Headline>
-        <iframe
-          name='total'
-          height="60"
-          width="230"
-          frameBorder="0"
-          src={`https://streambot.betterplace.org/fundraising-events/${id}/total?textAlign=left&textColor=fff&fontFamily=Fira+Sans&headline=false${demo}`}
-        >
-        </iframe>
-      </DataBlock>
-      <DataBlock>
-        <Headline>Letzte Spende</Headline>
-        <iframe
-          name='last-donation'
-          height="60"
-          width="230"
-          frameBorder="0"
-          src={`https://streambot.betterplace.org/fundraising-events/${id}/last-donation?textAlign=left&textColor=fff&fontFamily=Fira+Sans&headline=false${demo}`}
-        >
-        </iframe>
-      </DataBlock>
-      <DataBlock>
-        <Headline>Top-Spende</Headline>
-        <iframe
-          name='top-donation'
-          height="60"
-          width="230"
-          frameBorder="0"
-          src={`https://streambot.betterplace.org/fundraising-events/${id}/top-donation?textAlign=left&textColor=fff&fontFamily=Fira+Sans&headline=false${demo}`}
-        >
-        </iframe>
-      </DataBlock>
-    </DataContainer>
-  </DisplayContainer >
+  return <>
+    <link href="https://fonts.googleapis.com/css?family=Fira+Sans&display=swap" rel="stylesheet" />
+    <DisplayContainer backgroundImage={MashupBackgroundImage}>
+      <DataContainer>
+        <DataBlock>
+          <Headline>Spendenstand</Headline>
+          <iframe
+            name='total'
+            height="60"
+            width="230"
+            frameBorder="0"
+            src={`https://streambot.betterplace.org/fundraising-events/${id}/total?textAlign=left&textColor=fff&fontFamily=Fira+Sans&headline=false${demo}`}
+          >
+          </iframe>
+        </DataBlock>
+        <DataBlock>
+          <Headline>Letzte Spende</Headline>
+          <iframe
+            name='last-donation'
+            height="60"
+            width="230"
+            frameBorder="0"
+            src={`https://streambot.betterplace.org/fundraising-events/${id}/last-donation?textAlign=left&textColor=fff&fontFamily=Fira+Sans&headline=false${demo}`}
+          >
+          </iframe>
+        </DataBlock>
+        <DataBlock>
+          <Headline>Top-Spende</Headline>
+          <iframe
+            name='top-donation'
+            height="60"
+            width="230"
+            frameBorder="0"
+            src={`https://streambot.betterplace.org/fundraising-events/${id}/top-donation?textAlign=left&textColor=fff&fontFamily=Fira+Sans&headline=false${demo}`}
+          >
+          </iframe>
+        </DataBlock>
+      </DataContainer>
+    </DisplayContainer>
+  </>
 }
 
 const DisplayContainer = styled.div`
