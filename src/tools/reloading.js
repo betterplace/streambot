@@ -3,14 +3,13 @@ import React from 'react'
 const apiUrl = 'https://api.betterplace.org'
 // const apiUrl = 'https://api.bp42.com'
 
-const defaultPerPage = 10
-
 const resolveToApiUrl = (match, searchParams, counter) => {
-  let list = searchParams.get('list')
+  let list = searchParams.get('list') || 1
+  let maxCount = searchParams.get('maxCount')
   let perPage
   switch (list) {
     case 'true':
-      perPage = defaultPerPage
+      perPage = maxCount
       break
     case 'false':
       perPage = 1
