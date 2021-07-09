@@ -12,7 +12,12 @@ export class DonationAlert extends React.Component {
       gifHeight: params.get('gifHeight') || 'inherit',
       duration: params.get('duration') || 3,
       wording: params.get('wording') === null ? 'Neue Spende' : params.get('wording'),
-      volume: params.get('volume') || 0.9
+      volume: params.get('volume') || 0.9,
+      data: {
+        id: null,
+        author: null,
+        amountInCents: null,
+      },
     }
 
     if (params.get('mp3')) {
@@ -24,10 +29,20 @@ export class DonationAlert extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (prevProps.data.id && this.props.data.id !== prevProps.data.id) {
-      this.setState({ hidden: false })
+    // New ID must exist and differ from previous one.
+    if (this.props.data.id && this.props.data.id !== this.state.data.id
+      // At least one data field must be present.
+      && (this.props.data.donated_amount_in_cents || this.props.data.author)) {
+      this.setState({
+        hidden: false,
+        data: {
+          id: this.props.data.id,
+          author: this.props.data.author,
+          amountInCents: this.props.data.donated_amount_in_cents,
+        },
+      })
       if (this.timeout) clearInterval(this.timeout)
-      this.timeout = window.setTimeout(() => this.setState({ hidden: true }), this.state.duration * 1000)
+      this.timeout = window.setTimeout(() => this.setState({hidden: true}), this.state.duration * 1000)
 
       if (this.audioElement) this.audioElement.play()
     }
@@ -40,7 +55,7 @@ export class DonationAlert extends React.Component {
       <br />
       {this.state.wording}
       <br />
-      {formatCents(this.props.data.donated_amount_in_cents, this.props.params) || 'Spende'} von <Nickname {...this.props.data.author} color={this.props.params.get('nicknameColor')} />
+      {formatCents(this.state.data.amountInCents, this.props.params) || 'Spende'} von <Nickname {...this.state.data.author} color={this.props.params.get('nicknameColor')} />
     </div>
   }
 }
