@@ -3,15 +3,24 @@ import React from 'react'
 const apiUrl = 'https://api.betterplace.org'
 // const apiUrl = 'https://api.bp42.com'
 
+const defaultPerPage = 10
+
 const resolveToApiUrl = (match, searchParams, counter) => {
   let list = searchParams.get('list')
-  // TODO: This is weird logic!
-  // `list` is always 1 or 'true' (which evals as 1 in api_v4)
-  // https://github.com/betterplace/streambot/commit/04d5b23263adad3762ed5e4a0343ca2fa34aa935#r53168860
-  if (list === 'true') {
+  let perPage
+  switch (list) {
+    case 'true':
+      perPage = defaultPerPage
+      break
+    case 'false':
+      perPage = 1
+      break
+    default:
+      perPage = Number.parseInt(list) || 1
+  }
+
+  if (perPage > 1) {
     counter = 1
-  } else {
-    list = 1
   }
 
   let since = searchParams.get('since') || ''
@@ -24,13 +33,13 @@ const resolveToApiUrl = (match, searchParams, counter) => {
       return `${apiUrl}/api_v4/fundraising_events/${match.params.id}`
     case '/fundraising-events/:id/last-donation':
     case '/fundraising-events/:id/donation-alert':
-      return `${apiUrl}/api_v4/fundraising_events/${match.params.id}/opinions?order=id:desc&per_page=${list}&page=${counter}`
+      return `${apiUrl}/api_v4/fundraising_events/${match.params.id}/opinions?order=id:desc&per_page=${perPage}&page=${counter}`
     case '/fundraising-events/:id/top-donation':
-      return `${apiUrl}/api_v4/fundraising_events/${match.params.id}/opinions?order=amount_in_cents:desc&per_page=${list}&page=${counter}${since}`
+      return `${apiUrl}/api_v4/fundraising_events/${match.params.id}/opinions?order=amount_in_cents:desc&per_page=${perPage}&page=${counter}${since}`
     case '/fundraising-events/:id/top-donor':
-      return `${apiUrl}/api_v4/fundraising_events/${match.params.id}/sum_donations?per_page=${list}&page=${counter}`
+      return `${apiUrl}/api_v4/fundraising_events/${match.params.id}/sum_donations?per_page=${perPage}&page=${counter}`
     case '/fundraising-events/:id/last-comment':
-      return `${apiUrl}/api_v4/fundraising_events/${match.params.id}/opinions?order=id:desc&per_page=${list}&page=${counter}&facets=has_message:true`
+      return `${apiUrl}/api_v4/fundraising_events/${match.params.id}/opinions?order=id:desc&per_page=${perPage}&page=${counter}&facets=has_message:true`
     case '/fundraising-events/:id/hashtags':
       return `${apiUrl}/api_v4/fundraising_events/${match.params.id}/hashtag_counts/${searchParams.get('hashtags')}`
     default:
