@@ -28,7 +28,7 @@ const Amount = ({ amount, params }) => {
 export const List = (props) => {
   return <>
     <link href="https://fonts.googleapis.com/css?family=Roboto+Mono&amp;display=swap" rel="stylesheet" />
-    <div style={{ listStyle: 'none', width: props.params.get('width') || '400px'}}>
+    <div>
     {props.listData.map((data) => {
       if (!data.id) return null
       return <div key={data.id} style={{display: 'flex'}}>

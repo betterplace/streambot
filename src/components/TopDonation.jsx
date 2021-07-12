@@ -7,7 +7,7 @@ export const TopDonation = (props) => {
   const headline = props.params.get('headline') ?? 'Top-Spende:'
   const listMode = props.params.get('list') === 'true'
 
-  return <div className='truncate-with-ellipsis'>
+  return <div className='truncate-with-ellipsis' style={{width: props.params.get('width')}}>
     <HeadlineWithBr content={headline} />
     {listMode ?
       <List {...props} />
