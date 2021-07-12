@@ -4,17 +4,16 @@ import { Nickname, HeadlineWithBr } from '.'
 import { List } from './List'
 
 export const TopDonation = (props) => {
-  const headline = props.params.get('headline') === null ? 'Top-Spende:' : props.params.get('headline')
+  const headline = props.params.get('headline') ?? 'Top-Spende:'
+  const listMode = props.params.get('list') === 'true'
 
-  if (['true'].includes(props.params.get('list'))) {
-    return <div className='truncate-with-ellipsis'>
-      <HeadlineWithBr content={headline} />
+  return <div className='truncate-with-ellipsis'>
+    <HeadlineWithBr content={headline} />
+    {listMode ?
       <List {...props} />
-    </div>
-  } else {
-    return <div className='truncate-with-ellipsis'>
-      <HeadlineWithBr content={headline} />
-      <Nickname {...props.data.author} color={props.params.get('nicknameColor')} /><br />{formatCents(props.data.donated_amount_in_cents, props.params)}
-    </div>
-  }
+      : <>
+        <Nickname {...props.data.author} color={props.params.get('nicknameColor')} /><br />{formatCents(props.data.donated_amount_in_cents, props.params)}
+      </>
+    }
+  </div>
 }

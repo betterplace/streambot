@@ -3,19 +3,18 @@ import { formatCents } from '../tools'
 import { Nickname, HeadlineWithBr } from '.'
 
 export const LastDonation = (props) => {
-  const headline = props.params.get('headline') === null ? 'Letzte Spende:' : props.params.get('headline')
+  const headline = props.params.get('headline') ?? 'Letzte Spende:'
+  const listMode = props.params.get('list') === 'true'
 
-  if (['true'].includes(props.params.get('list'))) {
-    return <div className='truncate-with-ellipsis'>
-      <HeadlineWithBr content={headline} />
+  return <div className='truncate-with-ellipsis'>
+    <HeadlineWithBr content={headline} />
+    {listMode ?
       <List {...props} />
-    </div>
-  } else {
-    return <div className='truncate-with-ellipsis'>
-      <HeadlineWithBr content={headline} />
-      <Nickname {...props.data.author} color={props.params.get('nicknameColor')} /><br />{formatCents(props.data.donated_amount_in_cents, props.params)}
-    </div>
-  }
+      : <>
+        <Nickname {...props.data.author} color={props.params.get('nicknameColor')} /><br />{formatCents(props.data.donated_amount_in_cents, props.params)}
+      </>
+    }
+  </div>
 }
 
 const List = (props) =>
