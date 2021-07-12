@@ -3,9 +3,8 @@ import React from 'react'
 const apiUrl = 'https://api.betterplace.org'
 // const apiUrl = 'https://api.bp42.com'
 
-const resolveToApiUrl = (match, searchParams, counter) => {
+const resolveToApiUrl = (match, searchParams, counter, maxCount) => {
   let list = searchParams.get('list') || 1
-  let maxCount = searchParams.get('maxCount')
   let perPage
   switch (list) {
     case 'true':
@@ -108,7 +107,7 @@ export function reloading(WrappedComponent) {
     }
 
     reloadData = () => {
-      const url = resolveToApiUrl(this.props.match, this.state.params, this.state.counter)
+      const url = resolveToApiUrl(this.props.match, this.state.params, this.state.counter, this.state.maxCount)
       const nextCounter = (this.state.counter >= this.state.maxCount) ? 1 : this.state.counter + 1
 
       this.setState({ counter: nextCounter }, () => {
