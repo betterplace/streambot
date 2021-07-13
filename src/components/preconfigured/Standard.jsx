@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import StandardBackgroundImage from '../../images/spendenanzeige_standard.png'
+import defaultBackgroundImage from '../../images/spendenanzeige_standard.png'
 
 export const Standard = (props) => {
 
@@ -10,10 +10,10 @@ export const Standard = (props) => {
 
   return <>
     <link href="https://fonts.googleapis.com/css?family=Fira+Sans&amp;display=swap" rel="stylesheet" />
-    <DisplayContainer backgroundImage={StandardBackgroundImage}>
-      <DataContainer>
+    <DisplayContainer backgroundImage={props.backgroundImage || defaultBackgroundImage}>
+      <DataContainer style={props.dataContainerStyle}>
         <DataBlock>
-          <Headline>Spendenstand</Headline>
+          <Headline style={props.headlineStyle}>Spendenstand</Headline>
           <iframe
             name='total'
             height="60"
@@ -24,7 +24,7 @@ export const Standard = (props) => {
           </iframe>
         </DataBlock>
         <DataBlock>
-          <Headline>Letzte Spende</Headline>
+          <Headline style={props.headlineStyle}>Letzte Spende</Headline>
           <iframe
             name='last-donation'
             height="60"
@@ -35,7 +35,7 @@ export const Standard = (props) => {
           </iframe>
         </DataBlock>
         <DataBlock>
-          <Headline>Top-Spende</Headline>
+          <Headline style={props.headlineStyle}>Top-Spende</Headline>
           <iframe
             name='top-donation'
             height="60"
