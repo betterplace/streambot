@@ -59,24 +59,24 @@ const DisplayContainer = styled.div`
 `
 
 const DataContainer = styled.div`
-position: absolute;
-display: flex;
-top: 123px;
-right: 170px;
-bottom: 17px;
-left: 400px;
+  position: absolute;
+  display: flex;
+  top: 123px;
+  right: 170px;
+  bottom: 17px;
+  left: 400px;
 `
 
 const DataBlock = styled.div`
-flex-grow: 1;
+  flex-grow: 1;
 `
 
 const Headline = styled.h4`
-color: #fff;
-font-family: Fira Sans, sans-serif;
-font-weight: bold;
-font-style: italic;
-font-size: 20px;
-line-height: 43px;
-margin: -7px 0 3px;
+  color: #fff;
+  font-family: Fira Sans, sans-serif;
+  font-weight: bold;
+  font-style: italic;
+  font-size: 20px;
+  line-height: 43px;
+  margin: -7px 0 3px;
 `
