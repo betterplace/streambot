@@ -9,7 +9,7 @@ export const Standard = (props) => {
   const demo = params.has('demo') ? '&demo=true' : ''
 
   return <>
-    <link href="https://fonts.googleapis.com/css?family=Fira+Sans&amp;display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,400;1,700&amp;display=swap" rel="stylesheet" />
     <DisplayContainer backgroundImage={props.backgroundImage || defaultBackgroundImage}>
       <DataContainer style={props.dataContainerStyle}>
         <DataBlock>
