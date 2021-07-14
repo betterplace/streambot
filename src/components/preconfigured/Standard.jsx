@@ -6,49 +6,30 @@ export const Standard = (props) => {
 
   const id = props.match.params.id
   const params = new URLSearchParams(props.location.search)
-  const demo = params.has('demo') ? '&demo=true' : ''
+  const demo = params.has('demo')
 
   return <>
     <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,400;1,700&amp;display=swap" rel="stylesheet" />
     <DisplayContainer backgroundImage={props.backgroundImage || defaultBackgroundImage}>
       <DataContainer style={props.dataContainerStyle}>
-        <DataBlock>
-          <Headline style={props.headlineStyle}>Spendenstand</Headline>
-          <iframe
-            name='total'
-            height="60"
-            width="230"
-            frameBorder="0"
-            src={`https://streambot.betterplace.org/fundraising-events/${id}/total?textAlign=left&textColor=fff&fontFamily=Fira+Sans&headline=false${demo}`}
-          >
-          </iframe>
-        </DataBlock>
-        <DataBlock>
-          <Headline style={props.headlineStyle}>Letzte Spende</Headline>
-          <iframe
-            name='last-donation'
-            height="60"
-            width="230"
-            frameBorder="0"
-            src={`https://streambot.betterplace.org/fundraising-events/${id}/last-donation?textAlign=left&textColor=fff&fontFamily=Fira+Sans&headline=false${demo}`}
-          >
-          </iframe>
-        </DataBlock>
-        <DataBlock>
-          <Headline style={props.headlineStyle}>Top-Spende</Headline>
-          <iframe
-            name='top-donation'
-            height="60"
-            width="230"
-            frameBorder="0"
-            src={`https://streambot.betterplace.org/fundraising-events/${id}/top-donation?textAlign=left&textColor=fff&fontFamily=Fira+Sans&headline=false${demo}`}
-          >
-          </iframe>
-        </DataBlock>
+        <DataBlock widget='total' eventId={id} demo={demo} headlineStyle={props.headlineStyle}>Spendenstand</DataBlock>
+        <DataBlock widget='last-donation' eventId={id} demo={demo} headlineStyle={props.headlineStyle}>Letzte Spende</DataBlock>
+        <DataBlock widget='top-donation' eventId={id} demo={demo} headlineStyle={props.headlineStyle}>Top-Spende</DataBlock>
       </DataContainer>
     </DisplayContainer>
   </>
 }
+
+const DataBlock =  ({children, widget, eventId, demo, headlineStyle}) => <FluidColumn>
+  <Headline style={headlineStyle}>{children}</Headline>
+  <iframe
+    name={widget}
+    height="60"
+    width="230"
+    frameBorder="0"
+    src={`https://streambot.betterplace.org/fundraising-events/${eventId}/${widget}?textAlign=left&textColor=fff&fontFamily=Fira+Sans&headline=false${demo ? '&demo=true' : ''}`}
+  />
+</FluidColumn>
 
 const DisplayContainer = styled.div`
   position: relative;
@@ -67,7 +48,7 @@ const DataContainer = styled.div`
   left: 400px;
 `
 
-const DataBlock = styled.div`
+const FluidColumn = styled.div`
   flex-grow: 1;
 `
 
