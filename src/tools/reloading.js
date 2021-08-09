@@ -3,8 +3,14 @@ import React from 'react'
 const apiUrl = 'https://api.betterplace.org'
 // const apiUrl = 'https://api.bp42.com'
 
-const resolveToApiUrl = (match, searchParams, counter, maxCount) => {
-  let list = searchParams.get('list') || 1
+const resolveToApiUrl = (
+  match,
+  counter,
+  maxCount,
+  list = 1,
+  since = '',
+  hashtags = null
+) => {
   let perPage
   switch (list) {
     case 'true':
@@ -21,10 +27,6 @@ const resolveToApiUrl = (match, searchParams, counter, maxCount) => {
     counter = 1
   }
 
-  let since = searchParams.get('since') || ''
-  if (since && since.length) {
-    since = `&facets=since:${since}`
-  }
   switch (match.path) {
     case '/fundraising-events/:id/progress':
     case '/fundraising-events/:id/total':
@@ -33,13 +35,17 @@ const resolveToApiUrl = (match, searchParams, counter, maxCount) => {
     case '/fundraising-events/:id/donation-alert':
       return `${apiUrl}/api_v4/fundraising_events/${match.params.id}/opinions?order=id:desc&per_page=${perPage}&page=${counter}`
     case '/fundraising-events/:id/top-donation':
-      return `${apiUrl}/api_v4/fundraising_events/${match.params.id}/opinions?order=amount_in_cents:desc&per_page=${perPage}&page=${counter}${since}`
+      return `${apiUrl}/api_v4/fundraising_events/${
+        match.params.id
+      }/opinions?order=amount_in_cents:desc&per_page=${perPage}&page=${counter}${
+        since ? `&facets=since:${since}` : ''
+      }`
     case '/fundraising-events/:id/top-donor':
       return `${apiUrl}/api_v4/fundraising_events/${match.params.id}/sum_donations?per_page=${perPage}&page=${counter}`
     case '/fundraising-events/:id/last-comment':
       return `${apiUrl}/api_v4/fundraising_events/${match.params.id}/opinions?order=id:desc&per_page=${perPage}&page=${counter}&facets=has_message:true`
     case '/fundraising-events/:id/hashtags':
-      return `${apiUrl}/api_v4/fundraising_events/${match.params.id}/hashtag_counts/${searchParams.get('hashtags')}`
+      return `${apiUrl}/api_v4/fundraising_events/${match.params.id}/hashtag_counts/${hashtags}`
     default:
       return null
   }
@@ -107,7 +113,14 @@ export function reloading(WrappedComponent) {
     }
 
     reloadData = () => {
-      const url = resolveToApiUrl(this.props.match, this.state.params, this.state.counter, this.state.maxCount)
+      const url = resolveToApiUrl(
+        this.props.match,
+        this.state.counter,
+        this.state.maxCount,
+        this.state.params.get('list'),
+        this.state.params.get('since'),
+        this.state.params.get('hashtags')
+      )
       const nextCounter = (this.state.counter >= this.state.maxCount) ? 1 : this.state.counter + 1
 
       this.setState({ counter: nextCounter }, () => {
