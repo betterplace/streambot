@@ -7,7 +7,7 @@ const resolveToApiUrl = (
   match,
   counter,
   maxCount,
-  list = 1,
+  list,
   since = '',
   hashtags = null
 ) => {
@@ -97,15 +97,23 @@ export function reloading(WrappedComponent) {
     constructor(props) {
       super(props);
       const params = new URLSearchParams(this.props.location.search)
-      const demo = params.get('demo')
-      const maxCount = parseInt(params.get('maxCount') || 1, 10)
-      this.state = { data: null, listData: [], demo, params, counter: 1, maxCount }
+      this.state = {
+        params,
+        data: null,
+        listData: [],
+        counter: 1,
+        demo: params.get('demo'),
+        maxCount: parseInt(params.get('maxCount'), 10) || 1,
+        interval: parseInt(params.get('interval'), 10) || 3,
+        list: params.get('list'),
+        since: params.get('since'),
+        hashtags: params.get('hashtags'),
+      }
     }
 
     componentDidMount() {
-      const intervalSeconds = parseInt(this.state.params.get('interval'), 10) || 3
       this.reloadData()
-      this.interval = setInterval(() => this.reloadData(), intervalSeconds * 1000)
+      this.interval = setInterval(() => this.reloadData(), this.state.interval * 1000)
     }
 
     componentWillUnmount() {
@@ -117,9 +125,9 @@ export function reloading(WrappedComponent) {
         this.props.match,
         this.state.counter,
         this.state.maxCount,
-        this.state.params.get('list'),
-        this.state.params.get('since'),
-        this.state.params.get('hashtags')
+        this.state.list,
+        this.state.since,
+        this.state.hashtags
       )
       const nextCounter = (this.state.counter >= this.state.maxCount) ? 1 : this.state.counter + 1
 
