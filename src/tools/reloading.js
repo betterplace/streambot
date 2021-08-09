@@ -6,27 +6,10 @@ const apiUrl = 'https://api.betterplace.org'
 const resolveToApiUrl = (
   match,
   counter,
-  maxCount,
-  list,
+  perPage,
   since = '',
   hashtags = null
 ) => {
-  let perPage
-  switch (list) {
-    case 'true':
-      perPage = maxCount
-      break
-    case 'false':
-      perPage = 1
-      break
-    default:
-      perPage = Number.parseInt(list) || 1
-  }
-
-  if (perPage > 1) {
-    counter = 1
-  }
-
   switch (match.path) {
     case '/fundraising-events/:id/progress':
     case '/fundraising-events/:id/total':
@@ -105,7 +88,7 @@ export function reloading(WrappedComponent) {
         demo: params.get('demo'),
         maxCount: parseInt(params.get('maxCount'), 10) || 1,
         interval: parseInt(params.get('interval'), 10) || 3,
-        list: params.get('list'),
+        listMode: params.get('list') === 'true',
         since: params.get('since'),
         hashtags: params.get('hashtags'),
       }
@@ -123,9 +106,8 @@ export function reloading(WrappedComponent) {
     reloadData = () => {
       const url = resolveToApiUrl(
         this.props.match,
-        this.state.counter,
-        this.state.maxCount,
-        this.state.list,
+        this.state.listMode ? 1 : this.state.counter,
+        this.state.listMode ? this.state.maxCount : 1,
         this.state.since,
         this.state.hashtags
       )
