@@ -8,7 +8,6 @@ const ListNickname = ({ name, color }) => {
     overflow: 'hidden',
     textOverflow: 'ellipsis',
     minWidth: 0,
-    flexGrow: 2
   }
   if (color) {
     style.color = decodeColor(color)
