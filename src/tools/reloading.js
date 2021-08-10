@@ -34,35 +34,61 @@ const resolveToApiUrl = (
   }
 }
 
-let demoDataIntervals = 0
-
-const demoData = (match, maxCount) => {
+const demoData = (match, counter, perPage) => {
   switch (match.path) {
     case '/fundraising-events/:id/progress':
     case '/fundraising-events/:id/total':
-      return { donated_amount_in_cents: 1337, requested_amount_in_cents: 4200, progress_percentage: 31, }
+      return {
+        donated_amount_in_cents: 1337,
+        requested_amount_in_cents: 4200,
+        progress_percentage: 31,
+      }
     case '/fundraising-events/:id/last-donation':
     case '/fundraising-events/:id/donation-alert':
     case '/fundraising-events/:id/top-donation':
     case '/fundraising-events/:id/top-donor':
     case '/fundraising-events/:id/last-comment':
-      const last_comments = [
-        { id: Math.round(Date.now() / 10000), donated_amount_in_cents: 1337, author: { name: 'Unicorn&lt;3' }, message: 'Voll l33t dein Stream &amp; deine Show!' },
-        { id: Math.round(Date.now() / 10000), donated_amount_in_cents: 1200, author: { name: 'Peter' }, message: 'Super Stream!' },
-        { id: Math.round(Date.now() / 10000), donated_amount_in_cents: 900, author: { name: 'Anna' }, message: 'Mega!' },
-        { id: Math.round(Date.now() / 10000), donated_amount_in_cents: 500, author: { name: 'Patrick' }, message: 'Richtig gut!' },
-        { id: Math.round(Date.now() / 10000), donated_amount_in_cents: 400, author: { name: 'Larissa' }, message: 'Finde die Aktion super!' }
+      const demoComments = [
+        {
+          id: 1,
+          donated_amount_in_cents: 1337,
+          author: { name: 'Unicorn&lt;3' },
+          message: 'Voll l33t dein Stream &amp; deine Show!',
+        },
+        {
+          id: 2,
+          donated_amount_in_cents: 1200,
+          author: { name: 'Peter' },
+          message: 'Super Stream!',
+        },
+        {
+          id: 3,
+          donated_amount_in_cents: 900,
+          author: { name: 'Anna' },
+          message: 'Mega!',
+        },
+        {
+          id: 4,
+          donated_amount_in_cents: 500,
+          author: { name: 'Patrick' },
+          message: 'Richtig gut!',
+        },
+        {
+          id: 5,
+          donated_amount_in_cents: 400,
+          author: { name: 'Larissa' },
+          message: 'Finde die Aktion super!',
+        },
       ]
-      const index = demoDataIntervals % Math.min(last_comments.length, maxCount)
-      const returnValue = last_comments[index]
-      demoDataIntervals++
-      return returnValue
+
+      return { data: demoComments.slice(counter - 1, counter - 1 + perPage) }
     case '/fundraising-events/:id/hashtags':
       return { Wahrheit: 21, Pflicht: 26, Egal: 3 }
     default:
       return null
   }
 }
+
 const fallbackData = (match) => {
   switch (match.path) {
     case '/fundraising-events/:id/last-donation':
@@ -104,20 +130,22 @@ export function reloading(WrappedComponent) {
     }
 
     reloadData = () => {
+      const counter = this.state.listMode ? 1 : this.state.counter
+      const perPage = this.state.listMode ? this.state.maxCount : 1
+      const nextCounter = counter < this.state.maxCount ? counter + 1 : 1
       const url = resolveToApiUrl(
         this.props.match,
-        this.state.listMode ? 1 : this.state.counter,
-        this.state.listMode ? this.state.maxCount : 1,
+        counter,
+        perPage,
         this.state.since,
         this.state.hashtags
       )
-      const nextCounter = (this.state.counter >= this.state.maxCount) ? 1 : this.state.counter + 1
 
       this.setState({ counter: nextCounter }, () => {
         // If demo data is requested do not query the API
         if (this.state.demo) {
           console.log(`Demo Mode: API Request would have been: "${url}".`)
-          return this.storeData(demoData(this.props.match, this.state.maxCount))
+          return this.storeData(demoData(this.props.match, counter, perPage))
         }
         fetch(url)
           .then(response => response.json())
