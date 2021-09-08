@@ -34,7 +34,7 @@ export const DonationList = (props) => {
 
   return <>
     <link rel="stylesheet" href="https://www.betterplace.org/de/layouts/current_stylesheet/application" />
-    <link href="https://fonts.googleapis.com/css?family=Fira+Sans&amp;display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Sans&amp;display=swap" rel="stylesheet" />
 
     <div className='container'>
       <div className='row'>
