@@ -36,7 +36,7 @@ export const List = (props) => {
   </ul>
 
   return <>
-    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono&amp;display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&amp;display=swap" rel="stylesheet" />
     <div>
     {props.listData.map((data) => {
       if (!data.id) return null

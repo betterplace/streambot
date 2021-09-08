@@ -24,24 +24,47 @@ function extractPixelFromParams(name, params, defaultValue) {
   return (params.has(name) && parseInt(params.get(name), 10)) || defaultValue
 }
 
+export function buildGoogleWebfontUrl(fontFamily, fontWeight) {
+  if (!fontFamily) return ''
+
+  // For the GoogleFonts Api, we need fontWeight as number.
+  // This takes care of possible legacy values out there.
+  let fontWeightAsNumber
+  switch (fontWeight) {
+    case 'bold':
+      fontWeightAsNumber = 700
+      break;
+    case 'light':
+      fontWeightAsNumber = 300
+      break;
+    default:
+      fontWeightAsNumber = Number.parseInt(fontWeight) || 400
+  }
+
+  const fontFamilyForUrl = `?family=${fontFamily.replace(/ /g, '+')}`
+  const fontWeightForUrl = fontWeight ? `:wght@${fontWeightAsNumber}` : ''
+
+  return `https://fonts.googleapis.com/css2${fontFamilyForUrl}${fontWeightForUrl}`
+}
+
 function googleFontsImport(params) {
   const fontFamily = extractFromParams('fontFamily', params, null)
-  const fontWeight = extractFromParams('fontWeight', params, 'normal')
+  const fontWeight = extractFromParams('fontWeight', params, null)
 
   if (fontFamily) {
     return `
-      @import url('https://fonts.googleapis.com/css?family=${fontFamily.replace(/ /g, '+')}:${fontWeight}');
+      @import url('${buildGoogleWebfontUrl(fontFamily, fontWeight)}');
 
       body {
         font-family: ${fontFamily.replace(/\+/g, ' ')};
-        font-weight: ${fontWeight};
+        font-weight: ${fontWeight || 'normal'};
       }
     `
   } else {
     return `
       body {
         font-family: Verdana;
-        font-weight: ${fontWeight};
+        font-weight: ${fontWeight || 'normal'};
       }
     `
   }
