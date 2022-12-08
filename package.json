@@ -14,8 +14,7 @@
     "react-use": "^15.3.3",
     "sanitize-html": "^2.3.2",
     "styled-components": "^5.3.0",
-    "timeago-react": "^3.0.0",
-    "webpack-merge": "^5.1.1"
+    "timeago-react": "^3.0.0"
   },
   "scripts": {
     "start": "craco start",
