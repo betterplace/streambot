@@ -18,9 +18,9 @@
     "webpack-merge": "^5.1.1"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
+    "start": "craco start",
+    "build": "craco build",
+    "test": "craco test --env=jsdom",
     "eject": "react-scripts eject"
   },
   "browserslist": [
@@ -30,6 +30,7 @@
     "not op_mini all"
   ],
   "devDependencies": {
+    "@craco/craco": "^7.0.0",
     "js-levenshtein": "^1.1.6",
     "react-dev-utils": "^12.0.1"
   }
