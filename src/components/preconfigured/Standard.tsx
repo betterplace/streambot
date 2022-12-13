@@ -1,6 +1,6 @@
 import React from 'react'
-import styled from 'styled-components'
 import defaultBackgroundImage from '../../images/spendenanzeige_standard.png'
+import styled from 'styled-components'
 
 export const Standard = (props: any) => {
   const id = props.match.params.id
@@ -30,13 +30,7 @@ export const Standard = (props: any) => {
   )
 }
 
-const DataBlock = ({
-  children,
-  widget,
-  eventId,
-  demo,
-  headlineStyle
-}: any) => (
+const DataBlock = ({ children, widget, eventId, demo, headlineStyle }: any) => (
   <FluidColumn>
     <Headline style={headlineStyle}>{children}</Headline>
     <iframe
@@ -51,7 +45,7 @@ const DataBlock = ({
   </FluidColumn>
 )
 
-const DisplayContainer = styled.div<{backgroundImage: string}>`
+const DisplayContainer = styled.div<{ backgroundImage: string }>`
   position: relative;
   height: 250px;
   width: 1392px;

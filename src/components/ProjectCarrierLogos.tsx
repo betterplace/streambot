@@ -3,17 +3,17 @@ import betterplaceLogo from '../images/betterplace-logo.png'
 import betterplayLogo from '../images/betterplay-logo.png'
 
 type State = {
-  logos: [],
-  apiUrl: string,
-  currentIndex: number,
+  logos: []
+  apiUrl: string
+  currentIndex: number
   duration: number
 }
 export class ProjectCarrierLogos extends React.Component {
-  interval: any;
-  logoInterval: any;
-  props: any;
-  setState: any;
-  state: State;
+  interval: any
+  logoInterval: any
+  props: any
+  setState: any
+  state: State
   constructor(props: any) {
     super(props)
     const params = new URLSearchParams(this.props.location.search)

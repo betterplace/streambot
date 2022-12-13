@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
-import { useInterval } from 'react-use'
-import { formatCents, TimeAgo } from '../tools'
-import { uniqBy } from 'lodash/array'
+import { TimeAgo, formatCents } from '../tools'
 import { noop } from 'lodash/util'
+import { uniqBy } from 'lodash/array'
+import { useInterval } from 'react-use'
 
 // Quick and dirty test to see if this little widget works ok enough for
 // streamers that want to track the current donations in a separate window.
@@ -29,19 +29,23 @@ export const DonationList = (props: any) => {
     setSince(new Date())
   }, 5000)
 
-  return <>
-    <link rel="stylesheet" href="https://www.betterplace.org/de/layouts/current_stylesheet/application" />
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Sans&amp;display=swap" rel="stylesheet" />
+  return (
+    <>
+      <link rel="stylesheet" href="https://www.betterplace.org/de/layouts/current_stylesheet/application" />
+      <link href="https://fonts.googleapis.com/css2?family=Fira+Sans&amp;display=swap" rel="stylesheet" />
 
-    <div className="container">
-      <div className="row">
-        <div className="col-md-24 m-y-md">
-          <h1 className="font-lg is-lighter">Spenden-Feed</h1>
+      <div className="container">
+        <div className="row">
+          <div className="col-md-24 m-y-md">
+            <h1 className="font-lg is-lighter">Spenden-Feed</h1>
+          </div>
+          {donations.map((d: any) => (
+            <Donation key={d.id} {...d} params={props.params} />
+          ))}
         </div>
-        {donations.map((d: any) => <Donation key={d.id} {...d} params={props.params} />)}
       </div>
-    </div>
-  </>;
+    </>
+  )
 }
 
 const Donation = (props: any) => {

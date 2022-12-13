@@ -1,23 +1,23 @@
 import React from 'react'
-import { BrowserRouter as Router, Route } from 'react-router-dom'
-import { styled, reloading } from './tools'
 import {
-  Standard,
   Betterplay,
-  Waterstreams,
-  Mashup,
-  Xmas,
   DonationAlert,
+  DonationList,
   Hashtags,
   LastComment,
   LastDonation,
+  Mashup,
   Progress,
   ProjectCarrierLogos,
+  Standard,
   TopDonation,
   TopDonor,
   Total,
-  DonationList,
+  Waterstreams,
+  Xmas,
 } from './components'
+import { Route, BrowserRouter as Router } from 'react-router-dom'
+import { reloading, styled } from './tools'
 
 const App = () => (
   <Router>

@@ -1,7 +1,7 @@
 import React from 'react'
-import { formatCents } from '../tools'
-import { Nickname, HeadlineWithBr } from '.'
+import { HeadlineWithBr, Nickname } from '.'
 import { List } from './List'
+import { formatCents } from '../tools'
 
 export const BasicWidget = (props: any) => {
   const headline = props.params.get('headline') ?? props.defaultHeadline

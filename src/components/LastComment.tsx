@@ -1,10 +1,10 @@
 import React from 'react'
 import sanitizeHtml from 'sanitize-html'
 import { Nickname } from '.'
-import { formatCents, decodeHtmlEntities, truncate } from '../tools'
+import { decodeHtmlEntities, formatCents, truncate } from '../tools'
 
 export const LastComment = (props: any) => {
-  let message = decodeHtmlEntities(sanitizeHtml(props.data.message, { allowedTags: [] }))
+  const message = decodeHtmlEntities(sanitizeHtml(props.data.message, { allowedTags: [] }))
   const maxLength = props.params.get('maxLength')
 
   return (

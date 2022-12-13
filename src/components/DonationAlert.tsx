@@ -1,13 +1,13 @@
 import React from 'react'
-import { formatCents } from '../tools'
 import { Nickname } from '.'
+import { formatCents } from '../tools'
 
 export class DonationAlert extends React.Component {
-  audioElement: any;
-  props: any;
-  setState: any;
-  state: any;
-  timeout: any;
+  audioElement: any
+  props: any
+  setState: any
+  state: any
+  timeout: any
   constructor(props: any) {
     super(props)
     const params = new URLSearchParams(this.props.location.search)
@@ -71,10 +71,7 @@ export class DonationAlert extends React.Component {
   }
 }
 
-const Gif = ({
-  src,
-  height
-}: any) => {
+const Gif = ({ src, height }: any) => {
   if (!src) return null
   return <img src={src} alt="" height={height} />
 }

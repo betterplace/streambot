@@ -1,5 +1,5 @@
 export function decodeHtmlEntities(inp: any) {
-  var replacements: { [key: string]: string } = {
+  const replacements: { [key: string]: string } = {
     '&lt;': '<',
     '&gt;': '>',
     '&sol;': '/',
@@ -13,7 +13,7 @@ export function decodeHtmlEntities(inp: any) {
     '&reg;': '®',
     '&deg;': '°',
   }
-  for (var r in replacements) {
+  for (const r in replacements) {
     inp = inp.replace(new RegExp(r, 'g'), replacements[r])
   }
   return inp.replace(/&#(\d+);/g, function (match: any, dec: any) {

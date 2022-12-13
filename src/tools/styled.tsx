@@ -3,7 +3,7 @@ import { decodeColor } from '../tools'
 
 export function styled(WrappedComponent: any) {
   return class extends React.Component {
-    props: any;
+    props: any
     render() {
       return (
         <React.Fragment>
@@ -12,7 +12,7 @@ export function styled(WrappedComponent: any) {
         </React.Fragment>
       )
     }
-  };
+  }
 }
 
 function extractFromParams(name: string, params: any, defaultValue: any) {
@@ -62,7 +62,7 @@ function googleFontsImport(params: any) {
         font-family: ${fontFamily.replace(/\+/g, ' ')};
         font-weight: ${fontWeight || 'normal'};
       }
-    `;
+    `
   } else {
     return `
       body {

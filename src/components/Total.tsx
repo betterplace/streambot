@@ -1,6 +1,6 @@
 import React from 'react'
-import { formatCents } from '../tools'
 import { HeadlineWithBr } from '.'
+import { formatCents } from '../tools'
 
 export const Total = (props: any) => {
   const headline = props.params.get('headline') === null ? 'Spendenstand' : props.params.get('headline')

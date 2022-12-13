@@ -95,10 +95,10 @@ const fallbackData = (match: any) => {
 
 export function reloading(WrappedComponent: any) {
   return class extends React.Component {
-    interval: any;
-    props: any;
-    setState: any;
-    state: any;
+    interval: any
+    props: any
+    setState: any
+    state: any
     constructor(props: any) {
       super(props)
       const params = new URLSearchParams(this.props.location.search)
@@ -180,5 +180,5 @@ export function reloading(WrappedComponent: any) {
         </React.Fragment>
       )
     }
-  };
+  }
 }
