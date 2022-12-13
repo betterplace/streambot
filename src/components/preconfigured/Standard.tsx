@@ -51,7 +51,7 @@ const DataBlock = ({
   </FluidColumn>
 )
 
-const DisplayContainer = styled.div`
+const DisplayContainer = styled.div<{backgroundImage: string}>`
   position: relative;
   height: 250px;
   width: 1392px;
