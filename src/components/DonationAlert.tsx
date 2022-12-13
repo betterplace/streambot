@@ -26,8 +26,7 @@ export class DonationAlert extends React.Component {
     }
 
     if (params.get('mp3')) {
-      // @ts-expect-error TS(2345): Argument of type 'string | null' is not assignable... Remove this comment to see the full error message
-      this.audioElement = new Audio(params.get('mp3'))
+      this.audioElement = new Audio(params.get('mp3') || undefined)
       this.audioElement.loop = false
       this.audioElement.volume = this.state.volume
       this.audioElement.load()
@@ -62,14 +61,11 @@ export class DonationAlert extends React.Component {
     return (
       <div>
         <Gif src={this.state.gif} height={this.state.gifHeight} />
-        // @ts-expect-error TS(7026): JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message
         <br />
         {this.state.wording}
-        // @ts-expect-error TS(7026): JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message
         <br />
         {formatCents(this.state.data.amountInCents, this.props.params) || 'Spende'} von{' '}
         <Nickname {...this.state.data.author} color={this.props.params.get('nicknameColor')} />
-      // @ts-expect-error TS(7026): JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message
       </div>
     )
   }
