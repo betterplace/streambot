@@ -56,7 +56,7 @@ const DisplayContainer = styled.div<{backgroundImage: string}>`
   height: 250px;
   width: 1392px;
   background-repeat: no-repeat;
-  background-image: url(${(props: any) => props.backgroundImage});
+  background-image: url(${(props) => props.backgroundImage});
 `
 
 const DataContainer = styled.div`

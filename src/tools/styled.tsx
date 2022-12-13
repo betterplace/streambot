@@ -15,15 +15,15 @@ export function styled(WrappedComponent: any) {
   };
 }
 
-function extractFromParams(name: any, params: any, defaultValue: any) {
+function extractFromParams(name: string, params: any, defaultValue: any) {
   return (params.has(name) && params.get(name)) || defaultValue
 }
 
-function extractColorFromParams(name: any, params: any, defaultValue: any) {
+function extractColorFromParams(name: string, params: any, defaultValue: any) {
   return (params.has(name) && decodeColor(params.get(name))) || defaultValue
 }
 
-function extractPixelFromParams(name: any, params: any, defaultValue: any) {
+function extractPixelFromParams(name: string, params: any, defaultValue: any) {
   return (params.has(name) && parseInt(params.get(name), 10)) || defaultValue
 }
 

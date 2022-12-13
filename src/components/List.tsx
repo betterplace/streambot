@@ -6,7 +6,7 @@ import { formatCents, decodeColor } from '../tools'
 const ListNickname = ({
   name,
   color
-}: any) => {
+}: {name: string, color: string}) => {
   const style: CSSProperties = {
     whiteSpace: 'nowrap',
     overflow: 'hidden',
@@ -22,7 +22,7 @@ const ListNickname = ({
 const Amount = ({
   amount,
   params
-}: any) => {
+}: {amount: number, params: any}) => {
   const style = {
     fontFamily: 'Roboto Mono',
   }

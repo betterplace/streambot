@@ -2,12 +2,18 @@ import React from 'react'
 import betterplaceLogo from '../images/betterplace-logo.png'
 import betterplayLogo from '../images/betterplay-logo.png'
 
+type State = {
+  logos: [],
+  apiUrl: string,
+  currentIndex: number,
+  duration: number
+}
 export class ProjectCarrierLogos extends React.Component {
   interval: any;
   logoInterval: any;
   props: any;
   setState: any;
-  state: any;
+  state: State;
   constructor(props: any) {
     super(props)
     const params = new URLSearchParams(this.props.location.search)
@@ -15,7 +21,7 @@ export class ProjectCarrierLogos extends React.Component {
       logos: [],
       apiUrl: `https://api.betterplace.org/api_v4/fundraising_events/${props.match.params.id}/featured_projects`,
       currentIndex: 0,
-      duration: params.get('duration') || 5,
+      duration: parseInt(params.get('duration') as string) || 5,
     }
   }
 

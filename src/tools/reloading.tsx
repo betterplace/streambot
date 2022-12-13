@@ -3,7 +3,7 @@ import React from 'react'
 const apiUrl = 'https://api.betterplace.org'
 // const apiUrl = 'https://api.bp42.com'
 
-const resolveToApiUrl = (match: any, counter: any, perPage: any, since = '', hashtags = null) => {
+const resolveToApiUrl = (match: any, counter: number, perPage: number, since = '', hashtags = null) => {
   switch (match.path) {
     case '/fundraising-events/:id/progress':
     case '/fundraising-events/:id/total':
@@ -26,7 +26,7 @@ const resolveToApiUrl = (match: any, counter: any, perPage: any, since = '', has
   }
 }
 
-const demoData = (match: any, counter: any, perPage: any) => {
+const demoData = (match: any, counter: number, perPage: number) => {
   switch (match.path) {
     case '/fundraising-events/:id/progress':
     case '/fundraising-events/:id/total':
