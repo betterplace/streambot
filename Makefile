@@ -8,4 +8,3 @@ build: src/**/*
 
 deploy: build
 	firebase deploy
-

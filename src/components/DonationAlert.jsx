@@ -30,9 +30,12 @@ export class DonationAlert extends React.Component {
 
   componentDidUpdate(prevProps) {
     // New ID must exist and differ from previous one.
-    if (this.props.data.id && this.props.data.id !== this.state.data.id
+    if (
+      this.props.data.id &&
+      this.props.data.id !== this.state.data.id &&
       // At least one data field must be present.
-      && (this.props.data.donated_amount_in_cents || this.props.data.author)) {
+      (this.props.data.donated_amount_in_cents || this.props.data.author)
+    ) {
       this.setState({
         hidden: false,
         data: {
@@ -42,7 +45,7 @@ export class DonationAlert extends React.Component {
         },
       })
       if (this.timeout) clearInterval(this.timeout)
-      this.timeout = window.setTimeout(() => this.setState({hidden: true}), this.state.duration * 1000)
+      this.timeout = window.setTimeout(() => this.setState({ hidden: true }), this.state.duration * 1000)
 
       if (this.audioElement) this.audioElement.play()
     }
@@ -50,17 +53,20 @@ export class DonationAlert extends React.Component {
 
   render() {
     if (this.state.hidden) return null
-    return <div>
-      <Gif src={this.state.gif} height={this.state.gifHeight} />
-      <br />
-      {this.state.wording}
-      <br />
-      {formatCents(this.state.data.amountInCents, this.props.params) || 'Spende'} von <Nickname {...this.state.data.author} color={this.props.params.get('nicknameColor')} />
-    </div>
+    return (
+      <div>
+        <Gif src={this.state.gif} height={this.state.gifHeight} />
+        <br />
+        {this.state.wording}
+        <br />
+        {formatCents(this.state.data.amountInCents, this.props.params) || 'Spende'} von{' '}
+        <Nickname {...this.state.data.author} color={this.props.params.get('nicknameColor')} />
+      </div>
+    )
   }
 }
 
 const Gif = ({ src, height }) => {
   if (!src) return null
-  return <img src={src} alt='' height={height} />
+  return <img src={src} alt="" height={height} />
 }

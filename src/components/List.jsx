@@ -12,10 +12,7 @@ const ListNickname = ({ name, color }) => {
   if (color) {
     style.color = decodeColor(color)
   }
-  return <div
-    style={style}
-    dangerouslySetInnerHTML={{__html: name ? name : 'Anonym'}}
-  />
+  return <div style={style} dangerouslySetInnerHTML={{ __html: name ? name : 'Anonym' }} />
 }
 
 const Amount = ({ amount, params }) => {
@@ -27,25 +24,33 @@ const Amount = ({ amount, params }) => {
 
 export const List = (props) => {
   // TODO: This is a temporary solution to get the differences out of <LastDonation>. Gotta assimilate both versions.
-  if (props.simple) return <ul style={{ listStyleType: 'none', margin: 0, padding: 0 }}>
-    {props.listData.map((data) => (
-      <li key={data.id}>
-        <Nickname {...data.author} color={props.params.get('nicknameColor')} /> {formatCents(data.donated_amount_in_cents, props.params)}
-      </li>
-    ))}
-  </ul>
+  if (props.simple)
+    return (
+      <ul style={{ listStyleType: 'none', margin: 0, padding: 0 }}>
+        {props.listData.map((data) => (
+          <li key={data.id}>
+            <Nickname {...data.author} color={props.params.get('nicknameColor')} />{' '}
+            {formatCents(data.donated_amount_in_cents, props.params)}
+          </li>
+        ))}
+      </ul>
+    )
 
-  return <>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&amp;display=swap" rel="stylesheet" />
-    <div>
-    {props.listData.map((data) => {
-      if (!data.id) return null
-      return <div key={data.id} style={{display: 'flex'}}>
-        <ListNickname {...data.author} color={props.params.get('nicknameColor')} />
-        <div style={{flexGrow: 1}}>&nbsp;</div>
-        <Amount amount={data.donated_amount_in_cents} params={props.params} />
+  return (
+    <>
+      <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&amp;display=swap" rel="stylesheet" />
+      <div>
+        {props.listData.map((data) => {
+          if (!data.id) return null
+          return (
+            <div key={data.id} style={{ display: 'flex' }}>
+              <ListNickname {...data.author} color={props.params.get('nicknameColor')} />
+              <div style={{ flexGrow: 1 }}>&nbsp;</div>
+              <Amount amount={data.donated_amount_in_cents} params={props.params} />
+            </div>
+          )
+        })}
       </div>
-    })}
-    </div>
-  </>
+    </>
+  )
 }

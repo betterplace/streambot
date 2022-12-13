@@ -1,13 +1,15 @@
 import React from 'react'
-import {decodeColor} from '../tools'
+import { decodeColor } from '../tools'
 
 export function styled(WrappedComponent) {
   return class extends React.Component {
     render() {
-      return <React.Fragment>
-        <StylesFromParams params={new URLSearchParams(this.props.location.search)} />
-        <WrappedComponent {...this.props} />
-      </React.Fragment>
+      return (
+        <React.Fragment>
+          <StylesFromParams params={new URLSearchParams(this.props.location.search)} />
+          <WrappedComponent {...this.props} />
+        </React.Fragment>
+      )
     }
   }
 }
@@ -33,10 +35,10 @@ export function buildGoogleWebfontUrl(fontFamily, fontWeight) {
   switch (fontWeight) {
     case 'bold':
       fontWeightAsNumber = 700
-      break;
+      break
     case 'light':
       fontWeightAsNumber = 300
-      break;
+      break
     default:
       fontWeightAsNumber = Number.parseInt(fontWeight) || 400
   }
@@ -71,12 +73,13 @@ function googleFontsImport(params) {
 }
 
 const StylesFromParams = (props) => {
-  return <style type="text/css">{`
+  return (
+    <style type="text/css">{`
     ${googleFontsImport(props.params)}
 
     body {
       background-color: ${extractColorFromParams('backgroundColor', props.params, 'transparent')};
-      color:            ${extractColorFromParams('textColor',props.params, 'black')};
+      color:            ${extractColorFromParams('textColor', props.params, 'black')};
       font-size:        ${extractPixelFromParams('fontSize', props.params, 24)}px;
       line-height:      1.25;
       text-align:       ${extractFromParams('textAlign', props.params, 'center')};
@@ -119,4 +122,5 @@ const StylesFromParams = (props) => {
       text-align: left;
     }
   `}</style>
+  )
 }

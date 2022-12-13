@@ -64,7 +64,6 @@ Additional customization params:
 
 - `headline` - customize the default text, set to `false` to hide the text.
 
-
 ### Top donation
 
 Will show the all time top donation for this fundraising event.
@@ -126,7 +125,6 @@ Additional customization params:
 
 - `maxLength` - numeric: maximum displayable characters, the message will be truncated after that and `…` will be appended
 
-
 ### Donation alert
 
 Show for a certain duration (default 3 seconds) the amount and the name of the donor. Additionally it may show a different wording, a gif and a mp3.
@@ -162,7 +160,6 @@ Additional customization params:
 - `mp3` - soundfile to be played when new donation arrives, e.g. `&mp3=https://www.w3schools.com/tags/horse.mp3`
 - `duration` - how long (in seconds)
 
-
 ### Project Logo Stream
 
 Show the organisation logos of the projects that are associated to the event in a loop. The interval can be adjusted accordingly. The default is 5 seconds per image.
@@ -192,7 +189,6 @@ Additional customization params:
 
 - `duration` - how long is the interval between logos (in seconds)
 
-
 ### Hashtags
 
 Show bars to compare the occurrence counts of the given hashtags in donation comments.
@@ -213,7 +209,6 @@ Additional customization params:
 
 - `progressColor` - hex color value (without #), e.g. `&progressColor=ff0000`
 - `progressBackgroundColor` - hex color value (without #), e.g. `&progressBackgroundColor=ff0000`
-
 
 ## Build & Deploy
 

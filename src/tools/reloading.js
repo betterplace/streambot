@@ -3,13 +3,7 @@ import React from 'react'
 const apiUrl = 'https://api.betterplace.org'
 // const apiUrl = 'https://api.bp42.com'
 
-const resolveToApiUrl = (
-  match,
-  counter,
-  perPage,
-  since = '',
-  hashtags = null
-) => {
+const resolveToApiUrl = (match, counter, perPage, since = '', hashtags = null) => {
   switch (match.path) {
     case '/fundraising-events/:id/progress':
     case '/fundraising-events/:id/total':
@@ -20,9 +14,7 @@ const resolveToApiUrl = (
     case '/fundraising-events/:id/top-donation':
       return `${apiUrl}/api_v4/fundraising_events/${
         match.params.id
-      }/opinions?order=amount_in_cents:desc&per_page=${perPage}&page=${counter}${
-        since ? `&facets=since:${since}` : ''
-      }`
+      }/opinions?order=amount_in_cents:desc&per_page=${perPage}&page=${counter}${since ? `&facets=since:${since}` : ''}`
     case '/fundraising-events/:id/top-donor':
       return `${apiUrl}/api_v4/fundraising_events/${match.params.id}/sum_donations?per_page=${perPage}&page=${counter}`
     case '/fundraising-events/:id/last-comment':
@@ -95,7 +87,7 @@ const fallbackData = (match) => {
     case '/fundraising-events/:id/top-donation':
     case '/fundraising-events/:id/top-donor':
     case '/fundraising-events/:id/last-comment':
-      return { author: { name: "-" } }
+      return { author: { name: '-' } }
     default:
       return null
   }
@@ -104,7 +96,7 @@ const fallbackData = (match) => {
 export function reloading(WrappedComponent) {
   return class extends React.Component {
     constructor(props) {
-      super(props);
+      super(props)
       const params = new URLSearchParams(this.props.location.search)
       this.state = {
         params,
@@ -133,13 +125,7 @@ export function reloading(WrappedComponent) {
       const counter = this.state.listMode ? 1 : this.state.counter
       const perPage = this.state.listMode ? this.state.maxCount : 1
       const nextCounter = counter < this.state.maxCount ? counter + 1 : 1
-      const url = resolveToApiUrl(
-        this.props.match,
-        counter,
-        perPage,
-        this.state.since,
-        this.state.hashtags
-      )
+      const url = resolveToApiUrl(this.props.match, counter, perPage, this.state.since, this.state.hashtags)
 
       this.setState({ counter: nextCounter }, () => {
         // If demo data is requested do not query the API
@@ -148,9 +134,9 @@ export function reloading(WrappedComponent) {
           return this.storeData(demoData(this.props.match, counter, perPage))
         }
         fetch(url)
-          .then(response => response.json())
-          .then(json => this.storeData(json))
-          .then(undefined, err => console.log(err))
+          .then((response) => response.json())
+          .then((json) => this.storeData(json))
+          .then(undefined, (err) => console.log(err))
       })
     }
 
@@ -178,11 +164,15 @@ export function reloading(WrappedComponent) {
         listData = [data]
       }
 
-      if (!data) { return null }
+      if (!data) {
+        return null
+      }
 
-      return <React.Fragment>
-        <WrappedComponent params={params} data={data} listData={listData} {...this.props} />
-      </React.Fragment>
+      return (
+        <React.Fragment>
+          <WrappedComponent params={params} data={data} listData={listData} {...this.props} />
+        </React.Fragment>
+      )
     }
   }
 }

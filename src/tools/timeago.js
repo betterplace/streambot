@@ -1,5 +1,5 @@
 import TimeAgoReact from 'timeago-react'
-import {register} from 'timeago.js'
+import { register } from 'timeago.js'
 
 const localeFunc = (number, index, total_sec) => {
   return [
@@ -16,7 +16,7 @@ const localeFunc = (number, index, total_sec) => {
     ['vor 1 Monat', 'in 1 Monat'],
     ['vor %s Monaten', 'in %s Monaten'],
     ['vor 1 Jahr', 'in 1 Jahr'],
-    ['vor %s Jahren', 'in %s Jahren']
+    ['vor %s Jahren', 'in %s Jahren'],
   ][index]
 }
 

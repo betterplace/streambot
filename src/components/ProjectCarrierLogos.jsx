@@ -7,23 +7,23 @@ export class ProjectCarrierLogos extends React.Component {
     super(props)
     const params = new URLSearchParams(this.props.location.search)
     this.state = {
-      logos:         [],
-      apiUrl:        `https://api.betterplace.org/api_v4/fundraising_events/${props.match.params.id}/featured_projects`,
-      currentIndex:  0,
-      duration:      params.get('duration') || 5,
+      logos: [],
+      apiUrl: `https://api.betterplace.org/api_v4/fundraising_events/${props.match.params.id}/featured_projects`,
+      currentIndex: 0,
+      duration: params.get('duration') || 5,
     }
   }
 
   componentDidMount() {
     fetch(this.state.apiUrl)
-      .then(response => response.json())
-      .then(json     => this.collectProjectLogos(json.data))
+      .then((response) => response.json())
+      .then((json) => this.collectProjectLogos(json.data))
       .then(this.startInterval)
-      .then(undefined, err => console.log(err))
+      .then(undefined, (err) => console.log(err))
   }
 
   componentWillUnmount() {
-     clearInterval(this.logoInterval);
+    clearInterval(this.logoInterval)
   }
 
   collectProjectLogos = (projects) => {
@@ -35,7 +35,7 @@ export class ProjectCarrierLogos extends React.Component {
     })
     projectImages = projectImages.filter((v, i, a) => a.indexOf(v) === i)
     projectImages = projectImages.map((url) => url.replace('100x100', '400x400'))
-    this.setState({logos: projectImages})
+    this.setState({ logos: projectImages })
   }
 
   startInterval = () => {
@@ -54,6 +54,6 @@ export class ProjectCarrierLogos extends React.Component {
 
   render() {
     if (!this.currentLogoUrl) return null
-    return <img src={this.currentLogoUrl} style={{width: '100vmin'}} alt='' />
+    return <img src={this.currentLogoUrl} style={{ width: '100vmin' }} alt="" />
   }
 }
