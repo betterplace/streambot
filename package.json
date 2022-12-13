@@ -29,11 +29,12 @@
     "not op_mini all"
   ],
   "devDependencies": {
+    "@craco/craco": "^7.0.0",
     "babel-eslint": "^10.1.0",
     "eslint-config-prettier": "^8.5.0",
     "js-levenshtein": "^1.1.6",
     "prettier": "2.8.1",
-    "@craco/craco": "^7.0.0",
-    "react-dev-utils": "^12.0.1"
+    "react-dev-utils": "^12.0.1",
+    "ts-migrate": "^0.1.35"
   }
 }
