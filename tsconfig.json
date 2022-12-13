@@ -6,7 +6,7 @@
     "emitDecoratorMetadata": true,
     "allowSyntheticDefaultImports": true,
     "resolveJsonModule": true,
-    "baseUrl": "./app/javascript/",
+    "baseUrl": "./src/",
     "experimentalDecorators": true,
     "lib": [
       "ESNext",
@@ -33,7 +33,7 @@
     "tailwind.config.js",
   ],
   "include": [
-    "./app/javascript/**/*",
+    "./src/**/*",
     "**/*.d.ts"
   ],
   "compileOnSave": false
