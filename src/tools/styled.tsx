@@ -1,8 +1,10 @@
+// @ts-expect-error TS(7016): Could not find a declaration file for module 'reac... Remove this comment to see the full error message
 import React from 'react'
 import { decodeColor } from '../tools'
 
-export function styled(WrappedComponent) {
+export function styled(WrappedComponent: any) {
   return class extends React.Component {
+    props: any;
     render() {
       return (
         <React.Fragment>
@@ -11,22 +13,22 @@ export function styled(WrappedComponent) {
         </React.Fragment>
       )
     }
-  }
+  };
 }
 
-function extractFromParams(name, params, defaultValue) {
+function extractFromParams(name: any, params: any, defaultValue: any) {
   return (params.has(name) && params.get(name)) || defaultValue
 }
 
-function extractColorFromParams(name, params, defaultValue) {
+function extractColorFromParams(name: any, params: any, defaultValue: any) {
   return (params.has(name) && decodeColor(params.get(name))) || defaultValue
 }
 
-function extractPixelFromParams(name, params, defaultValue) {
+function extractPixelFromParams(name: any, params: any, defaultValue: any) {
   return (params.has(name) && parseInt(params.get(name), 10)) || defaultValue
 }
 
-export function buildGoogleWebfontUrl(fontFamily, fontWeight) {
+export function buildGoogleWebfontUrl(fontFamily: any, fontWeight: any) {
   if (!fontFamily) return ''
 
   // For the GoogleFonts Api, we need fontWeight as number.
@@ -49,7 +51,7 @@ export function buildGoogleWebfontUrl(fontFamily, fontWeight) {
   return `https://fonts.googleapis.com/css2${fontFamilyForUrl}${fontWeightForUrl}`
 }
 
-function googleFontsImport(params) {
+function googleFontsImport(params: any) {
   const fontFamily = extractFromParams('fontFamily', params, null)
   const fontWeight = extractFromParams('fontWeight', params, null)
 
@@ -61,7 +63,7 @@ function googleFontsImport(params) {
         font-family: ${fontFamily.replace(/\+/g, ' ')};
         font-weight: ${fontWeight || 'normal'};
       }
-    `
+    `;
   } else {
     return `
       body {
@@ -72,8 +74,9 @@ function googleFontsImport(params) {
   }
 }
 
-const StylesFromParams = (props) => {
+const StylesFromParams = (props: any) => {
   return (
+    // @ts-expect-error TS(7026): JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message
     <style type="text/css">{`
     ${googleFontsImport(props.params)}
 
@@ -121,6 +124,7 @@ const StylesFromParams = (props) => {
       padding-left: 8px;
       text-align: left;
     }
+  // @ts-expect-error TS(7026): JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message
   `}</style>
   )
 }

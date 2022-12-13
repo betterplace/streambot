@@ -1,7 +1,7 @@
 import TimeAgoReact from 'timeago-react'
 import { register } from 'timeago.js'
 
-const localeFunc = (number, index, total_sec) => {
+const localeFunc = (number: any, index: any, total_sec: any) => {
   return [
     ['gerade eben', 'vor einer Weile'],
     ['vor %s Sekunden', 'in %s Sekunden'],
@@ -20,6 +20,7 @@ const localeFunc = (number, index, total_sec) => {
   ][index]
 }
 
+// @ts-expect-error TS(2345): Argument of type '(number: any, index: any, total_... Remove this comment to see the full error message
 register('de', localeFunc)
 
 export const TimeAgo = TimeAgoReact

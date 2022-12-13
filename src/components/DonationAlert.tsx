@@ -1,9 +1,15 @@
+// @ts-expect-error TS(7016): Could not find a declaration file for module 'reac... Remove this comment to see the full error message
 import React from 'react'
 import { formatCents } from '../tools'
 import { Nickname } from '.'
 
 export class DonationAlert extends React.Component {
-  constructor(props) {
+  audioElement: any;
+  props: any;
+  setState: any;
+  state: any;
+  timeout: any;
+  constructor(props: any) {
     super(props)
     const params = new URLSearchParams(this.props.location.search)
     this.state = {
@@ -21,6 +27,7 @@ export class DonationAlert extends React.Component {
     }
 
     if (params.get('mp3')) {
+      // @ts-expect-error TS(2345): Argument of type 'string | null' is not assignable... Remove this comment to see the full error message
       this.audioElement = new Audio(params.get('mp3'))
       this.audioElement.loop = false
       this.audioElement.volume = this.state.volume
@@ -28,7 +35,7 @@ export class DonationAlert extends React.Component {
     }
   }
 
-  componentDidUpdate(prevProps) {
+  componentDidUpdate(prevProps: any) {
     // New ID must exist and differ from previous one.
     if (
       this.props.data.id &&
@@ -54,19 +61,27 @@ export class DonationAlert extends React.Component {
   render() {
     if (this.state.hidden) return null
     return (
+      // @ts-expect-error TS(7026): JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message
       <div>
         <Gif src={this.state.gif} height={this.state.gifHeight} />
+        // @ts-expect-error TS(7026): JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message
         <br />
         {this.state.wording}
+        // @ts-expect-error TS(7026): JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message
         <br />
         {formatCents(this.state.data.amountInCents, this.props.params) || 'Spende'} von{' '}
         <Nickname {...this.state.data.author} color={this.props.params.get('nicknameColor')} />
+      // @ts-expect-error TS(7026): JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message
       </div>
     )
   }
 }
 
-const Gif = ({ src, height }) => {
+const Gif = ({
+  src,
+  height
+}: any) => {
   if (!src) return null
+  // @ts-expect-error TS(7026): JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message
   return <img src={src} alt="" height={height} />
 }

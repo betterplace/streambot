@@ -1,4 +1,4 @@
-export const decodeColor = (string) => {
+export const decodeColor = (string: any) => {
   if (!string) return null
   let m = string.match(/^([a-f\d]{3}|[a-f\d]{6})$/i)
   if (m && m[1]) {

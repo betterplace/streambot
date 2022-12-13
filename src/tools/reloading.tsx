@@ -1,9 +1,10 @@
+// @ts-expect-error TS(7016): Could not find a declaration file for module 'reac... Remove this comment to see the full error message
 import React from 'react'
 
 const apiUrl = 'https://api.betterplace.org'
 // const apiUrl = 'https://api.bp42.com'
 
-const resolveToApiUrl = (match, counter, perPage, since = '', hashtags = null) => {
+const resolveToApiUrl = (match: any, counter: any, perPage: any, since = '', hashtags = null) => {
   switch (match.path) {
     case '/fundraising-events/:id/progress':
     case '/fundraising-events/:id/total':
@@ -26,7 +27,7 @@ const resolveToApiUrl = (match, counter, perPage, since = '', hashtags = null) =
   }
 }
 
-const demoData = (match, counter, perPage) => {
+const demoData = (match: any, counter: any, perPage: any) => {
   switch (match.path) {
     case '/fundraising-events/:id/progress':
     case '/fundraising-events/:id/total':
@@ -81,7 +82,7 @@ const demoData = (match, counter, perPage) => {
   }
 }
 
-const fallbackData = (match) => {
+const fallbackData = (match: any) => {
   switch (match.path) {
     case '/fundraising-events/:id/last-donation':
     case '/fundraising-events/:id/top-donation':
@@ -93,9 +94,13 @@ const fallbackData = (match) => {
   }
 }
 
-export function reloading(WrappedComponent) {
+export function reloading(WrappedComponent: any) {
   return class extends React.Component {
-    constructor(props) {
+    interval: any;
+    props: any;
+    setState: any;
+    state: any;
+    constructor(props: any) {
       super(props)
       const params = new URLSearchParams(this.props.location.search)
       this.state = {
@@ -104,7 +109,9 @@ export function reloading(WrappedComponent) {
         listData: [],
         counter: 1,
         demo: params.get('demo'),
+        // @ts-expect-error TS(2345): Argument of type 'string | null' is not assignable... Remove this comment to see the full error message
         maxCount: parseInt(params.get('maxCount'), 10) || 1,
+        // @ts-expect-error TS(2345): Argument of type 'string | null' is not assignable... Remove this comment to see the full error message
         interval: parseInt(params.get('interval'), 10) || 3,
         listMode: params.get('list') === 'true',
         since: params.get('since'),
@@ -133,6 +140,7 @@ export function reloading(WrappedComponent) {
           console.log(`Demo Mode: API Request would have been: "${url}".`)
           return this.storeData(demoData(this.props.match, counter, perPage))
         }
+        // @ts-expect-error TS(2345): Argument of type 'string | null' is not assignable... Remove this comment to see the full error message
         fetch(url)
           .then((response) => response.json())
           .then((json) => this.storeData(json))
@@ -144,7 +152,7 @@ export function reloading(WrappedComponent) {
     // This way it's always exactly one object from the API that is stored into
     // `props.data` - could be a fundraising event or a opinion or whatever.
     // store a list of data into listData as well.
-    storeData = (responseJson) => {
+    storeData = (responseJson: any) => {
       let data, listData
       if (Array.isArray(responseJson.data)) {
         data = responseJson.data[0]
@@ -174,5 +182,5 @@ export function reloading(WrappedComponent) {
         </React.Fragment>
       )
     }
-  }
+  };
 }

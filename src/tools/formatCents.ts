@@ -1,4 +1,4 @@
-export function formatCents(cents, params) {
+export function formatCents(cents: any, params: any) {
   if (!cents) return null
 
   const currencyDisplay = params.get('currencyDisplay') || 'symbol'

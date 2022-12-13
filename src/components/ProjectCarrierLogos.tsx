@@ -1,9 +1,17 @@
+// @ts-expect-error TS(7016): Could not find a declaration file for module 'reac... Remove this comment to see the full error message
 import React from 'react'
+// @ts-expect-error TS(2307): Cannot find module '../images/betterplace-logo.png... Remove this comment to see the full error message
 import betterplaceLogo from '../images/betterplace-logo.png'
+// @ts-expect-error TS(2307): Cannot find module '../images/betterplay-logo.png'... Remove this comment to see the full error message
 import betterplayLogo from '../images/betterplay-logo.png'
 
 export class ProjectCarrierLogos extends React.Component {
-  constructor(props) {
+  interval: any;
+  logoInterval: any;
+  props: any;
+  setState: any;
+  state: any;
+  constructor(props: any) {
     super(props)
     const params = new URLSearchParams(this.props.location.search)
     this.state = {
@@ -26,9 +34,9 @@ export class ProjectCarrierLogos extends React.Component {
     clearInterval(this.logoInterval)
   }
 
-  collectProjectLogos = (projects) => {
+  collectProjectLogos = (projects: any) => {
     let projectImages = [betterplaceLogo, betterplayLogo]
-    projects.forEach((e) => {
+    projects.forEach((e: any) => {
       if (!e.carrier.picture.links[0].href.includes('/assets/default')) {
         projectImages.push(e.carrier.picture.links[0].href)
       }
@@ -54,6 +62,7 @@ export class ProjectCarrierLogos extends React.Component {
 
   render() {
     if (!this.currentLogoUrl) return null
+    // @ts-expect-error TS(7026): JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message
     return <img src={this.currentLogoUrl} style={{ width: '100vmin' }} alt="" />
   }
 }
