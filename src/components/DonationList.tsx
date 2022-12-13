@@ -1,4 +1,3 @@
-// @ts-expect-error TS(7016): Could not find a declaration file for module 'reac... Remove this comment to see the full error message
 import React, { useState } from 'react'
 import { useInterval } from 'react-use'
 import { formatCents, TimeAgo } from '../tools'
@@ -66,45 +65,27 @@ const Donation = (props: any) => {
     'https://betterplace-assets.betterplace.org/assets/default/donation_profile_picture/fill_100x100_default-2f969919aad3a0d51372c1474e73e452ea00947cb78d944c81aa1891b590b31e.png'
 
   return (
-    // @ts-expect-error TS(7026): JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message
     <div className="col-md-24">
-      // @ts-expect-error TS(7026): JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message
       <div className="generic-opinion media">
-        // @ts-expect-error TS(7026): JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message
         <div className="opinion-avatar-and-amount media-left">
-          // @ts-expect-error TS(7026): JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message
           <img className="user-avatar round-image" src={image} alt={`Avatar ${donor}`} width="50" />
           {cents && (
-            // @ts-expect-error TS(7026): JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message
             <div className={`amount ${amountIsSmall ? 'is-small' : ''}`}>
               {formatCents(cents, new URLSearchParams())}
-            // @ts-expect-error TS(7026): JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message
             </div>
           )}
-        // @ts-expect-error TS(7026): JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message
         </div>
-        // @ts-expect-error TS(7026): JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message
         <div className="opinion-body media-body">
-          // @ts-expect-error TS(7026): JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message
           <div className="headline">
-            // @ts-expect-error TS(7026): JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message
             <strong dangerouslySetInnerHTML={{ __html: donor }} /> hat gespendet
-            // @ts-expect-error TS(7026): JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message
             <br />
-            // @ts-expect-error TS(7026): JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message
             <small>
               <TimeAgo datetime={props.created_at} locale={'de'} />
-            // @ts-expect-error TS(7026): JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message
             </small>
-          // @ts-expect-error TS(7026): JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message
           </div>
-          // @ts-expect-error TS(7026): JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message
           {props.message && <div className="message" dangerouslySetInnerHTML={{ __html: props.message }} />}
-        // @ts-expect-error TS(7026): JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message
         </div>
-      // @ts-expect-error TS(7026): JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message
       </div>
-    // @ts-expect-error TS(7026): JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message
     </div>
   )
 }

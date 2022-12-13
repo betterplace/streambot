@@ -1,8 +1,5 @@
-// @ts-expect-error TS(7016): Could not find a declaration file for module 'reac... Remove this comment to see the full error message
 import React from 'react'
-// @ts-expect-error TS(2307): Cannot find module '../images/betterplace-logo.png... Remove this comment to see the full error message
 import betterplaceLogo from '../images/betterplace-logo.png'
-// @ts-expect-error TS(2307): Cannot find module '../images/betterplay-logo.png'... Remove this comment to see the full error message
 import betterplayLogo from '../images/betterplay-logo.png'
 
 export class ProjectCarrierLogos extends React.Component {
@@ -62,7 +59,6 @@ export class ProjectCarrierLogos extends React.Component {
 
   render() {
     if (!this.currentLogoUrl) return null
-    // @ts-expect-error TS(7026): JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message
     return <img src={this.currentLogoUrl} style={{ width: '100vmin' }} alt="" />
   }
 }

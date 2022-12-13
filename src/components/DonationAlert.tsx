@@ -1,4 +1,3 @@
-// @ts-expect-error TS(7016): Could not find a declaration file for module 'reac... Remove this comment to see the full error message
 import React from 'react'
 import { formatCents } from '../tools'
 import { Nickname } from '.'
@@ -61,7 +60,6 @@ export class DonationAlert extends React.Component {
   render() {
     if (this.state.hidden) return null
     return (
-      // @ts-expect-error TS(7026): JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message
       <div>
         <Gif src={this.state.gif} height={this.state.gifHeight} />
         // @ts-expect-error TS(7026): JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message
@@ -82,6 +80,5 @@ const Gif = ({
   height
 }: any) => {
   if (!src) return null
-  // @ts-expect-error TS(7026): JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message
   return <img src={src} alt="" height={height} />
 }

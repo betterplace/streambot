@@ -19,5 +19,5 @@ export function decodeHtmlEntities(inp: any) {
   }
   return inp.replace(/&#(\d+);/g, function (match: any, dec: any) {
     return String.fromCharCode(dec)
-  });
+  })
 }
