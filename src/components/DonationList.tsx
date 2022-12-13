@@ -1,9 +1,7 @@
 import React, { useState } from 'react'
 import { useInterval } from 'react-use'
 import { formatCents, TimeAgo } from '../tools'
-// @ts-expect-error TS(7016): Could not find a declaration file for module 'loda... Remove this comment to see the full error message
 import { uniqBy } from 'lodash/array'
-// @ts-expect-error TS(7016): Could not find a declaration file for module 'loda... Remove this comment to see the full error message
 import { noop } from 'lodash/util'
 
 // Quick and dirty test to see if this little widget works ok enough for
@@ -20,8 +18,7 @@ export const DonationList = (props: any) => {
 
   useInterval(() => {
     const reloadData = async () => {
-      // @ts-expect-error TS(2362): The left-hand side of an arithmetic operation must... Remove this comment to see the full error message
-      const fiveMinutesAgo = new Date(new Date() - 5 * 60000)
+      const fiveMinutesAgo = new Date(new Date().valueOf() - 5 * 60000)
       const sinceParam = fiveMinutesAgo.toISOString().replace(/\..*/, 'GMT')
       const url = `${apiUrl}/api_v4/fundraising_events/${props.match.params.id}/opinions?order=id:desc&facets=since:${sinceParam}`
       const response = await fetch(url)
@@ -33,25 +30,16 @@ export const DonationList = (props: any) => {
   }, 5000)
 
   return <>
-    // @ts-expect-error TS(7026): JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message
     <link rel="stylesheet" href="https://www.betterplace.org/de/layouts/current_stylesheet/application" />
-    // @ts-expect-error TS(7026): JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message
     <link href="https://fonts.googleapis.com/css2?family=Fira+Sans&amp;display=swap" rel="stylesheet" />
 
-    // @ts-expect-error TS(7026): JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message
     <div className="container">
-      // @ts-expect-error TS(7026): JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message
       <div className="row">
-        // @ts-expect-error TS(7026): JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message
         <div className="col-md-24 m-y-md">
-          // @ts-expect-error TS(7026): JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message
           <h1 className="font-lg is-lighter">Spenden-Feed</h1>
-        // @ts-expect-error TS(7026): JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message
         </div>
         {donations.map((d: any) => <Donation key={d.id} {...d} params={props.params} />)}
-      // @ts-expect-error TS(7026): JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message
       </div>
-    // @ts-expect-error TS(7026): JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message
     </div>
   </>;
 }
