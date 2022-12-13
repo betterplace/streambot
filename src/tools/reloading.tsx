@@ -108,10 +108,8 @@ export function reloading(WrappedComponent: any) {
         listData: [],
         counter: 1,
         demo: params.get('demo'),
-        // @ts-expect-error TS(2345): Argument of type 'string | null' is not assignable... Remove this comment to see the full error message
-        maxCount: parseInt(params.get('maxCount'), 10) || 1,
-        // @ts-expect-error TS(2345): Argument of type 'string | null' is not assignable... Remove this comment to see the full error message
-        interval: parseInt(params.get('interval'), 10) || 3,
+        maxCount: params.get('maxCount') ? parseInt(params.get('maxCount') as string, 10) : 1,
+        interval: params.get('interval') ? parseInt(params.get('interval') as string, 10) : 3,
         listMode: params.get('list') === 'true',
         since: params.get('since'),
         hashtags: params.get('hashtags'),
@@ -139,11 +137,12 @@ export function reloading(WrappedComponent: any) {
           console.log(`Demo Mode: API Request would have been: "${url}".`)
           return this.storeData(demoData(this.props.match, counter, perPage))
         }
-        // @ts-expect-error TS(2345): Argument of type 'string | null' is not assignable... Remove this comment to see the full error message
-        fetch(url)
-          .then((response) => response.json())
-          .then((json) => this.storeData(json))
-          .then(undefined, (err) => console.log(err))
+        if (url) {
+          fetch(url)
+            .then((response) => response.json())
+            .then((json) => this.storeData(json))
+            .then(undefined, (err) => console.log(err))
+        }
       })
     }
 
