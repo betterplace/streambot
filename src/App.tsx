@@ -22,7 +22,7 @@ import {
 const App = () => (
   <Router>
     <div>
-      <Route exact path="/" render={() => (window.location = 'https://github.com/betterplace/streambot')} />
+      <Route exact path="/" render={() => (window.location.href = 'https://github.com/betterplace/streambot')} />
       <Route path="/fundraising-events/:id/standard" component={Standard} />
       <Route path="/fundraising-events/:id/betterplay" component={Betterplay} />
       <Route path="/fundraising-events/:id/waterstreams" component={Waterstreams} />
