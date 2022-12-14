@@ -3,7 +3,7 @@ import React from 'react'
 const apiUrl = 'https://api.betterplace.org'
 // const apiUrl = 'https://api.bp42.com'
 
-const resolveToApiUrl = (match: any, counter: number, perPage: number, since = '', hashtags = null) => {
+const resolveToApiUrl = (match: any, counter: number, perPage: number, since: any = '', hashtags: any = null) => {
   switch (match.path) {
     case '/fundraising-events/:id/progress':
     case '/fundraising-events/:id/total':
@@ -27,6 +27,39 @@ const resolveToApiUrl = (match: any, counter: number, perPage: number, since = '
 }
 
 const demoData = (match: any, counter: number, perPage: number) => {
+  const demoComments = [
+    {
+      id: 1,
+      donated_amount_in_cents: 1337,
+      author: { name: 'Unicorn&lt;3' },
+      message: 'Voll l33t dein Stream &amp; deine Show!',
+    },
+    {
+      id: 2,
+      donated_amount_in_cents: 1200,
+      author: { name: 'Peter' },
+      message: 'Super Stream!',
+    },
+    {
+      id: 3,
+      donated_amount_in_cents: 900,
+      author: { name: 'Anna' },
+      message: 'Mega!',
+    },
+    {
+      id: 4,
+      donated_amount_in_cents: 500,
+      author: { name: 'Patrick' },
+      message: 'Richtig gut!',
+    },
+    {
+      id: 5,
+      donated_amount_in_cents: 400,
+      author: { name: 'Larissa' },
+      message: 'Finde die Aktion super!',
+    },
+  ]
+
   switch (match.path) {
     case '/fundraising-events/:id/progress':
     case '/fundraising-events/:id/total':
@@ -40,39 +73,6 @@ const demoData = (match: any, counter: number, perPage: number) => {
     case '/fundraising-events/:id/top-donation':
     case '/fundraising-events/:id/top-donor':
     case '/fundraising-events/:id/last-comment':
-      const demoComments = [
-        {
-          id: 1,
-          donated_amount_in_cents: 1337,
-          author: { name: 'Unicorn&lt;3' },
-          message: 'Voll l33t dein Stream &amp; deine Show!',
-        },
-        {
-          id: 2,
-          donated_amount_in_cents: 1200,
-          author: { name: 'Peter' },
-          message: 'Super Stream!',
-        },
-        {
-          id: 3,
-          donated_amount_in_cents: 900,
-          author: { name: 'Anna' },
-          message: 'Mega!',
-        },
-        {
-          id: 4,
-          donated_amount_in_cents: 500,
-          author: { name: 'Patrick' },
-          message: 'Richtig gut!',
-        },
-        {
-          id: 5,
-          donated_amount_in_cents: 400,
-          author: { name: 'Larissa' },
-          message: 'Finde die Aktion super!',
-        },
-      ]
-
       return { data: demoComments.slice(counter - 1, counter - 1 + perPage) }
     case '/fundraising-events/:id/hashtags':
       return { Wahrheit: 21, Pflicht: 26, Egal: 3 }
@@ -94,11 +94,8 @@ const fallbackData = (match: any) => {
 }
 
 export function reloading(WrappedComponent: any) {
-  return class extends React.Component {
+  return class ReloadingClass extends React.Component<any, any> {
     interval: any
-    props: any
-    setState: any
-    state: any
     constructor(props: any) {
       super(props)
       const params = new URLSearchParams(this.props.location.search)
@@ -163,7 +160,8 @@ export function reloading(WrappedComponent: any) {
     }
 
     render() {
-      let { data, listData, params } = this.state
+      let { data, listData } = this.state
+      const { params } = this.state
 
       if (!data) {
         data = fallbackData(this.props.match)

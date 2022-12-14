@@ -2,7 +2,7 @@ import React from 'react'
 import { decodeColor } from '../tools'
 
 export function styled(WrappedComponent: any) {
-  return class extends React.Component {
+  return class StyledClass extends React.Component {
     props: any
     render() {
       return (
