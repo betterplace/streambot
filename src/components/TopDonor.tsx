@@ -1,4 +1,7 @@
 import React from 'react'
 import { BasicWidget } from '.'
+import { RouteComponentProps } from 'react-router-dom'
 
-export const TopDonor = (props: any) => <BasicWidget {...props} defaultHeadline="Top-Spender:" />
+export const TopDonor = (props: RouteComponentProps) => {
+  return <BasicWidget {...props} defaultHeadline="Top-Spender:" />
+}

@@ -1,8 +1,20 @@
 import React from 'react'
 import defaultBackgroundImage from '../../images/spendenanzeige_standard.png'
-import styled from 'styled-components'
+import styled, { CSSProperties } from 'styled-components'
+import { RouteComponentProps } from 'react-router-dom'
 
-export const Standard = (props: any) => {
+export const Standard = (
+  props: RouteComponentProps & {
+    backgroundImage: string
+    dataContainerStyle?: CSSProperties
+    headlineStyle?: CSSProperties
+    match: {
+      params: {
+        id?: number
+      }
+    }
+  }
+) => {
   const id = props.match.params.id
   const params = new URLSearchParams(props.location.search)
   const demo = params.has('demo')

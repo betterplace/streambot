@@ -1,9 +1,9 @@
 import React from 'react'
+import { RouteComponentProps } from 'react-router-dom'
 import { decodeColor } from '../tools'
 
 export function styled(WrappedComponent: any) {
-  return class StyledClass extends React.Component {
-    props: any
+  return class StyledClass extends React.Component<RouteComponentProps, {}> {
     render() {
       return (
         <React.Fragment>
@@ -15,19 +15,19 @@ export function styled(WrappedComponent: any) {
   }
 }
 
-function extractFromParams(name: string, params: any, defaultValue: any) {
+function extractFromParams(name: string, params: URLSearchParams, defaultValue: any) {
   return (params.has(name) && params.get(name)) || defaultValue
 }
 
-function extractColorFromParams(name: string, params: any, defaultValue: any) {
+function extractColorFromParams(name: string, params: URLSearchParams, defaultValue: string) {
   return (params.has(name) && decodeColor(params.get(name))) || defaultValue
 }
 
-function extractPixelFromParams(name: string, params: any, defaultValue: any) {
-  return (params.has(name) && parseInt(params.get(name), 10)) || defaultValue
+function extractPixelFromParams(name: string, params: URLSearchParams, defaultValue: any) {
+  return (params.has(name) && parseInt(params.get(name) as string, 10)) || defaultValue
 }
 
-export function buildGoogleWebfontUrl(fontFamily: any, fontWeight: any) {
+export function buildGoogleWebfontUrl(fontFamily: string, fontWeight: string) {
   if (!fontFamily) return ''
 
   // For the GoogleFonts Api, we need fontWeight as number.
@@ -50,7 +50,7 @@ export function buildGoogleWebfontUrl(fontFamily: any, fontWeight: any) {
   return `https://fonts.googleapis.com/css2${fontFamilyForUrl}${fontWeightForUrl}`
 }
 
-function googleFontsImport(params: any) {
+function googleFontsImport(params: URLSearchParams) {
   const fontFamily = extractFromParams('fontFamily', params, null)
   const fontWeight = extractFromParams('fontWeight', params, null)
 
@@ -73,17 +73,17 @@ function googleFontsImport(params: any) {
   }
 }
 
-const StylesFromParams = (props: any) => {
+const StylesFromParams = ({ params }: { params: URLSearchParams }) => {
   return (
     <style type="text/css">{`
-    ${googleFontsImport(props.params)}
+    ${googleFontsImport(params)}
 
     body {
-      background-color: ${extractColorFromParams('backgroundColor', props.params, 'transparent')};
-      color:            ${extractColorFromParams('textColor', props.params, 'black')};
-      font-size:        ${extractPixelFromParams('fontSize', props.params, 24)}px;
+      background-color: ${extractColorFromParams('backgroundColor', params, 'transparent')};
+      color:            ${extractColorFromParams('textColor', params, 'black')};
+      font-size:        ${extractPixelFromParams('fontSize', params, 24)}px;
       line-height:      1.25;
-      text-align:       ${extractFromParams('textAlign', props.params, 'center')};
+      text-align:       ${extractFromParams('textAlign', params, 'center')};
       margin:           0;
       overflow:         hidden;
     }
@@ -91,12 +91,12 @@ const StylesFromParams = (props: any) => {
       margin-bottom: 0.6rem;
     }
     .progressbar {
-      background-color: ${extractColorFromParams('progressBackgroundColor', props.params, 'whiteSmoke')};
+      background-color: ${extractColorFromParams('progressBackgroundColor', params, 'whiteSmoke')};
       height: 20px;
       width: 100%;
     }
     .progressbar > span {
-      background-color: ${extractColorFromParams('progressColor', props.params, 'green')};
+      background-color: ${extractColorFromParams('progressColor', params, 'green')};
       display: block;
       height: 100%;
     }

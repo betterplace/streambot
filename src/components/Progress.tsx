@@ -1,10 +1,10 @@
 import React from 'react'
+import { RouteComponentProps } from 'react-router-dom'
 import { formatCents } from '../tools'
 
-export const ProgressBar = (props: any) => {
-  const {
-    data: { progress_percentage },
-  } = props
+type ProgressBarProps = { data: { progress_percentage: number } }
+
+export const ProgressBar = ({ data: { progress_percentage } }: ProgressBarProps) => {
   return (
     <div className="progressbar">
       <span style={{ width: `${Math.round(progress_percentage)}%` }}></span>
@@ -75,7 +75,7 @@ const NonTargetProgress = (props: any) => {
   )
 }
 
-export const Progress = (props: any) => {
+export const Progress = (props: RouteComponentProps & { data: any }) => {
   if (props.data.requested_amount_in_cents) {
     return <TargetProgress {...props} />
   } else {

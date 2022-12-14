@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { RouteComponentProps } from 'react-router-dom'
 import { TimeAgo, formatCents } from '../tools'
 import { noop } from 'lodash/util'
 import { uniqBy } from 'lodash/array'
@@ -10,7 +11,16 @@ import { useInterval } from 'react-use'
 const apiUrl = 'https://api.betterplace.org'
 // const apiUrl = 'https://api.bp42.com'
 
-export const DonationList = (props: any) => {
+export const DonationList = (
+  props: RouteComponentProps & {
+    params: URLSearchParams
+    match: {
+      params: {
+        id?: number
+      }
+    }
+  }
+) => {
   const [donations, setDonations] = useState([])
   const [since, setSince] = useState(new Date())
 

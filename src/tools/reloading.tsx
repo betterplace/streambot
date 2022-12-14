@@ -1,9 +1,16 @@
 import React from 'react'
+import { RouteComponentProps } from 'react-router-dom'
 
 const apiUrl = 'https://api.betterplace.org'
 // const apiUrl = 'https://api.bp42.com'
 
-const resolveToApiUrl = (match: any, counter: number, perPage: number, since: any = '', hashtags: any = null) => {
+const resolveToApiUrl = (
+  match: any,
+  counter: number,
+  perPage: number,
+  since: any = '',
+  hashtags: string | null = null
+) => {
   switch (match.path) {
     case '/fundraising-events/:id/progress':
     case '/fundraising-events/:id/total':
@@ -26,7 +33,7 @@ const resolveToApiUrl = (match: any, counter: number, perPage: number, since: an
   }
 }
 
-const demoData = (match: any, counter: number, perPage: number) => {
+const demoData = (match: { path: string }, counter: number, perPage: number) => {
   const demoComments = [
     {
       id: 1,
@@ -94,7 +101,19 @@ const fallbackData = (match: any) => {
 }
 
 export function reloading(WrappedComponent: any) {
-  return class ReloadingClass extends React.Component<any, any> {
+  type State = {
+    params: URLSearchParams
+    data: any
+    listData: any[]
+    counter: number
+    demo: string | null
+    maxCount: number
+    interval: number
+    listMode: boolean
+    since: string | null
+    hashtags: string | null
+  }
+  return class ReloadingClass extends React.Component<RouteComponentProps, State> {
     interval: any
     constructor(props: any) {
       super(props)

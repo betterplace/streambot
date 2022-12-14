@@ -1,19 +1,17 @@
 import React from 'react'
 import betterplaceLogo from '../images/betterplace-logo.png'
 import betterplayLogo from '../images/betterplay-logo.png'
+import { RouteComponentProps } from 'react-router-dom'
 
-type State = {
-  logos: []
+type ProjectCarrierLogosState = {
+  logos: string[]
   apiUrl: string
   currentIndex: number
   duration: number
 }
-export class ProjectCarrierLogos extends React.Component {
+export class ProjectCarrierLogos extends React.Component<RouteComponentProps, ProjectCarrierLogosState> {
   interval: any
   logoInterval: any
-  props: any
-  setState: any
-  state: State
   constructor(props: any) {
     super(props)
     const params = new URLSearchParams(this.props.location.search)
@@ -37,11 +35,11 @@ export class ProjectCarrierLogos extends React.Component {
     clearInterval(this.logoInterval)
   }
 
-  collectProjectLogos = (projects: any) => {
+  collectProjectLogos = (projects: any[]) => {
     let projectImages = [betterplaceLogo, betterplayLogo]
-    projects.forEach((e: any) => {
-      if (!e.carrier.picture.links[0].href.includes('/assets/default')) {
-        projectImages.push(e.carrier.picture.links[0].href)
+    projects.forEach((project: any) => {
+      if (!project.carrier.picture.links[0].href.includes('/assets/default')) {
+        projectImages.push(project.carrier.picture.links[0].href)
       }
     })
     projectImages = projectImages.filter((v, i, a) => a.indexOf(v) === i)

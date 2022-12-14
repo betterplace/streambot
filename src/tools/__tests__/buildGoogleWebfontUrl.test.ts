@@ -2,7 +2,7 @@ import { buildGoogleWebfontUrl } from '../styled'
 
 describe('buildGoogleWebfontUrl', () => {
   it('returns no URL if fontFamily is missing', () => {
-    const url = buildGoogleWebfontUrl(null, null)
+    const url = buildGoogleWebfontUrl('', '')
     expect(url).toEqual('')
   })
 
@@ -10,17 +10,17 @@ describe('buildGoogleWebfontUrl', () => {
     const baseUrl = 'https://fonts.googleapis.com/css2'
 
     it('returns a correct URL if fontWeight=null AKA (intentionally) missing', () => {
-      const url = buildGoogleWebfontUrl('Fira Sans', null)
+      const url = buildGoogleWebfontUrl('Fira Sans', '')
       expect(url).toEqual(`${baseUrl}?family=Fira+Sans`)
     })
 
     it('returns a correct URL with fontWeight=100 – a correct weight', () => {
-      const url = buildGoogleWebfontUrl('Fira Sans', 100)
+      const url = buildGoogleWebfontUrl('Fira Sans', '100')
       expect(url).toEqual(`${baseUrl}?family=Fira+Sans:wght@100`)
     })
 
     it('returns a broken URL with fontWeight=33 – an incorrect weight', () => {
-      const url = buildGoogleWebfontUrl('Fira Sans', 33)
+      const url = buildGoogleWebfontUrl('Fira Sans', '33')
       expect(url).toEqual(`${baseUrl}?family=Fira+Sans:wght@33`)
       // We don't catch this case since it will clearly fail (font does not show),
       // and we could only validate the weight by checking with the GoogleWebfonts API first.

@@ -1,8 +1,9 @@
 import React from 'react'
 import backgroundImage from '../../images/spendenanzeige_mashup.png'
+import { RouteComponentProps } from 'react-router-dom'
 import { Standard } from '..'
 
-export const Mashup = (props: any) => (
+export const Mashup = (props: RouteComponentProps) => (
   <Standard
     {...props}
     backgroundImage={backgroundImage}

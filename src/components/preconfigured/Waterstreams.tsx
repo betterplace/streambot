@@ -1,8 +1,9 @@
 import React from 'react'
 import backgroundImage from '../../images/spendenanzeige_waterstreams.png'
+import { RouteComponentProps } from 'react-router-dom'
 import { Standard } from '..'
 
-export const Waterstreams = (props: any) => (
+export const Waterstreams = (props: RouteComponentProps) => (
   <Standard
     {...props}
     backgroundImage={backgroundImage}

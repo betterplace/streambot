@@ -1,14 +1,37 @@
 import React from 'react'
 import { Nickname } from '.'
+import { RouteComponentProps } from 'react-router-dom'
 import { formatCents } from '../tools'
 
-export class DonationAlert extends React.Component {
+type DonationAlertData = {
+  id: number | null
+  author: any
+  amountInCents: number | null
+  donated_amount_in_cents?: number
+}
+
+type DonationAlertState = {
+  hidden: boolean
+  gif: string | null
+  gifHeight: string
+  duration: any
+  wording: any
+  volume: any
+  data: DonationAlertData
+}
+
+export class DonationAlert extends React.Component<
+  RouteComponentProps & { params: URLSearchParams; data: DonationAlertData },
+  DonationAlertState
+> {
   audioElement: any
-  props: any
-  setState: any
-  state: any
   timeout: any
-  constructor(props: any) {
+  constructor(
+    props: RouteComponentProps & {
+      params: URLSearchParams
+      data: DonationAlertData
+    }
+  ) {
     super(props)
     const params = new URLSearchParams(this.props.location.search)
     this.state = {
@@ -46,7 +69,7 @@ export class DonationAlert extends React.Component {
         data: {
           id: this.props.data.id,
           author: this.props.data.author,
-          amountInCents: this.props.data.donated_amount_in_cents,
+          amountInCents: this.props.data.donated_amount_in_cents ? this.props.data.donated_amount_in_cents : null,
         },
       })
       if (this.timeout) clearInterval(this.timeout)
@@ -64,8 +87,9 @@ export class DonationAlert extends React.Component {
         <br />
         {this.state.wording}
         <br />
-        {formatCents(this.state.data.amountInCents, this.props.params) || 'Spende'} von{' '}
-        <Nickname {...this.state.data.author} color={this.props.params.get('nicknameColor')} />
+        {this.state.data.amountInCents
+          ? formatCents(this.state.data.amountInCents, this.props.params)
+          : 'Spende'} von <Nickname {...this.state.data.author} color={this.props.params.get('nicknameColor')} />
       </div>
     )
   }
