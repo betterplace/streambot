@@ -42,7 +42,19 @@ export const Standard = (
   )
 }
 
-const DataBlock = ({ children, widget, eventId, demo, headlineStyle }: any) => (
+const DataBlock = ({
+  children,
+  widget,
+  eventId,
+  demo,
+  headlineStyle,
+}: {
+  children: React.ReactNode
+  widget: string
+  eventId?: number
+  demo: boolean
+  headlineStyle?: CSSProperties
+}) => (
   <FluidColumn>
     <Headline style={headlineStyle}>{children}</Headline>
     <iframe

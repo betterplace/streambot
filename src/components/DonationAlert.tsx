@@ -14,9 +14,9 @@ type DonationAlertState = {
   hidden: boolean
   gif: string | null
   gifHeight: string
-  duration: any
-  wording: any
-  volume: any
+  duration: number
+  wording: string | null
+  volume: number
   data: DonationAlertData
 }
 
@@ -38,9 +38,9 @@ export class DonationAlert extends React.Component<
       hidden: true,
       gif: params.get('gif'),
       gifHeight: params.get('gifHeight') || 'inherit',
-      duration: params.get('duration') || 3,
+      duration: parseInt(params.get('duration') || '') || 3,
       wording: params.get('wording') === null ? 'Neue Spende' : params.get('wording'),
-      volume: params.get('volume') || 0.9,
+      volume: parseInt(params.get('volume') || '') || 0.9,
       data: {
         id: null,
         author: null,
@@ -56,7 +56,7 @@ export class DonationAlert extends React.Component<
     }
   }
 
-  componentDidUpdate(prevProps: any) {
+  componentDidUpdate() {
     // New ID must exist and differ from previous one.
     if (
       this.props.data.id &&
@@ -95,7 +95,7 @@ export class DonationAlert extends React.Component<
   }
 }
 
-const Gif = ({ src, height }: any) => {
+const Gif = ({ src, height }: { src: string | null; height: string }) => {
   if (!src) return null
   return <img src={src} alt="" height={height} />
 }

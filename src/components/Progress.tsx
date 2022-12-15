@@ -12,7 +12,7 @@ export const ProgressBar = ({ data: { progress_percentage } }: ProgressBarProps)
   )
 }
 
-const Collected = ({ params }: any) => {
+const Collected = ({ params }: { params: URLSearchParams }) => {
   const collected = params.get('collected')
   // add standard suffix if not overridden or there are zero donations
   if (!collected || 0 === collected.length) return ' gesammelt.'

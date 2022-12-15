@@ -1,9 +1,8 @@
-export function formatCents(cents: number, params: any) {
+export function formatCents(cents: number, params: URLSearchParams) {
   if (!cents) return null
 
   const currencyDisplay = params.get('currencyDisplay') || 'symbol'
-  let currencyPrecision = params.get('currencyPrecision')
-  currencyPrecision = currencyPrecision === null ? (cents % 100 === 0 ? 0 : 2) : currencyPrecision
+  const currencyPrecision = parseInt(params.get('currencyPrecision') || '') || (cents % 100 === 0 ? 0 : 2)
 
   return new Intl.NumberFormat('de-DE', {
     style: 'currency',

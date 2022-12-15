@@ -4,13 +4,7 @@ import { RouteComponentProps } from 'react-router-dom'
 const apiUrl = 'https://api.betterplace.org'
 // const apiUrl = 'https://api.bp42.com'
 
-const resolveToApiUrl = (
-  match: any,
-  counter: number,
-  perPage: number,
-  since: any = '',
-  hashtags: string | null = null
-) => {
+const resolveToApiUrl = (match: any, counter: number, perPage: number, since = '', hashtags: string | null = null) => {
   switch (match.path) {
     case '/fundraising-events/:id/progress':
     case '/fundraising-events/:id/total':
@@ -100,7 +94,7 @@ const fallbackData = (match: any) => {
   }
 }
 
-export function reloading(WrappedComponent: any) {
+export function reloading(WrappedComponent: React.ElementType) {
   type State = {
     params: URLSearchParams
     data: any
@@ -145,7 +139,7 @@ export function reloading(WrappedComponent: any) {
       const counter = this.state.listMode ? 1 : this.state.counter
       const perPage = this.state.listMode ? this.state.maxCount : 1
       const nextCounter = counter < this.state.maxCount ? counter + 1 : 1
-      const url = resolveToApiUrl(this.props.match, counter, perPage, this.state.since, this.state.hashtags)
+      const url = resolveToApiUrl(this.props.match, counter, perPage, this.state.since || '', this.state.hashtags)
 
       if (!url) return
 

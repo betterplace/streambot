@@ -2,7 +2,7 @@ import React from 'react'
 import { RouteComponentProps } from 'react-router-dom'
 import { decodeColor } from '../tools'
 
-export function styled(WrappedComponent: any) {
+export function styled(WrappedComponent: React.ElementType) {
   return class StyledClass extends React.Component<RouteComponentProps, {}> {
     render() {
       return (
@@ -15,15 +15,15 @@ export function styled(WrappedComponent: any) {
   }
 }
 
-function extractFromParams(name: string, params: URLSearchParams, defaultValue: any) {
+function extractFromParams(name: string, params: URLSearchParams, defaultValue: string) {
   return (params.has(name) && params.get(name)) || defaultValue
 }
 
 function extractColorFromParams(name: string, params: URLSearchParams, defaultValue: string) {
-  return (params.has(name) && decodeColor(params.get(name))) || defaultValue
+  return (params.has(name) && decodeColor(params.get(name) || '')) || defaultValue
 }
 
-function extractPixelFromParams(name: string, params: URLSearchParams, defaultValue: any) {
+function extractPixelFromParams(name: string, params: URLSearchParams, defaultValue: number) {
   return parseInt(params.get(name) || '', 10) || defaultValue
 }
 
@@ -51,8 +51,8 @@ export function buildGoogleWebfontUrl(fontFamily: string, fontWeight: string) {
 }
 
 function googleFontsImport(params: URLSearchParams) {
-  const fontFamily = extractFromParams('fontFamily', params, null)
-  const fontWeight = extractFromParams('fontWeight', params, null)
+  const fontFamily = extractFromParams('fontFamily', params, '')
+  const fontWeight = extractFromParams('fontWeight', params, '')
 
   if (fontFamily) {
     return `

@@ -1,4 +1,4 @@
-export function decodeHtmlEntities(inp: any) {
+export function decodeHtmlEntities(inp: string) {
   const replacements: { [key: string]: string } = {
     '&lt;': '<',
     '&gt;': '>',
@@ -16,7 +16,7 @@ export function decodeHtmlEntities(inp: any) {
   for (const r in replacements) {
     inp = inp.replace(new RegExp(r, 'g'), replacements[r])
   }
-  return inp.replace(/&#(\d+);/g, function (match: any, dec: any) {
+  return inp.replace(/&#(\d+);/g, function (match: string, dec: number) {
     return String.fromCharCode(dec)
   })
 }

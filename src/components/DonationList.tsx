@@ -49,8 +49,8 @@ export const DonationList = (
           <div className="col-md-24 m-y-md">
             <h1 className="font-lg is-lighter">Spenden-Feed</h1>
           </div>
-          {donations.map((d: any) => (
-            <Donation key={d.id} {...d} params={props.params} />
+          {donations.map((donation: any) => (
+            <Donation key={donation.id} {...donation} params={props.params} />
           ))}
         </div>
       </div>
