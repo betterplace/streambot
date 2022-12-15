@@ -13,11 +13,11 @@ type LastCommentData = {
 
 export const LastComment = (props: RouteComponentProps & { params: URLSearchParams; data: LastCommentData }) => {
   const message = decodeHtmlEntities(sanitizeHtml(props.data.message, { allowedTags: [] }))
-  const maxLength = props.params.get('maxLength')
+  const maxLength = parseInt(props.params.get('maxLength') || '')
 
   return (
     <div className="truncate-with-ellipsis">
-      <div className="truncate-with-ellipsis">{maxLength ? truncate(message, parseInt(maxLength)) : message}</div>
+      <div className="truncate-with-ellipsis">{truncate(message, maxLength)}</div>
       {formatCents(props.data.donated_amount_in_cents, props.params) || 'Spende'} von{' '}
       <Nickname {...props.data.author} color={props.params.get('nicknameColor')} />
     </div>
