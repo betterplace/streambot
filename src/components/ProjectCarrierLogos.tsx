@@ -19,7 +19,7 @@ export class ProjectCarrierLogos extends React.Component<RouteComponentProps, Pr
       logos: [],
       apiUrl: `https://api.betterplace.org/api_v4/fundraising_events/${props.match.params.id}/featured_projects`,
       currentIndex: 0,
-      duration: parseInt(params.get('duration') as string) || 5,
+      duration: parseInt(params.get('duration') || '') || 5,
     }
   }
 
