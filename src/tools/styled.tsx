@@ -24,7 +24,7 @@ function extractColorFromParams(name: string, params: URLSearchParams, defaultVa
 }
 
 function extractPixelFromParams(name: string, params: URLSearchParams, defaultValue: any) {
-  return (params.has(name) && parseInt(params.get(name) as string, 10)) || defaultValue
+  return parseInt(params.get(name) || '', 10) || defaultValue
 }
 
 export function buildGoogleWebfontUrl(fontFamily: string, fontWeight: string) {
