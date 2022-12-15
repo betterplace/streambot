@@ -147,18 +147,18 @@ export function reloading(WrappedComponent: any) {
       const nextCounter = counter < this.state.maxCount ? counter + 1 : 1
       const url = resolveToApiUrl(this.props.match, counter, perPage, this.state.since, this.state.hashtags)
 
+      if (!url) return
+
       this.setState({ counter: nextCounter }, () => {
         // If demo data is requested do not query the API
         if (this.state.demo) {
           console.log(`Demo Mode: API Request would have been: "${url}".`)
           return this.storeData(demoData(this.props.match, counter, perPage))
         }
-        if (url) {
-          fetch(url)
-            .then((response) => response.json())
-            .then((json) => this.storeData(json))
-            .then(undefined, (err) => console.log(err))
-        }
+        fetch(url)
+          .then((response) => response.json())
+          .then((json) => this.storeData(json))
+          .then(undefined, (err) => console.log(err))
       })
     }
 
