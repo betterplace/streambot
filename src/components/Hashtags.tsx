@@ -6,7 +6,7 @@ export const Hashtags = ({ data }: { data: any }) => {
   const totalCount: number = counts.reduce((acc, count) => acc + count)
   const highestCount = Math.max(...counts)
 
-  const entries = Object.entries(data) as [[key: string, value: string | number]]
+  const entries = Object.entries(data) as [[key: string, value: number]]
 
   const rows = entries.map((entry) => (
     <tr key={entry[0]}>
