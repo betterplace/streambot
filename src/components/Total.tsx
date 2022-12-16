@@ -1,6 +1,6 @@
 import React from 'react'
 import { HeadlineWithBr } from '.'
-import { RouteComponentProps } from 'react-router-dom'
+import { ReloadingWidgetProps } from './types'
 import { formatCents } from '../tools'
 
 type TotalData = {
@@ -9,7 +9,7 @@ type TotalData = {
   amountInCents: number | null
 }
 
-export const Total = (props: RouteComponentProps & { params: URLSearchParams; data: TotalData }) => {
+export const Total = (props: ReloadingWidgetProps<TotalData>) => {
   const headline = props.params.get('headline') === null ? 'Spendenstand' : props.params.get('headline')
   const subtrahend = props.params.get('subtractCents') || '0'
   return (

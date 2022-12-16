@@ -1,7 +1,7 @@
 import React from 'react'
 import betterplaceLogo from '../images/betterplace-logo.png'
 import betterplayLogo from '../images/betterplay-logo.png'
-import { RouteComponentProps } from 'react-router-dom'
+import { WidgetProps } from './types'
 
 type ProjectCarrierLogosState = {
   logos: string[]
@@ -9,7 +9,7 @@ type ProjectCarrierLogosState = {
   currentIndex: number
   duration: number
 }
-export class ProjectCarrierLogos extends React.Component<RouteComponentProps, ProjectCarrierLogosState> {
+export class ProjectCarrierLogos extends React.Component<WidgetProps, ProjectCarrierLogosState> {
   interval: any
   logoInterval: any
   constructor(props: any) {

@@ -1,7 +1,7 @@
 import React from 'react'
 import { BasicWidget } from '.'
-import { RouteComponentProps } from 'react-router-dom'
+import { ReloadingWidgetProps } from './types'
 
-export const LastDonation = (props: RouteComponentProps) => (
+export const LastDonation = (props: ReloadingWidgetProps) => (
   <BasicWidget {...props} defaultHeadline="Letzte Spende:" simpleList />
 )

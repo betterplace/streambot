@@ -1,5 +1,5 @@
 import React from 'react'
-import { RouteComponentProps } from 'react-router-dom'
+import { ReloadingWidgetProps } from './types'
 import { formatCents } from '../tools'
 
 type ProgressBarProps = { data: { progress_percentage: number } }
@@ -75,7 +75,7 @@ const NonTargetProgress = (props: any) => {
   )
 }
 
-export const Progress = (props: RouteComponentProps & { data: any }) => {
+export const Progress = (props: ReloadingWidgetProps<any>) => {
   if (props.data.requested_amount_in_cents) {
     return <TargetProgress {...props} />
   } else {

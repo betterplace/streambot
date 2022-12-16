@@ -1,7 +1,7 @@
 import React from 'react'
 import sanitizeHtml from 'sanitize-html'
 import { Nickname } from '.'
-import { RouteComponentProps } from 'react-router-dom'
+import { ReloadingWidgetProps } from './types'
 import { decodeHtmlEntities, formatCents, truncate } from '../tools'
 
 type LastCommentData = {
@@ -11,7 +11,7 @@ type LastCommentData = {
   donated_amount_in_cents: any
 }
 
-export const LastComment = (props: RouteComponentProps & { params: URLSearchParams; data: LastCommentData }) => {
+export const LastComment = (props: ReloadingWidgetProps<LastCommentData>) => {
   const message = decodeHtmlEntities(sanitizeHtml(props.data.message, { allowedTags: [] }))
   const maxLength = parseInt(props.params.get('maxLength') || '')
 

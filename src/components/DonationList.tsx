@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import { RouteComponentProps } from 'react-router-dom'
 import { TimeAgo, formatCents } from '../tools'
+import { WidgetProps } from './types'
 import { noop } from 'lodash/util'
 import { uniqBy } from 'lodash/array'
 import { useInterval } from 'react-use'
@@ -11,16 +11,7 @@ import { useInterval } from 'react-use'
 const apiUrl = 'https://api.betterplace.org'
 // const apiUrl = 'https://api.bp42.com'
 
-export const DonationList = (
-  props: RouteComponentProps & {
-    params: URLSearchParams
-    match: {
-      params: {
-        id?: number
-      }
-    }
-  }
-) => {
+export const DonationList = (props: WidgetProps) => {
   const [donations, setDonations] = useState([])
   const [since, setSince] = useState(new Date())
 
@@ -50,7 +41,7 @@ export const DonationList = (
             <h1 className="font-lg is-lighter">Spenden-Feed</h1>
           </div>
           {donations.map((donation: any) => (
-            <Donation key={donation.id} {...donation} params={props.params} />
+            <Donation key={donation.id} {...donation} params={props.match.params} />
           ))}
         </div>
       </div>

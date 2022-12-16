@@ -1,18 +1,13 @@
 import React from 'react'
 import defaultBackgroundImage from '../../images/spendenanzeige_standard.png'
 import styled, { CSSProperties } from 'styled-components'
-import { RouteComponentProps } from 'react-router-dom'
+import { WidgetProps } from 'components/types'
 
 export const Standard = (
-  props: RouteComponentProps & {
+  props: WidgetProps & {
     backgroundImage: string
     dataContainerStyle?: CSSProperties
     headlineStyle?: CSSProperties
-    match: {
-      params: {
-        id?: number
-      }
-    }
   }
 ) => {
   const id = props.match.params.id
@@ -51,7 +46,7 @@ const DataBlock = ({
 }: {
   children: React.ReactNode
   widget: string
-  eventId?: number
+  eventId: string
   demo: boolean
   headlineStyle?: CSSProperties
 }) => (

@@ -1,5 +1,5 @@
 import React from 'react'
 import { BasicWidget } from '.'
-import { RouteComponentProps } from 'react-router-dom'
+import { ReloadingWidgetProps } from './types'
 
-export const TopDonation = (props: RouteComponentProps) => <BasicWidget {...props} defaultHeadline="Top-Spende:" />
+export const TopDonation = (props: ReloadingWidgetProps) => <BasicWidget {...props} defaultHeadline="Top-Spende:" />

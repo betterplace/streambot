@@ -1,6 +1,6 @@
 import React from 'react'
 import { Nickname } from '.'
-import { RouteComponentProps } from 'react-router-dom'
+import { ReloadingWidgetProps } from './types'
 import { formatCents } from '../tools'
 
 type DonationAlertData = {
@@ -20,18 +20,12 @@ type DonationAlertState = {
   data: DonationAlertData
 }
 
-export class DonationAlert extends React.Component<
-  RouteComponentProps & { params: URLSearchParams; data: DonationAlertData },
-  DonationAlertState
-> {
+type DonationAlertProps = ReloadingWidgetProps<DonationAlertData>
+
+export class DonationAlert extends React.Component<DonationAlertProps, DonationAlertState> {
   audioElement: any
   timeout: any
-  constructor(
-    props: RouteComponentProps & {
-      params: URLSearchParams
-      data: DonationAlertData
-    }
-  ) {
+  constructor(props: DonationAlertProps) {
     super(props)
     const params = new URLSearchParams(this.props.location.search)
     this.state = {

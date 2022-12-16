@@ -1,12 +1,13 @@
 import React from 'react'
 import { ProgressBar } from '.'
+import { ReloadingWidgetProps } from './types'
 
-export const Hashtags = ({ data }: { data: Record<string, number> }) => {
-  const counts = Object.values(data)
+export const Hashtags = (props: ReloadingWidgetProps<Record<string, number>>) => {
+  const counts = Object.values(props.data)
   const totalCount = counts.reduce((acc, count) => acc + count)
   const highestCount = Math.max(...counts)
 
-  const entries = Object.entries(data)
+  const entries = Object.entries(props.data)
 
   const rows = entries.map((entry) => (
     <tr key={entry[0]}>
