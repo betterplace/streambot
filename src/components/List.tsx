@@ -23,7 +23,7 @@ const Amount = ({ amount, params }: { amount: number; params: URLSearchParams })
   return <div style={style}>{formatCents(amount, params)}</div>
 }
 
-type ListProps = { simple: string; listData: []; params: URLSearchParams }
+type ListProps = { simple: boolean; listData: []; params: URLSearchParams }
 
 export const List = ({ simple, listData, params }: ListProps) => {
   // TODO: This is a temporary solution to get the differences out of <LastDonation>. Gotta assimilate both versions.
