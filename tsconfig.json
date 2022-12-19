@@ -1,0 +1,40 @@
+{
+  "compilerOptions": {
+    "allowJs": true,
+    "declaration": true,
+    "strict": true,
+    "emitDecoratorMetadata": true,
+    "allowSyntheticDefaultImports": true,
+    "resolveJsonModule": true,
+    "baseUrl": "./src/",
+    "experimentalDecorators": true,
+    "lib": [
+      "ESNext",
+      "dom"
+    ],
+    "module": "ESNext",
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "target": "es5",
+    "jsx": "react",
+    "noErrorTruncation": true,
+    "downlevelIteration": true,
+    "noEmit": true,
+    "paths": {
+      "shared": [
+        "shared"
+      ],
+    },
+  },
+  "exclude": [
+    "vendor",
+    "public",
+    "node_modules",
+    "tailwind.config.js",
+  ],
+  "include": [
+    "./src/**/*",
+    "**/*.d.ts"
+  ],
+  "compileOnSave": false
+}
