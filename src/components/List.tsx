@@ -30,7 +30,7 @@ type ListData = {
   donated_amount_in_cents: number
 }
 
-type ListProps = Pick<ReloadingWidgetProps, 'params'> & { simple: string; listData: ListData[] }
+type ListProps = Pick<ReloadingWidgetProps, 'params'> & { simple: boolean; listData: ListData[] }
 
 export const List = ({ simple, listData, params }: ListProps) => {
   // TODO: This is a temporary solution to get the differences out of <LastDonation>. Gotta assimilate both versions.

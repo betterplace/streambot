@@ -41,7 +41,7 @@ export const DonationList = (props: WidgetProps) => {
             <h1 className="font-lg is-lighter">Spenden-Feed</h1>
           </div>
           {donations.map((donation: any) => (
-            <Donation key={donation.id} {...donation} params={props.match.params} />
+            <Donation key={donation.id} {...donation} />
           ))}
         </div>
       </div>
