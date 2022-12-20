@@ -6,7 +6,7 @@ import { formatCents } from '../tools'
 type TotalData = {
   id: number | null
   author: any
-  amountInCents: number | null
+  donated_amount_in_cents: number | null
 }
 
 export const Total = (props: ReloadingWidgetProps<TotalData>) => {
@@ -15,7 +15,9 @@ export const Total = (props: ReloadingWidgetProps<TotalData>) => {
   return (
     <div className="truncate-with-ellipsis">
       <HeadlineWithBr content={headline} />
-      {props.data.amountInCents ? formatCents(props.data.amountInCents - parseInt(subtrahend), props.params) : ''}
+      {props.data.donated_amount_in_cents
+        ? formatCents(props.data.donated_amount_in_cents - parseInt(subtrahend), props.params)
+        : ''}
     </div>
   )
 }
