@@ -1,7 +1,7 @@
 import React from 'react'
 import backgroundImage from '../../images/spendenanzeige_waterstreams.png'
 import { Standard } from '..'
-import { WidgetProps } from 'components/types'
+import { WidgetProps } from '../types'
 
 export const Waterstreams = (props: WidgetProps) => (
   <Standard

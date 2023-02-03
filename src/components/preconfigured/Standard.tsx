@@ -1,7 +1,7 @@
 import React from 'react'
 import defaultBackgroundImage from '../../images/spendenanzeige_standard.png'
 import styled, { CSSProperties } from 'styled-components'
-import { WidgetProps } from 'components/types'
+import { WidgetProps } from '../types'
 
 export const Standard = (
   props: WidgetProps & {
