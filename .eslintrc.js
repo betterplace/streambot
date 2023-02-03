@@ -9,7 +9,8 @@ module.exports = {
   },
   parser: '@typescript-eslint/parser',
   parserOptions: {
-    project: './tsconfig.json',
+    project: 'tsconfig.json',
+    tsconfigRootDir: __dirname // https://stackoverflow.com/a/66088074
   },
   root: true,
   plugins: ['@typescript-eslint', 'react', 'prettier', 'sort-imports-es6-autofix'],
