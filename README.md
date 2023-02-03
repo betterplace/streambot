@@ -36,7 +36,7 @@ Folgende Parameter können verwendet werden um die Anzeige anzupassen:
 https://streambot.betterplace.org/fundraising-events/<ID>/progress
 ```
 
-Additional customization params:
+Additional customization parameters:
 
 - `progressColor` - hex color value (without #), e.g. `&progressColor=ff0000`
 - `progressBackgroundColor` - hex color value (without #), e.g. `&progressBackgroundColor=ff0000`
@@ -60,7 +60,7 @@ Spendenstand
 https://streambot.betterplace.org/fundraising-events/<ID>/total
 ```
 
-Additional customization params:
+Additional customization parameters:
 
 - `headline` - customize the default text, set to `false` to hide the text.
 
@@ -80,7 +80,7 @@ tordans
 https://streambot.betterplace.org/fundraising-events/<ID>/top-donation
 ```
 
-Additional customization params:
+Additional customization parameters:
 
 - `headline` - customize the default text, set to `false` to hide the text.
 - `since` - only displays the top donation since a given point in time, e. g. `2011-11-11T11:11:00CET`
@@ -102,7 +102,7 @@ tordans
 https://streambot.betterplace.org/fundraising-events/<ID>/last-donation
 ```
 
-Additional customization params:
+Additional customization parameters:
 
 - `headline` - customize the default headline, set to `false` for no headline, e.g. `&headline=Legen%20dary` or `&headline=false`
 
@@ -121,7 +121,7 @@ Tolle Aktion. Auch ein kleiner Beitrag hilft.
 https://streambot.betterplace.org/fundraising-events/<ID>/last-comment
 ```
 
-Additional customization params:
+Additional customization parameters:
 
 - `maxLength` - numeric: maximum displayable characters, the message will be truncated after that and `…` will be appended
 
@@ -152,7 +152,7 @@ Danke!
 https://streambot.betterplace.org/fundraising-events/<ID>/donation-alert
 ```
 
-Additional customization params:
+Additional customization parameters:
 
 - `wording` - custom thank you text message, e.g. `&wording=Thanks!`
 - `gif` - gif url to be shown, e.g. `&gif=https://media.giphy.com/media/vQqeT3AYg8S5O/giphy.gif`
@@ -185,7 +185,7 @@ Show the organisation logos of the projects that are associated to the event in 
 https://streambot.betterplace.org/fundraising-events/<ID>/project-logos
 ```
 
-Additional customization params:
+Additional customization parameters:
 
 - `duration` - how long is the interval between logos (in seconds)
 
