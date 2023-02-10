@@ -1,4 +1,4 @@
-# betterplace.org streambot
+# betterplace.org Streambot
 
 ## Modules
 
