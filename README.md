@@ -219,7 +219,7 @@ $ make deploy
 In case of error 401:
 
 ```
-$firebase login --reauth
+$ firebase login --reauth
 ```
 
 ## Development
