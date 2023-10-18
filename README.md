@@ -1,13 +1,9 @@
 # betterplace.org Streambot
 
-## Modules
+## Customizable widgets
 
-### General
-
-- All modules will update every 3 seconds.
+- All widgets will update every 3 seconds.
 - To create your own fundraising event go to https://www.betterplace.org/de/fundraising-events/registration/preselection?tracking_via=github-streambot-readme
-
-### Customization
 
 ### Standard widget
 
