@@ -8,7 +8,10 @@ export const Standard = (props: WidgetProps) => {
   const params = new URLSearchParams(props.location.search)
   const demo = params.has('demo')
   const backgroundImage = params.get('withoutBackgroundImage') === 'true' ? null : defaultBackgroundImage
-  const textColor = params.get('textColor') || 'fff'
+  let textColor = 'ffffff'
+  if (params.get('withoutBackgroundImage') === 'true') {
+    textColor = params.get('textColor') || 'ffffff'
+  }
 
   return (
     <>

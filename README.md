@@ -18,7 +18,7 @@ https://streambot.betterplace.org/fundraising-events/<ID>/standard
 Customization parameters:
 
 - `withoutBackgroundImage=true` - hides the betterplace background image
-- `textColor` - hex color value (without #), e.g. `&textColor=ff0000`
+- `textColor` - hex color value (without #) that only affects the text color of standard widgets without background image, e.g. `&textColor=ff0000`
 - `demo` - show demo data instead of actual data (useful for testing) - e.g. `&demo=true`
 
 ### Progress bar
