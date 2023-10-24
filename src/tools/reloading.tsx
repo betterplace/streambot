@@ -10,6 +10,8 @@ const resolveToApiUrl = (match: any, counter: number, perPage: number, since = '
     case '/fundraising-events/:id/total':
       return `${apiUrl}/api_v4/fundraising_events/${match.params.id}`
     case '/fundraising-events/:id/last-donation':
+      return `${apiUrl}/api_v4/fundraising_events/${match.params.id}/opinions?facets=has_author_or_amount:true`
+
     case '/fundraising-events/:id/donation-alert':
       return `${apiUrl}/api_v4/fundraising_events/${match.params.id}/opinions?order=id:desc&per_page=${perPage}&page=${counter}`
     case '/fundraising-events/:id/top-donation':
