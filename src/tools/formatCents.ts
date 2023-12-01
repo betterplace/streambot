@@ -2,7 +2,7 @@ export function formatCents(cents: number, params: URLSearchParams) {
   if (!cents) return null
 
   const currencyDisplay = params.get('currencyDisplay') || 'symbol'
-  const currencyPrecision = parseInt(params.get('currencyPrecision') || '') || (cents % 100 === 0 ? 0 : 2)
+  const currencyPrecision = params.get('currencyPrecision') ? parseInt(params.get('currencyPrecision')) : (cents % 100 === 0 ? 0 : 2)
 
   return new Intl.NumberFormat('de-DE', {
     style: 'currency',
