@@ -18,10 +18,7 @@ const ListNickname = ({ name, color }: { name: string; color: string }) => {
 }
 
 const Amount = ({ amount, params }: { amount: number; params: URLSearchParams }) => {
-  const style = {
-    fontFamily: 'Roboto Mono',
-  }
-  return <div style={style}>{formatCents(amount, params)}</div>
+  return <div>{formatCents(amount, params)}</div>
 }
 
 type ListData = {
