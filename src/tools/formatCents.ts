@@ -1,8 +1,8 @@
 export function formatCents(cents: number, params: URLSearchParams) {
   if (!cents) return null
 
-  const currencyDisplay = (params.get('currencyDisplay') ||
-    'symbol') as keyof Intl.NumberFormatOptionsCurrencyDisplayRegistry
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const currencyDisplay = (params.get('currencyDisplay') || 'symbol') as any
   const currencyPrecision = params.get('currencyPrecision')
     ? // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       parseInt(params.get('currencyPrecision')!)
