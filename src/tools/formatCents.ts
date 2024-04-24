@@ -1,9 +1,11 @@
 export function formatCents(cents: number, params: URLSearchParams) {
   if (!cents) return null
 
-  const currencyDisplay = params.get('currencyDisplay') || 'symbol'
+  const currencyDisplay = (params.get('currencyDisplay') ||
+    'symbol') as keyof Intl.NumberFormatOptionsCurrencyDisplayRegistry
   const currencyPrecision = params.get('currencyPrecision')
-    ? parseInt(params.get('currencyPrecision')!)
+    ? // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+      parseInt(params.get('currencyPrecision')!)
     : cents % 100 === 0
     ? 0
     : 2
@@ -11,7 +13,7 @@ export function formatCents(cents: number, params: URLSearchParams) {
   return new Intl.NumberFormat('de-DE', {
     style: 'currency',
     currency: 'EUR',
-    currencyDisplay: currencyDisplay,
+    currencyDisplay,
     minimumFractionDigits: currencyPrecision,
     maximumFractionDigits: currencyPrecision,
   }).format(cents / 100)

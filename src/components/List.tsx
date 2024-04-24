@@ -1,6 +1,6 @@
 import React from 'react'
 import { CSSProperties } from 'styled-components'
-import { Nickname } from '.'
+import { Nickname, TrustedHtml } from '.'
 import { ReloadingWidgetProps } from './types'
 import { decodeColor, formatCents } from '../tools'
 
@@ -14,7 +14,7 @@ const ListNickname = ({ name, color }: { name: string; color: string }) => {
   if (color) {
     style.color = decodeColor(color)
   }
-  return <div style={style} dangerouslySetInnerHTML={{ __html: name ? name : 'Anonym' }} />
+  return <TrustedHtml as="div" style={style} value={name ? name : 'Anonym'} />
 }
 
 const Amount = ({ amount, params }: { amount: number; params: URLSearchParams }) => {

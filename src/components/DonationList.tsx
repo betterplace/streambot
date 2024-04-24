@@ -1,5 +1,7 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useState } from 'react'
 import { TimeAgo, formatCents } from '../tools'
+import { TrustedHtml } from './TrustedHtml'
 import { WidgetProps } from './types'
 import { noop } from 'lodash/util'
 import { uniqBy } from 'lodash/array'
@@ -70,13 +72,13 @@ const Donation = (props: any) => {
         </div>
         <div className="opinion-body media-body">
           <div className="headline">
-            <strong dangerouslySetInnerHTML={{ __html: donor }} /> hat gespendet
+            <TrustedHtml as="strong" value={donor} /> hat gespendet
             <br />
             <small>
               <TimeAgo datetime={props.created_at} locale={'de'} />
             </small>
           </div>
-          {props.message && <div className="message" dangerouslySetInnerHTML={{ __html: props.message }} />}
+          {props.message && <TrustedHtml as="div" className="message" value={props.message} />}
         </div>
       </div>
     </div>

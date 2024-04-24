@@ -10,6 +10,7 @@ export * from './TopDonation'
 export * from './TopDonor'
 export * from './Total'
 export * from './preconfigured/Standard'
+export * from './TrustedHtml'
 
 // Snippets
 export * from './Nickname'
