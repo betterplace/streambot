@@ -1,9 +1,13 @@
 all: build
 
-start:
+setup:
+	asdf install
+	yarn
+
+start: setup
 	yarn start
 
-build: src/**/*
+build: setup src/**/*
 	yarn build
 
 deploy: build
