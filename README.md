@@ -235,6 +235,11 @@ In case of error 401:
 $ firebase login --reauth
 ```
 
+The latest deployed version can then be seen via these URLs:
+
+ - https://streambot.bp42.com/fundraising-events/30943/standard
+ - https://streambot.betterplace.org/fundraising-events/30943/standard
+
 ## Development
 
 ```
