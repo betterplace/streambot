@@ -225,9 +225,19 @@ Customization parameters:
 
 ## Build & Deploy
 
+Enter
+
 ```
-$ make deploy
+$ make deploy-staging
 ```
+
+or
+
+```
+$ make deploy-production
+```
+
+to deploy the current revision.
 
 In case of error 401:
 
@@ -235,7 +245,7 @@ In case of error 401:
 $ firebase login --reauth
 ```
 
-The latest deployed version can then be seen via these URLs:
+The latest deployed revision can then be seen via these URLs:
 
  - https://streambot.bp42.com/fundraising-events/30943/standard
  - https://streambot.betterplace.org/fundraising-events/30943/standard

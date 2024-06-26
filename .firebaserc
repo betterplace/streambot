@@ -1,5 +1,17 @@
 {
   "projects": {
     "default": "betterplacestreambot"
+  },
+  "targets": {
+    "betterplacestreambot": {
+      "hosting": {
+        "production": [
+          "betterplacestreambot"
+        ],
+        "staging": [
+          "bp42streambot"
+        ]
+      }
+    }
   }
 }
